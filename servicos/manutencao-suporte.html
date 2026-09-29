@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manutenção & suporte · PixelNuvo</title>
+  <meta name="description" content="Você pede, a gente ajusta e publica. Sem burocracia.">
+  <meta name="theme-color" content="#07090f">
+  <meta property="og:title" content="Manutenção & suporte · PixelNuvo">
+  <meta property="og:description" content="Você pede, a gente ajusta e publica. Sem burocracia.">
+  <link rel="icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style data-page>
+    /* chat (client on the right, team on the left) */
+    .ms-chat { overflow: hidden; border-radius: 24px; border: 1px solid var(--line-2); background: #0c1222; box-shadow: 0 40px 120px -50px var(--a); }
+    .ms-chat__head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+    .ms-av { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--grad); color: #fff; font: 800 13px var(--sans); }
+    .ms-chat__head b { display: block; font-size: 15px; line-height: 1.2; }
+    .ms-chat__head small { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #4ade80; }
+    .ms-chat__head small::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+    .ms-chat__body { display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; min-height: 300px; padding: 18px; }
+    .ms-chat .m--in { align-self: flex-start; }
+    .ms-chat .m--out { align-self: flex-end; background: var(--a); color: #052e16; }
+    .ms-chat .m--typing { align-self: flex-start; background: #1a2442; }
+    .ms-chat .m--sys { align-self: center; }
+    .ms-chat .pop { animation: msPop .45s var(--ease); }
+    @keyframes msPop { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+
+    /* hero: the chat edits a real-looking site */
+    .ms-live { display: grid; gap: 14px; }
+    .ms-site { overflow: hidden; border-radius: 18px; background: #fbf6ee; color: #2b1d10; box-shadow: 0 30px 60px -30px #000; }
+    .ms-site__bar { display: flex; align-items: center; gap: 6px; padding: 9px 14px; background: #efe6d8; font: 11px var(--mono); color: #8a6d4f; }
+    .ms-site__bar span { width: 9px; height: 9px; border-radius: 50%; background: #d6c7b0; }
+    .ms-site__bar b { margin-left: 8px; font-weight: 400; }
+    .ms-site__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; padding: 16px 18px; font-size: 13px; }
+    .ms-site__foot b { margin-right: auto; font: 700 17px Georgia, serif; }
+    .ms-site__foot small { width: 100%; font: 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #a08a70; }
+    .ms-phone { padding: 3px 8px; margin: -3px -8px; border-radius: 8px; font-weight: 700; }
+    .ms-phone.is-new { animation: msFlash 1.8s var(--ease); }
+    @keyframes msFlash { 0%, 30% { background: #4ade80; color: #052e16; } 100% { background: transparent; } }
+
+    /* ask anything */
+    .ms-ask { border-top: 1px solid var(--line); }
+    .ms-ask__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+    .ms-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ms-chips button { padding: 16px 18px; border-radius: 16px; border: 1px solid var(--line-2); background: #0c1222; text-align: left; font-size: 15px; font-weight: 600; cursor: pointer; transition: border-color .3s, background .3s, opacity .3s; }
+    .ms-chips button:hover { border-color: var(--a); background: rgba(74, 222, 128, .07); }
+    .ms-chips.is-busy button { opacity: .45; cursor: default; }
+    .ms-chips button small { display: block; margin-bottom: 4px; font: 500 11px var(--mono); color: var(--a); }
+    .ms-hint { grid-column: 1 / -1; font: 12px var(--mono); color: var(--muted); }
+    .ms-chat--demo .ms-chat__body { justify-content: flex-start; height: 400px; min-height: 0; overflow-y: auto; scroll-behavior: smooth; scrollbar-width: thin; }
+    .ms-chat--demo .ms-chat__body > :first-child { margin-top: auto; }
+
+    /* how it works */
+    .ms-steps { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .ms-steps::before { content: ""; position: absolute; top: 31px; left: 16.6%; right: 16.6%; height: 2px; background: linear-gradient(90deg, var(--a), rgba(74, 222, 128, .15)); }
+    .ms-steps li { position: relative; display: grid; justify-items: center; gap: 10px; text-align: center; }
+    .ms-steps span { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: 10px; border-radius: 50%; border: 2px solid var(--a); background: var(--bg); color: var(--a); font: 800 22px var(--sans); box-shadow: 0 0 30px rgba(74, 222, 128, .25); }
+    .ms-steps h3 { font-size: 22px; font-weight: 700; }
+    .ms-steps p { max-width: 30ch; color: var(--muted); }
+
+    /* changelog */
+    .ms-log-sec { border-top: 1px solid var(--line); }
+    .ms-log__grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+    .ms-log__grid > div > p:not(.eyebrow) { margin-top: 18px; color: var(--muted); font-size: 18px; max-width: 40ch; }
+    .ms-fit__t { margin: 34px 0 14px; font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .ms-fit { display: grid; gap: 10px; }
+    .ms-fit li { display: flex; align-items: center; gap: 12px; }
+    .ms-fit .ic { color: var(--a); }
+    .ms-log { overflow: hidden; border-radius: 22px; border: 1px solid var(--line-2); background: #0a0f1d; font-family: var(--mono); }
+    .ms-log__head { display: flex; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+    .ms-log__head small { padding: 2px 8px; border-radius: 6px; border: 1px solid var(--line-2); }
+    .ms-log ol { position: relative; display: grid; padding: 10px 20px 16px; }
+    .ms-log ol::before { content: ""; position: absolute; top: 28px; bottom: 34px; left: 29px; width: 2px; background: var(--line-2); }
+    .ms-log li { position: relative; display: grid; grid-template-columns: 20px 64px 1fr; gap: 14px; align-items: baseline; padding: 12px 0; }
+    .ms-log li::before { content: ""; position: relative; top: 2px; width: 12px; height: 12px; margin-left: 4px; border-radius: 50%; background: #0a0f1d; border: 2px solid var(--a); }
+    .ms-log li:first-child::before { background: var(--a); box-shadow: 0 0 12px var(--a); }
+    .ms-log code { font-size: 12px; color: #fbbf24; }
+    .ms-log b { display: block; font: 600 15px var(--sans); color: var(--text); }
+    .ms-log small { font-size: 11px; color: var(--muted); }
+    .ms-log em { margin-left: 8px; padding: 2px 8px; border-radius: 99px; background: rgba(74, 222, 128, .15); color: var(--a); font-size: 10px; font-style: normal; }
+
+    @media (max-width: 900px) {
+      .ms-ask__grid, .ms-log__grid { grid-template-columns: 1fr; }
+      .ms-steps { grid-template-columns: 1fr; gap: 26px; }
+      .ms-steps::before { top: 32px; bottom: 60px; left: 31px; right: auto; width: 2px; height: auto; }
+      .ms-steps li { grid-template-columns: 64px 1fr; justify-items: start; text-align: left; column-gap: 18px; }
+      .ms-steps span { grid-row: span 2; margin: 0; }
+      .ms-chat--demo .ms-chat__body { height: 340px; }
+    }
+    @media (max-width: 620px) {
+      .ms-chips { grid-template-columns: 1fr; }
+      .ms-log li { grid-template-columns: 20px 1fr; }
+      .ms-log code { display: none; }
+    }
+  </style>
+</head>
+<body style="--a:#4ade80">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+  </svg>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="../index.html" class="brand" aria-label="PixelNuvo, início">
+      <img src="../assets/logo.png" alt="" width="40" height="40">
+      <span>Pixel<b>Nuvo</b></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Principal">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#especialidades">Especialidades</a>
+      <a href="../servicos.html" class="is-active">Serviços</a>
+      <a href="../index.html#processo">Processo</a>
+      <a href="../index.html#equipe">Equipe</a>
+      <a href="../index.html#duvidas">Dúvidas</a>
+      <a href="#contato" class="btn btn--sm btn--primary nav__cta-mobile">Solicitar orçamento</a>
+    </nav>
+    <a href="#contato" class="btn btn--sm btn--primary nav__cta magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <main id="topo">
+    <section class="page-hero">
+      <div class="container page-hero__grid">
+        <div>
+          <nav class="crumbs" aria-label="Você está aqui"><a href="../servicos.html">Serviços</a><span aria-hidden="true">/</span><span aria-current="page">Manutenção &amp; suporte</span></nav>
+          <h1 class="page-hero__title">Manutenção &amp; suporte</h1>
+          <p class="page-hero__sub">Você pede, a gente ajusta e publica. Sem burocracia.</p>
+          <p class="page-hero__lead">Seu site sempre atualizado sem você precisar mexer em nada. Uma mensagem basta: a gente faz, publica e avisa.</p>
+          <div class="hero__ctas">
+            <a href="#contato" class="btn btn--primary btn--lg magnetic">Quero suporte <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+            <a href="#pedidos" class="btn btn--ghost btn--lg">O que posso pedir?</a>
+          </div>
+        </div>
+        <div class="ms-live" aria-hidden="true">
+          <div class="ms-chat ms-chat--hero">
+            <div class="ms-chat__head"><span class="ms-av">PN</span><div><b>Equipe PixelNuvo</b><small>online</small></div></div>
+            <div class="ms-chat__body"></div>
+          </div>
+          <div class="ms-site">
+            <div class="ms-site__bar"><span></span><span></span><span></span><b>paodourado.com.br</b></div>
+            <div class="ms-site__foot"><small>rodapé do site</small><b>Pão Dourado</b><span>Rua das Flores, 45</span><span class="ms-phone">(19) 3232-1010</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ms-ask" id="pedidos">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>O que dá para pedir</p>
+          <h2 class="h2 reveal">Pode pedir. <span class="hl">A gente resolve.</span></h2>
+          <p class="section__sub reveal">Escolha um exemplo e veja como a conversa acontece.</p>
+        </header>
+        <div class="ms-ask__grid">
+          <div class="ms-chips" role="group" aria-label="Exemplos de pedido">
+            <button type="button"><small>texto e imagem</small>Trocar uma foto</button>
+            <button type="button"><small>conteúdo</small>Atualizar preços</button>
+            <button type="button"><small>crescimento</small>Criar uma página</button>
+            <button type="button"><small>informação</small>Mudar o horário</button>
+            <button type="button"><small>técnico</small>Domínio e hospedagem</button>
+            <button type="button"><small>melhoria</small>Tive uma ideia</button>
+            <p class="ms-hint">Exemplos de conversa. No dia a dia, você fala direto com a gente.</p>
+          </div>
+          <div class="ms-chat ms-chat--demo">
+            <div class="ms-chat__head"><span class="ms-av">PN</span><div><b>Equipe PixelNuvo</b><small>online</small></div></div>
+            <div class="ms-chat__body" aria-live="polite"><div class="m m--in">Oi! Pode pedir o que precisar por aqui. Escolha um exemplo ao lado.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Como funciona</p>
+          <h2 class="h2 reveal">Três passos. <span class="hl">Nenhuma burocracia.</span></h2>
+        </header>
+        <ol class="ms-steps">
+          <li class="reveal"><span>1</span><h3>Você pede</h3><p>Uma mensagem com o que precisa mudar. Sem formulário e sem chamado.</p></li>
+          <li class="reveal" style="--rd:.12s"><span>2</span><h3>A gente ajusta</h3><p>Quem cuida é a mesma equipe que conhece o seu site.</p></li>
+          <li class="reveal" style="--rd:.24s"><span>3</span><h3>Publicado e avisado</h3><p>Você recebe o aviso para conferir a alteração no ar.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section ms-log-sec">
+      <div class="container ms-log__grid">
+        <div>
+          <p class="eyebrow" data-scramble>Evolução contínua</p>
+          <h2 class="h2 reveal">Seu site <span class="hl">não para</span> no tempo.</h2>
+          <p class="reveal">Cada pedido vira uma melhoria. Com o tempo, o site acompanha o seu negócio em vez de ficar para trás.</p>
+          <h3 class="ms-fit__t">Ideal para</h3>
+          <ul class="ms-fit">
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Quem não tem tempo de mexer no site</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Negócios com novidades frequentes</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Cardápios, preços e horários que mudam</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Sites que precisam crescer aos poucos</li>
+          </ul>
+        </div>
+        <div class="ms-log reveal">
+          <div class="ms-log__head"><span>histórico · paodourado.com.br</span><small>exemplo</small></div>
+          <ol>
+            <li><code>a3f9c1</code><div><b>Cardápio de inverno publicado</b><small>há 2 dias · conteúdo</small><em>no ar</em></div></li>
+            <li><code>7b2e04</code><div><b>Nova foto da equipe na página Sobre</b><small>há 1 semana · imagem</small></div></li>
+            <li><code>e91d3a</code><div><b>Página “Trabalhe conosco” criada</b><small>há 3 semanas · nova página</small></div></li>
+            <li><code>4c7a88</code><div><b>Horário de domingo adicionado</b><small>há 1 mês · informação</small></div></li>
+            <li><code>0d15f2</code><div><b>Telefone do rodapé atualizado</b><small>há 2 meses · contato</small></div></li>
+            <li><code>1a0001</code><div><b>Site no ar</b><small>há 6 meses · lançamento</small></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Dúvidas</p>
+        <h2 class="h2 reveal">Perguntas <span class="hl">frequentes</span>.</h2>
+      </header>
+      <div class="faq__list">
+        <details><summary>Como faço um pedido de alteração?</summary><p>É só mandar uma mensagem. A gente confirma, ajusta e avisa quando estiver publicado.</p></details>
+        <details><summary>Quem vai atender meu pedido?</summary><p>Nossa própria equipe, a mesma que conhece o seu site.</p></details>
+        <details><summary>Vocês cuidam de sites feitos por outras empresas?</summary><p>Avaliamos caso a caso. Conte como é o seu site e a gente responde.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="container cta__inner">
+        <h2 class="cta__title reveal">Deixe o site com a gente e <span class="hl">foque no seu negócio</span>.</h2>
+        <p class="cta__lead reveal">Conte a sua ideia e receba um orçamento sem compromisso.</p>
+        <div class="hero__ctas reveal">
+          <a href="https://ig.me/m/pixel_nuvo" target="_blank" rel="noopener" class="btn btn--primary btn--lg magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">@pixel_nuvo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section more-sec" aria-labelledby="outros">
+      <div class="container">
+        <p class="eyebrow" id="outros">Outros serviços</p>
+        <div class="more">
+          <a href="site-institucional.html" class="more__item" style="--a:#4da8ff"><b>Site institucional</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="landing-page.html" class="more__item" style="--a:#8b5cf6"><b>Landing page</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="portfolio-catalogo.html" class="more__item" style="--a:#22d3ee"><b>Portfólio &amp; catálogo</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="redesign.html" class="more__item" style="--a:#f59e0b"><b>Redesign</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="automacoes-integracoes.html" class="more__item" style="--a:#f472b6"><b>Automações &amp; integrações</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__nav" aria-label="Rodapé">
+      <a href="../index.html#sobre">Sobre</a><a href="../servicos.html">Serviços</a><a href="../index.html#processo">Processo</a><a href="../index.html#equipe">Equipe</a><a href="../index.html#duvidas">Dúvidas</a>
+      <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener">Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </nav>
+    <div class="footer__word" aria-hidden="true">PIXELNUVO</div>
+    <p class="footer__copy">© <span class="year"></span> PixelNuvo · Desenvolvimento de Sites</p>
+  </footer>
+
+  <script src="../common.js"></script>
+  <script data-page>
+    const msBubble = (body, cls, html) => {
+      const d = document.createElement('div');
+      d.className = `m ${cls} pop`;
+      d.innerHTML = html;
+      body.append(d);
+      body.scrollTop = body.scrollHeight;
+      return d;
+    };
+    const TYPING = '<span class="typing"><i></i><i></i><i></i></span>';
+
+    /* Hero: a request comes in, the site's footer really changes */
+    (async () => {
+      const body = $('.ms-chat--hero .ms-chat__body'), phone = $('.ms-phone');
+      const pause = ms => reduced ? null : wait(ms);
+      do {
+        body.innerHTML = '';
+        phone.textContent = '(19) 3232-1010';
+        phone.classList.remove('is-new');
+        await pause(600);
+        msBubble(body, 'm--out', 'Oi! Consegue trocar o telefone do rodapé para (19) 99876-5432?');
+        await pause(1400);
+        const t = msBubble(body, 'm--typing', TYPING);
+        await pause(1400);
+        t.remove();
+        msBubble(body, 'm--in', 'Claro! Já estou ajustando por aqui.');
+        await pause(1900);
+        msBubble(body, 'm--sys', '<svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Alteração publicada no site');
+        phone.textContent = '(19) 99876-5432';
+        phone.classList.add('is-new');
+        await pause(1700);
+        msBubble(body, 'm--out', 'Perfeito, obrigado!');
+        await pause(5000);
+      } while (!reduced);
+    })();
+
+    /* Ask anything: each chip sends a request and gets an answer */
+    (() => {
+      const TALK = [
+        ['Quero trocar a foto da equipe na página Sobre.', 'Pode mandar a foto nova por aqui. A gente ajusta o tamanho, otimiza e publica.'],
+        ['Os preços do cardápio mudaram, dá para atualizar?', 'Dá sim. Manda a lista nova que a gente atualiza tudo e te avisa para conferir.'],
+        ['Preciso de uma página de “Trabalhe conosco”.', 'Fechado. Montamos a página no mesmo visual do site e colocamos no menu.'],
+        ['Vamos abrir aos domingos a partir do mês que vem.', 'Anotado. Deixamos a alteração pronta e publicamos na data certa.'],
+        ['Recebi um aviso de renovação do domínio. O que eu faço?', 'Deixa com a gente: conferimos o aviso e te explicamos o próximo passo.'],
+        ['Queria mostrar as avaliações dos clientes no site.', 'Boa ideia! Te mandamos uma sugestão de como encaixar isso no site.'],
+      ];
+      const body = $('.ms-chat--demo .ms-chat__body'), group = $('.ms-chips'), chips = $$('button', group);
+      let busy = false;
+      chips.forEach((b, i) => b.addEventListener('click', async () => {
+        if (busy) return;
+        busy = true;
+        group.classList.add('is-busy');
+        msBubble(body, 'm--out', TALK[i][0]);
+        if (!reduced) {
+          await wait(500);
+          const t = msBubble(body, 'm--typing', TYPING);
+          await wait(1200);
+          t.remove();
+        }
+        msBubble(body, 'm--in', TALK[i][1]);
+        while (body.children.length > 12) body.firstElementChild.remove();
+        busy = false;
+        group.classList.remove('is-busy');
+      }));
+    })();
+  </script>
+</body>
+</html>

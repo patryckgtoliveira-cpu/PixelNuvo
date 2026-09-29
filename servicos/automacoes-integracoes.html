@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Automações & integrações · PixelNuvo</title>
+  <meta name="description" content="Formulários que viram mensagem no WhatsApp e planilhas que se preenchem sozinhas.">
+  <meta name="theme-color" content="#07090f">
+  <meta property="og:title" content="Automações & integrações · PixelNuvo">
+  <meta property="og:description" content="Formulários que viram mensagem no WhatsApp e planilhas que se preenchem sozinhas.">
+  <link rel="icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style data-page>
+    /* shared flow nodes (hero canvas + builder) */
+    .au-node rect { fill: #121a33; stroke: var(--line-2); }
+    .au-node circle { fill: var(--c); }
+    .au-node text { fill: var(--text); font: 600 13px var(--sans); }
+    .au-node text.k { fill: var(--muted); font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .au-hub rect { fill: rgba(244, 114, 182, .15); stroke: var(--a); }
+    .au-hub text { font: 800 14px var(--sans); }
+
+    /* hero: node-editor canvas */
+    .au-hero { position: relative; isolation: isolate; overflow: hidden; display: grid; place-items: center; min-height: min(92vh, 860px); padding: 140px 0 110px; text-align: center; background: radial-gradient(var(--line) 1px, transparent 1px) 0 0 / 26px 26px; }
+    .au-hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: radial-gradient(ellipse 50% 40% at 50% 100%, rgba(244, 114, 182, .18), transparent 70%), linear-gradient(180deg, var(--bg), transparent 18%, transparent 82%, var(--bg)); }
+    .au-bg { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
+    .au-bg path { fill: none; stroke: rgba(244, 114, 182, .3); stroke-width: 2; stroke-dasharray: 6 6; }
+    .au-bg .dotp { fill: var(--a); filter: drop-shadow(0 0 6px var(--a)); }
+    .au-hero .container { position: relative; }
+    .au-hero .container::before { content: ""; position: absolute; inset: -60px 5%; z-index: -1; background: radial-gradient(ellipse at center, rgba(7, 9, 15, .94) 35%, transparent 70%); }
+    .au-hero .crumbs { justify-content: center; }
+    .au-h1 { max-width: 13ch; margin: 0 auto; font-size: clamp(44px, 6.8vw, 100px); font-weight: 800; letter-spacing: -.05em; line-height: .98; text-wrap: balance; }
+    .au-h1 .amp { color: var(--a); }
+    .au-hero .page-hero__sub, .au-hero .page-hero__lead { margin-inline: auto; }
+    .au-hero .page-hero__sub { max-width: 40ch; }
+    .au-hero .hero__ctas { justify-content: center; margin-top: 34px; }
+
+    /* builder */
+    .au-build { border-top: 1px solid var(--line); }
+    .au-build__grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
+    .au-ctrl fieldset { display: grid; gap: 8px; margin: 0; padding: 0; border: 0; min-width: 0; }
+    .au-ctrl fieldset + fieldset { margin-top: 28px; }
+    .au-ctrl legend { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding: 0; font-size: 20px; font-weight: 700; }
+    .au-ctrl legend span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--a); color: #1f0414; font: 800 13px var(--sans); }
+    .au-opt { position: relative; display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-radius: 14px; border: 1px solid var(--line-2); background: #0c1222; font-weight: 500; cursor: pointer; transition: border-color .3s, background .3s; }
+    .au-opt:hover { border-color: color-mix(in srgb, var(--a) 55%, transparent); }
+    .au-opt input { position: absolute; opacity: 0; pointer-events: none; }
+    .au-opt::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line-2); transition: background .25s, border-color .25s; }
+    .au-opt--check::before { border-radius: 6px; }
+    .au-opt:has(:checked) { border-color: var(--a); background: rgba(244, 114, 182, .08); }
+    .au-opt:has(:checked)::before { border-color: var(--a); background: var(--a); box-shadow: inset 0 0 0 3px #0c1222; }
+    .au-opt:has(:focus-visible) { outline: 2px solid var(--sky); outline-offset: 3px; }
+    .au-panel { display: grid; gap: 14px; }
+    .au-canvas { padding: 10px; border-radius: 20px; border: 1px solid var(--line-2); background: rgba(5, 8, 16, .6) radial-gradient(var(--line) 1px, transparent 1px) 0 0 / 22px 22px; }
+    .au-svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .au-svg .au-node { animation: auIn .45s var(--ease) both; }
+    @keyframes auIn { from { opacity: 0; } }
+    .au-wire { fill: none; stroke: rgba(244, 114, 182, .35); stroke-width: 2; stroke-dasharray: 5 5; }
+    .au-pulse { fill: none; stroke: var(--a); stroke-width: 3; stroke-linecap: round; filter: drop-shadow(0 0 6px var(--a)); }
+    .au-node.is-hit rect { animation: auHit 1.1s var(--ease); }
+    @keyframes auHit { 0%, 35% { stroke: var(--c, #f472b6); fill: color-mix(in srgb, var(--c, #f472b6) 24%, #121a33); } }
+    .au-run { display: flex; align-items: center; gap: 14px; }
+    .au-run .btn:disabled { opacity: .5; cursor: default; }
+    .au-run small { font: 12px var(--mono); color: var(--muted); }
+    .au-log { height: 176px; overflow: auto; margin: 0; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: #05070d; font: 12.5px/1.75 var(--mono); color: var(--text); white-space: pre-wrap; }
+    .au-log span { display: block; }
+    .au-log .ok { color: #4ade80; }
+    .au-log .dim { color: var(--muted); }
+
+    /* tools map (static labels, only the dots travel) */
+    .au-tools { border-top: 1px solid var(--line); }
+    .au-tools__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+    .au-tools__grid > div > p:not(.eyebrow) { margin-top: 18px; color: var(--muted); font-size: 18px; max-width: 40ch; }
+    .au-orbit { position: relative; width: min(100%, 560px); aspect-ratio: 1; margin-inline: auto; }
+    .au-orbit svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .au-orbit .ring { fill: none; stroke: var(--line); stroke-width: .3; stroke-dasharray: 1 1.5; }
+    .au-orbit .ln { fill: none; stroke: rgba(244, 114, 182, .22); stroke-width: .35; }
+    .au-orbit .flow { fill: none; stroke: var(--a); stroke-width: 1; stroke-linecap: round; stroke-dasharray: .04 1; animation: auFlow 2.8s linear var(--d) infinite; }
+    @keyframes auFlow { from { stroke-dashoffset: .04; } to { stroke-dashoffset: -1; } }
+    .au-orbit__hub { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; align-content: center; width: 124px; height: 124px; margin: -62px; border-radius: 50%; border: 1.5px solid var(--a); background: radial-gradient(circle, rgba(244, 114, 182, .22), #0c1222 70%); box-shadow: 0 0 60px rgba(244, 114, 182, .35); }
+    .au-orbit__hub b { font-size: 22px; font-weight: 800; }
+    .au-orbit__hub small { font: 11px var(--mono); color: var(--muted); }
+    .au-tool { position: absolute; left: var(--x); top: var(--y); display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 99px; border: 1px solid var(--line-2); background: #0c1222; font-size: 14px; font-weight: 600; white-space: nowrap; transform: translate(-50%, -50%); }
+    .au-tool i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); box-shadow: 0 0 8px var(--c); }
+
+    /* your day, before and after */
+    .au-day { border-top: 1px solid var(--line); }
+    .au-day__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .au-col { padding: clamp(24px, 3vw, 36px); border-radius: 24px; border: 1px solid var(--line); background: var(--card); }
+    .au-col--new { border-color: color-mix(in srgb, var(--a) 45%, transparent); background: radial-gradient(120% 90% at 100% 0%, rgba(244, 114, 182, .1), transparent 60%), var(--card); }
+    .au-col h3 { margin-bottom: 20px; font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .au-col--new h3 { color: var(--a); }
+    .au-col ul { display: grid; gap: 16px; }
+    .au-col li { display: flex; gap: 12px; font-size: 17px; line-height: 1.4; }
+    .au-col .ic { margin-top: 3px; }
+    .au-col--old li { color: var(--muted); }
+    .au-col--old .ic { color: #ef4444; }
+    .au-col--new .ic { color: #4ade80; }
+    .au-col s { text-decoration: none; -webkit-box-decoration-break: clone; box-decoration-break: clone; background: linear-gradient(#ef4444, #ef4444) 0 58% / 0% 2px no-repeat; transition: background-size .8s var(--ease) var(--d, 0s); }
+    .au-col.is-in s { background-size: 100% 2px; }
+
+    @media (max-width: 900px) {
+      .au-bg { display: none; }
+      .au-build__grid, .au-tools__grid, .au-day__grid { grid-template-columns: 1fr; }
+      .au-orbit { width: min(100% - 60px, 420px); }
+      .au-tool { padding: 7px 11px; font-size: 12px; }
+      .au-orbit__hub { width: 96px; height: 96px; margin: -48px; }
+    }
+  </style>
+</head>
+<body style="--a:#f472b6">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+  </svg>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="../index.html" class="brand" aria-label="PixelNuvo, início">
+      <img src="../assets/logo.png" alt="" width="40" height="40">
+      <span>Pixel<b>Nuvo</b></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Principal">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#especialidades">Especialidades</a>
+      <a href="../servicos.html" class="is-active">Serviços</a>
+      <a href="../index.html#processo">Processo</a>
+      <a href="../index.html#equipe">Equipe</a>
+      <a href="../index.html#duvidas">Dúvidas</a>
+      <a href="#contato" class="btn btn--sm btn--primary nav__cta-mobile">Solicitar orçamento</a>
+    </nav>
+    <a href="#contato" class="btn btn--sm btn--primary nav__cta magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <main id="topo">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 6 6 18M6 6l12 12"/></symbol></svg>
+
+    <section class="au-hero">
+      <svg class="au-bg" viewBox="0 0 1400 760" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path id="hw1" d="M240 178 C 440 178, 400 708, 640 708"/>
+        <path id="hw2" d="M210 498 C 420 498, 420 708, 640 708"/>
+        <path id="hw3" d="M760 708 C 1000 708, 960 148, 1180 148"/>
+        <path id="hw4" d="M760 708 C 1000 708, 1000 408, 1200 408"/>
+        <path id="hw5" d="M760 708 C 960 708, 960 638, 1150 638"/>
+        <circle class="dotp" r="5"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#hw1"/></animateMotion></circle>
+        <circle class="dotp" r="5"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#hw2"/></animateMotion></circle>
+        <circle class="dotp" r="5"><animateMotion dur="2.4s" begin=".6s" repeatCount="indefinite"><mpath href="#hw3"/></animateMotion></circle>
+        <circle class="dotp" r="5"><animateMotion dur="2.4s" begin=".9s" repeatCount="indefinite"><mpath href="#hw4"/></animateMotion></circle>
+        <circle class="dotp" r="5"><animateMotion dur="2.4s" begin="1.5s" repeatCount="indefinite"><mpath href="#hw5"/></animateMotion></circle>
+        <g class="au-node" style="--c:#f59e0b" transform="translate(70 150)"><rect width="170" height="56" rx="14"/><circle cx="26" cy="28" r="9"/><text x="46" y="23" class="k">Gatilho</text><text x="46" y="40">Formulário</text></g>
+        <g class="au-node" style="--c:#f472b6" transform="translate(40 470)"><rect width="170" height="56" rx="14"/><circle cx="26" cy="28" r="9"/><text x="46" y="23" class="k">Gatilho</text><text x="46" y="40">Novo pedido</text></g>
+        <g class="au-node au-hub" transform="translate(640 680)"><rect width="120" height="56" rx="16"/><text x="60" y="33" text-anchor="middle">N8N</text></g>
+        <g class="au-node" style="--c:#25d366" transform="translate(1180 120)"><rect width="170" height="56" rx="14"/><circle cx="26" cy="28" r="9"/><text x="46" y="23" class="k">Ação</text><text x="46" y="40">WhatsApp</text></g>
+        <g class="au-node" style="--c:#34a853" transform="translate(1200 380)"><rect width="170" height="56" rx="14"/><circle cx="26" cy="28" r="9"/><text x="46" y="23" class="k">Ação</text><text x="46" y="40">Planilha</text></g>
+        <g class="au-node" style="--c:#60a5fa" transform="translate(1150 610)"><rect width="170" height="56" rx="14"/><circle cx="26" cy="28" r="9"/><text x="46" y="23" class="k">Ação</text><text x="46" y="40">E-mail</text></g>
+      </svg>
+      <div class="container">
+        <nav class="crumbs" aria-label="Você está aqui"><a href="../servicos.html">Serviços</a><span aria-hidden="true">/</span><span aria-current="page">Automações &amp; integrações</span></nav>
+        <h1 class="au-h1">Automações <span class="amp">&amp;</span> integrações</h1>
+        <p class="page-hero__sub">Formulários que viram mensagem no WhatsApp e planilhas que se preenchem sozinhas.</p>
+        <p class="page-hero__lead">Conectamos seu site às ferramentas que você já usa, para que contatos, pedidos e cadastros cheguem organizados, sem trabalho manual.</p>
+        <div class="hero__ctas">
+          <a href="#contato" class="btn btn--primary btn--lg magnetic">Quero automatizar <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="#montar" class="btn btn--ghost btn--lg">Montar um fluxo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section au-build" id="montar">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Experimente</p>
+          <h2 class="h2 reveal">Monte um fluxo em <span class="hl">dez segundos</span>.</h2>
+          <p class="section__sub reveal">Escolha o que dispara a automação e o que acontece depois. Então execute e acompanhe.</p>
+        </header>
+        <div class="au-build__grid">
+          <form class="au-ctrl" onsubmit="return false">
+            <fieldset>
+              <legend><span>1</span>Quando…</legend>
+              <label class="au-opt"><input type="radio" name="au-t" value="form" checked>alguém preenche o formulário</label>
+              <label class="au-opt"><input type="radio" name="au-t" value="order">chega um novo pedido</label>
+              <label class="au-opt"><input type="radio" name="au-t" value="book">um horário é agendado</label>
+              <label class="au-opt"><input type="radio" name="au-t" value="msg">chega uma mensagem no WhatsApp</label>
+            </fieldset>
+            <fieldset>
+              <legend><span>2</span>Então…</legend>
+              <label class="au-opt au-opt--check"><input type="checkbox" name="au-a" value="wa" checked>avisar você no WhatsApp</label>
+              <label class="au-opt au-opt--check"><input type="checkbox" name="au-a" value="sheet" checked>salvar na planilha</label>
+              <label class="au-opt au-opt--check"><input type="checkbox" name="au-a" value="mail">enviar e-mail de confirmação</label>
+              <label class="au-opt au-opt--check"><input type="checkbox" name="au-a" value="ai">responder o cliente com IA</label>
+            </fieldset>
+          </form>
+          <div class="au-panel">
+            <div class="au-canvas"><svg class="au-svg" viewBox="0 0 600 360" role="img" aria-label="Diagrama do fluxo escolhido"></svg></div>
+            <div class="au-run"><button type="button" class="btn btn--primary btn--sm au-go">Executar fluxo</button><small class="au-hint"></small></div>
+            <pre class="au-log" aria-live="polite"><span class="dim">Escolha o gatilho e as ações, depois execute.</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section au-tools">
+      <div class="container au-tools__grid">
+        <div>
+          <p class="eyebrow" data-scramble>Integrações</p>
+          <h2 class="h2 reveal">Ferramentas que você já usa, <span class="hl">conversando</span>.</h2>
+          <p class="reveal">O N8N fica no meio, recebendo de um lado e entregando do outro. Quando precisa de algo sob medida, a gente escreve em Python.</p>
+          <p class="reveal">Não achou a sua ferramenta? Conte pra gente: dá para conectar muitas outras.</p>
+        </div>
+        <div class="au-orbit reveal">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="ring" cx="50" cy="50" r="40"/>
+            <path class="ln" d="M50 50 L90 50"/><path class="ln" d="M50 50 L78.3 78.3"/><path class="ln" d="M50 50 L50 90"/><path class="ln" d="M50 50 L21.7 78.3"/><path class="ln" d="M50 50 L10 50"/><path class="ln" d="M50 50 L21.7 21.7"/><path class="ln" d="M50 50 L50 10"/><path class="ln" d="M50 50 L78.3 21.7"/>
+            <path class="flow" pathLength="1" d="M10 50 L50 50" style="--d:0s"/>
+            <path class="flow" pathLength="1" d="M21.7 21.7 L50 50" style="--d:.7s"/>
+            <path class="flow" pathLength="1" d="M50 10 L50 50" style="--d:1.4s"/>
+            <path class="flow" pathLength="1" d="M21.7 78.3 L50 50" style="--d:2.1s"/>
+            <path class="flow" pathLength="1" d="M50 50 L90 50" style="--d:.35s"/>
+            <path class="flow" pathLength="1" d="M50 50 L78.3 78.3" style="--d:1.05s"/>
+            <path class="flow" pathLength="1" d="M50 50 L50 90" style="--d:1.75s"/>
+            <path class="flow" pathLength="1" d="M50 50 L78.3 21.7" style="--d:2.45s"/>
+          </svg>
+          <div class="au-orbit__hub"><b>N8N</b><small>+ Python</small></div>
+          <span class="au-tool" style="--x:90%;--y:50%;--c:#25d366"><i></i>WhatsApp</span>
+          <span class="au-tool" style="--x:78.3%;--y:78.3%;--c:#34a853"><i></i>Planilhas</span>
+          <span class="au-tool" style="--x:50%;--y:90%;--c:#60a5fa"><i></i>E-mail</span>
+          <span class="au-tool" style="--x:21.7%;--y:78.3%;--c:#22d3ee"><i></i>Agenda</span>
+          <span class="au-tool" style="--x:10%;--y:50%;--c:#f59e0b"><i></i>Formulários</span>
+          <span class="au-tool" style="--x:21.7%;--y:21.7%;--c:#e1306c"><i></i>Instagram</span>
+          <span class="au-tool" style="--x:50%;--y:10%;--c:#f472b6"><i></i>Pedidos</span>
+          <span class="au-tool" style="--x:78.3%;--y:21.7%;--c:#a78bfa"><i></i>IA</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section au-day">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Seu dia</p>
+          <h2 class="h2 reveal">O que sai da <span class="hl">sua lista</span>.</h2>
+          <p class="section__sub reveal">Ideal para negócios com muitos contatos, equipes com tarefas repetitivas, agendamentos e pedidos, e para quem vive em planilhas.</p>
+        </header>
+        <div class="au-day__grid">
+          <div class="au-col au-col--old reveal">
+            <h3>Hoje, na mão</h3>
+            <ul>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg><s style="--d:.3s">Copiar cada contato do site para a planilha</s></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg><s style="--d:.45s">Avisar a equipe por mensagem, um por um</s></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg><s style="--d:.6s">Responder as mesmas perguntas todo dia</s></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg><s style="--d:.75s">Confirmar cada agendamento manualmente</s></li>
+            </ul>
+          </div>
+          <div class="au-col au-col--new reveal" style="--rd:.15s">
+            <h3>Com automação</h3>
+            <ul>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Contatos entram sozinhos na planilha</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>A equipe é avisada na hora</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>A IA responde as dúvidas mais comuns</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>A confirmação sai assim que o horário é marcado</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Dúvidas</p>
+        <h2 class="h2 reveal">Perguntas <span class="hl">frequentes</span>.</h2>
+      </header>
+      <div class="faq__list">
+        <details><summary>Quais ferramentas dá para integrar?</summary><p>WhatsApp, e-mail, planilhas, formulários e muitas outras, por meio do N8N e de scripts em Python.</p></details>
+        <details><summary>Preciso saber programar?</summary><p>Não. A gente monta e testa o fluxo; você só aproveita o resultado.</p></details>
+        <details><summary>Dá para automatizar algo que já faço hoje?</summary><p>Provavelmente sim. Conte como é o processo e mostramos o que pode rodar sozinho.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="container cta__inner">
+        <h2 class="cta__title reveal">Menos tarefa repetida, <span class="hl">mais tempo</span> para o que importa.</h2>
+        <p class="cta__lead reveal">Conte a sua ideia e receba um orçamento sem compromisso.</p>
+        <div class="hero__ctas reveal">
+          <a href="https://ig.me/m/pixel_nuvo" target="_blank" rel="noopener" class="btn btn--primary btn--lg magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">@pixel_nuvo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section more-sec" aria-labelledby="outros">
+      <div class="container">
+        <p class="eyebrow" id="outros">Outros serviços</p>
+        <div class="more">
+          <a href="site-institucional.html" class="more__item" style="--a:#4da8ff"><b>Site institucional</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="landing-page.html" class="more__item" style="--a:#8b5cf6"><b>Landing page</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="portfolio-catalogo.html" class="more__item" style="--a:#22d3ee"><b>Portfólio &amp; catálogo</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="redesign.html" class="more__item" style="--a:#f59e0b"><b>Redesign</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="manutencao-suporte.html" class="more__item" style="--a:#4ade80"><b>Manutenção &amp; suporte</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__nav" aria-label="Rodapé">
+      <a href="../index.html#sobre">Sobre</a><a href="../servicos.html">Serviços</a><a href="../index.html#processo">Processo</a><a href="../index.html#equipe">Equipe</a><a href="../index.html#duvidas">Dúvidas</a>
+      <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener">Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </nav>
+    <div class="footer__word" aria-hidden="true">PIXELNUVO</div>
+    <p class="footer__copy">© <span class="year"></span> PixelNuvo · Desenvolvimento de Sites</p>
+  </footer>
+
+  <script src="../common.js"></script>
+  <script data-page>
+    /* Flow builder: pick a trigger and actions, draw the flow, run it with a log */
+    (() => {
+      const T = {
+        form: { label: 'Formulário', ev: 'Formulário recebido · Ana Souza', who: 'novo contato de Ana Souza' },
+        order: { label: 'Novo pedido', ev: 'Pedido #1042 recebido · R$ 189,90', who: 'pedido #1042' },
+        book: { label: 'Agendamento', ev: 'Horário agendado · sexta, 14h', who: 'agendamento de sexta, 14h' },
+        msg: { label: 'WhatsApp', ev: 'Mensagem recebida · “Vocês abrem sábado?”', who: 'mensagem de cliente' },
+      };
+      const A = {
+        wa: { label: 'WhatsApp', c: '#25d366', done: w => `Aviso no seu WhatsApp: ${w}` },
+        sheet: { label: 'Planilha', c: '#34a853', done: w => `Nova linha na planilha: ${w}` },
+        mail: { label: 'E-mail', c: '#60a5fa', done: () => 'E-mail de confirmação enviado ao cliente' },
+        ai: { label: 'Resposta com IA', c: '#a78bfa', done: () => 'IA respondeu o cliente automaticamente' },
+      };
+      const form = $('.au-ctrl'), svg = $('.au-svg'), go = $('.au-go'), hint = $('.au-hint'), log = $('.au-log');
+      let running = false, dirty = false;
+      const state = () => ({ t: $('[name=au-t]:checked', form).value, acts: $$('[name=au-a]:checked', form).map(i => i.value) });
+      const node = (x, y, w, cls, kind, label, c) =>
+        `<g class="au-node ${cls}" style="--c:${c}" transform="translate(${x} ${y - 26})"><rect width="${w}" height="52" rx="14"/><circle cx="24" cy="26" r="9"/><text x="42" y="21" class="k">${kind}</text><text x="42" y="37">${label}</text></g>`;
+
+      function render() {
+        if (running) { dirty = true; return; }
+        const { t, acts } = state();
+        let h;
+        if (mobile.matches) {
+          // phones: top-down flow, actions in two columns, so the labels stay readable
+          const pos = acts.map((_, i) => {
+            const alone = acts.length === 1 || (i === acts.length - 1 && acts.length % 2);
+            return [alone ? 180 : i % 2 ? 265 : 95, 240 + Math.floor(i / 2) * 74];
+          });
+          h = '<path class="au-wire" d="M180 72 V110"/>';
+          pos.forEach(([x, y]) => { h += `<path class="au-wire" d="M180 162 C 180 200, ${x} 190, ${x} ${y - 26}"/>`; });
+          h += node(105, 46, 150, 'au-trig', 'Quando', T[t].label, '#f472b6');
+          h += '<g class="au-node au-hub" transform="translate(135 110)"><rect width="90" height="52" rx="16"/><text x="45" y="31" text-anchor="middle">N8N</text></g>';
+          acts.forEach((a, i) => { h += node(pos[i][0] - 80, pos[i][1], 160, 'au-act', 'Então', A[a].label, A[a].c); });
+          svg.setAttribute('viewBox', `0 0 360 ${240 + Math.max(0, Math.ceil(acts.length / 2) - 1) * 74 + 40}`);
+        } else {
+          const ys = acts.map((_, i) => 180 + (i - (acts.length - 1) / 2) * 74);
+          h = '<path class="au-wire" d="M170 180 H250"/>';
+          ys.forEach(y => { h += `<path class="au-wire" d="M340 180 C 380 180, 380 ${y}, 420 ${y}"/>`; });
+          h += node(20, 180, 150, 'au-trig', 'Quando', T[t].label, '#f472b6');
+          h += '<g class="au-node au-hub" transform="translate(250 154)"><rect width="90" height="52" rx="16"/><text x="45" y="31" text-anchor="middle">N8N</text></g>';
+          acts.forEach((a, i) => { h += node(420, ys[i], 160, 'au-act', 'Então', A[a].label, A[a].c); });
+          svg.setAttribute('viewBox', '0 0 600 360');
+        }
+        svg.innerHTML = h;
+        go.disabled = !acts.length;
+        hint.textContent = acts.length ? '' : 'Escolha pelo menos uma ação';
+      }
+
+      const flash = n => { n.classList.remove('is-hit'); n.getBoundingClientRect(); n.classList.add('is-hit'); };
+      function pulse(p) {
+        if (reduced) return Promise.resolve();
+        const L = p.getTotalLength(), c = p.cloneNode();
+        c.setAttribute('class', 'au-pulse');
+        c.style.strokeDasharray = `40 ${L + 40}`;
+        p.after(c);
+        return c.animate([{ strokeDashoffset: 40 }, { strokeDashoffset: -L }], { duration: 750, easing: 'ease-in-out' }).finished.then(() => c.remove());
+      }
+      function line(txt, cls = '') {
+        const s = document.createElement('span');
+        s.className = cls;
+        s.textContent = `${new Date().toLocaleTimeString('pt-BR')}  ${txt}`;
+        log.append(s);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      async function run() {
+        if (running) return;
+        const { t, acts } = state();
+        if (!acts.length) return;
+        running = true;
+        go.disabled = true;
+        log.textContent = '';
+        const wires = $$('.au-wire', svg), acNodes = $$('.au-act', svg);
+        line('▶ Fluxo iniciado', 'dim');
+        flash($('.au-trig', svg));
+        line(T[t].ev);
+        await pulse(wires[0]);
+        flash($('.au-hub', svg));
+        line('N8N organizou os dados');
+        await Promise.all(acts.map(async (a, i) => {
+          if (!reduced) await wait(i * 160);
+          await pulse(wires[i + 1]);
+          flash(acNodes[i]);
+          line('✓ ' + A[a].done(T[t].who), 'ok');
+        }));
+        line('■ Concluído, sem ninguém digitar nada', 'dim');
+        running = false;
+        go.disabled = false;
+        if (dirty) { dirty = false; render(); }
+      }
+
+      form.addEventListener('change', render);
+      mobile.addEventListener('change', render);
+      go.addEventListener('click', run);
+      render();
+      // run once on its own the first time the builder comes into view
+      if (!reduced) new IntersectionObserver(([e], o) => {
+        if (!e.isIntersecting) return;
+        o.disconnect();
+        setTimeout(run, 700);
+      }, { threshold: .5 }).observe($('.au-canvas'));
+    })();
+  </script>
+</body>
+</html>

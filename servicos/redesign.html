@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redesign · PixelNuvo</title>
+  <meta name="description" content="Seu site atual com cara nova, mais rápido e perfeito no celular.">
+  <meta name="theme-color" content="#07090f">
+  <meta property="og:title" content="Redesign · PixelNuvo">
+  <meta property="og:description" content="Seu site atual com cara nova, mais rápido e perfeito no celular.">
+  <link rel="icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style data-page>
+    @property --g { syntax: "<integer>"; inherits: true; initial-value: 34; }
+
+    /* hero: the title itself gets redesigned */
+    .rd-hero { text-align: center; padding-bottom: clamp(80px, 10vw, 130px); }
+    .rd-hero .crumbs { justify-content: center; }
+    .rd-h1 { position: relative; display: inline-grid; justify-items: center; margin: 6px 0 0; font-size: clamp(72px, 15vw, 230px); line-height: 1.05; letter-spacing: 0; }
+    .rd-h1 > span { grid-area: 1 / 1; padding: 0 .06em .08em; }
+    .rd-h1__old { font: 700 .78em "Comic Sans MS", "Comic Sans", cursive; color: #1a3fa0; text-shadow: .03em .03em 0 #ffe600, .06em .06em 0 #c00; animation: rdOld 2.6s var(--ease) .3s both; }
+    .rd-h1__new { font-weight: 800; letter-spacing: -.06em; color: transparent; background: linear-gradient(95deg, #fde68a, var(--a) 45%, #fb923c); -webkit-background-clip: text; background-clip: text; animation: rdNew 2.6s var(--ease) .3s both; }
+    .rd-h1::after { content: ""; position: absolute; top: 4%; bottom: 8%; left: 0; width: 3px; border-radius: 3px; background: #fbbf24; box-shadow: 0 0 24px 6px rgba(251, 191, 36, .7); opacity: 0; animation: rdLine 2.6s var(--ease) .3s both; }
+    /* plays once: the old title is wiped away and the new one stays */
+    @keyframes rdOld { 0%, 20% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 100%); } }
+    @keyframes rdNew { 0%, 20% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
+    @keyframes rdLine { 0%, 18% { left: 0; opacity: 0; } 22% { opacity: 1; } 94% { left: 100%; opacity: 1; } 100% { left: 100%; opacity: 0; } }
+    .rd-swaps { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; margin: 26px auto 0; }
+    .rd-swaps li { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; }
+    .rd-swaps s { color: var(--muted); text-decoration-color: #ef4444; text-decoration-thickness: 2px; }
+    .rd-swaps .ic { color: var(--muted); }
+    .rd-swaps b { color: var(--a); }
+    .rd-hero .page-hero__lead { margin: 26px auto 0; }
+    .rd-hero .hero__ctas { justify-content: center; }
+
+    /* transformation: scroll-driven */
+    .rd-tx { position: relative; height: 480vh; border-top: 1px solid var(--line); }
+    .rd-tx__sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; gap: 20px; padding-top: 76px; }
+    .rd-tx__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; }
+    .rd-tx__head .eyebrow { margin-bottom: 12px; }
+    .rd-tx__head .h2 { font-size: clamp(28px, 3.4vw, 48px); }
+    .rd-cap { max-width: 46ch; min-height: 4.6em; text-align: right; }
+    .rd-cap b { display: block; font-size: 20px; margin-bottom: 4px; }
+    .rd-cap span { color: var(--muted); }
+    .rd-stage { position: relative; height: min(54vh, 520px); display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; }
+    .rd-frame { display: flex; flex-direction: column; width: 100%; height: 100%; overflow: hidden; border-radius: 18px; border: 1px solid var(--line-2); background: #0c1222; box-shadow: 0 50px 120px -60px rgba(245, 158, 11, .6); transition: width .9s var(--ease), border-radius .9s var(--ease); }
+    .rd-frame.is-mobile { width: 290px; border-radius: 36px; border-width: 8px; border-color: #1c2440; }
+    .rd-frame.is-mobile .browser__bar { display: none; }
+    .rd-site { position: relative; flex: 1; overflow: hidden; container-type: inline-size; background: #e9e4d6; color: #1a1a8c; font-family: "Times New Roman", serif; transition: background-color .8s, color .8s; }
+    .rd-site .n, .is-new .rd-site .o { display: none; }
+    .is-new .rd-site .n { display: revert; }
+    .rs-nav { display: flex; align-items: center; gap: 14px; padding: 10px 16px; background: #1a3fa0; transition: background-color .8s, padding .8s; }
+    .rs-nav b { margin-right: auto; font: 700 18px "Comic Sans MS", cursive; color: #ffe600; }
+    .rs-nav u { font-size: 13px; color: #fff; }
+    .rs-marq { max-height: 40px; overflow: hidden; padding: 4px 12px; background: #ffe600; color: #c00; font-weight: 700; font-size: 13px; white-space: nowrap; transition: max-height .6s, padding .6s, opacity .4s; }
+    .rs-hero { display: grid; gap: 10px; padding: 18px 24px; text-align: center; }
+    .rs-hero h4 { font: 700 26px "Times New Roman", serif; color: #c00; }
+    .rs-hero p { max-width: 60ch; margin: 0 auto; font-size: 14px; }
+    .rs-hero u { color: #00e; }
+    .rs-img { display: none; }
+    .rs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 24px; }
+    .rs-cards div { display: grid; gap: 6px; padding: 8px; border: 2px outset #999; background: #fffef2; }
+    .rs-cards i { height: 60px; background: #b9b3a2; }
+    .rs-cards b { font-weight: 400; font-size: 14px; color: #00e; text-decoration: underline; }
+    .rs-count { padding: 14px 24px; font-size: 12px; color: #444; }
+    /* new identity */
+    .is-new .rd-site { background: #fbf6ee; color: #2b1d10; font-family: var(--sans); }
+    .is-new .rs-nav { padding: 14px 22px; background: transparent; }
+    .is-new .rs-nav b { font: 800 17px var(--sans); letter-spacing: -.03em; color: #2b1d10; }
+    .is-new .rs-nav u { text-decoration: none; color: #8a6d4f; }
+    .rs-nav em { font-style: normal; padding: 7px 14px; border-radius: 99px; background: #2b1d10; color: #fff; font-size: 12px; font-weight: 700; }
+    .is-new .rs-marq { max-height: 0; padding-block: 0; opacity: 0; }
+    .is-new .rs-hero { grid-template-columns: 1.1fr .9fr; align-items: center; gap: 24px; padding: 10px 22px 18px; text-align: left; }
+    .is-new .rs-hero small { font: 700 10px var(--sans); letter-spacing: .16em; color: #d97706; }
+    .is-new .rs-hero h4 { font: 800 clamp(22px, 3.4vw, 40px)/1.02 var(--sans); letter-spacing: -.04em; color: #2b1d10; margin-top: 6px; }
+    .is-new .rs-hero p { margin: 8px 0 0; color: #7a5c3e; }
+    .rs-hero .n.go { justify-self: start; margin-top: 8px; padding: 10px 18px; border-radius: 99px; background: #d97706; color: #fff; font-size: 12px; font-weight: 700; }
+    .is-new .rs-img { display: block; height: 150px; border-radius: 16px; background: repeating-linear-gradient(90deg, rgba(0, 0, 0, .06) 0 2px, transparent 2px 14px), linear-gradient(#7c4a1e, #7c4a1e) 50% 78% / 70% 10% no-repeat, linear-gradient(#a0622d, #a0622d) 50% 88% / 60% 12% no-repeat, linear-gradient(160deg, #f6d59a, #d9973f); }
+    .is-new .rs-cards { gap: 14px; padding: 0 22px; }
+    .is-new .rs-cards div { gap: 8px; padding: 10px; border: 0; border-radius: 14px; background: #fff; box-shadow: 0 10px 24px -16px rgba(43, 29, 16, .5); }
+    .is-new .rs-cards i { height: 56px; border-radius: 10px; background: linear-gradient(135deg, #f6d59a, #d9973f); }
+    .is-new .rs-cards b { font-weight: 700; font-size: 13px; color: #2b1d10; text-decoration: none; }
+    @container (max-width: 420px) {
+      .rs-nav u { display: none; }
+      .is-new .rs-hero { grid-template-columns: 1fr; }
+      .rs-cards { grid-template-columns: 1fr; }
+      .rs-cards div:nth-child(n+2) { display: none; }
+      .rs-hero h4 { font-size: 20px; }
+    }
+    /* diagnosis notes */
+    .rs-note { position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 99px; background: #ef4444; color: #fff; font: 700 12px var(--sans); white-space: nowrap; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .6); opacity: 0; transform: scale(.6); transition: opacity .3s, transform .5s var(--ease); }
+    .is-diag .rs-note { opacity: 1; transform: none; transition-delay: var(--d); }
+    .is-diag .rd-site > :not(.rs-note) { outline: 2px dashed rgba(239, 68, 68, .55); outline-offset: -4px; }
+    /* gauge + live badges live outside the frame so they survive the phone morph */
+    .rd-gauge { position: absolute; right: 18px; bottom: 18px; z-index: 4; display: grid; place-items: center; width: 104px; height: 104px; border-radius: 50%; background: conic-gradient(var(--gc) calc(var(--g) * 1%), #1f2a48 0); box-shadow: 0 20px 40px -14px #000; transition: --g 1.2s var(--ease); --gc: #ef4444; }
+    .rd-stage[data-level="mid"] .rd-gauge { --gc: #f59e0b; }
+    .rd-stage[data-level="good"] .rd-gauge { --gc: #4ade80; }
+    .rd-gauge::before { content: ""; position: absolute; inset: 8px; border-radius: 50%; background: #0c1222; }
+    .rd-gauge b { position: relative; font-size: 30px; font-weight: 800; color: var(--gc); line-height: 1; }
+    .rd-gauge b::before { counter-reset: g var(--g); content: counter(g); }
+    .rd-gauge small { position: absolute; bottom: 22px; font: 500 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .rd-live { position: absolute; right: 136px; bottom: 18px; z-index: 4; display: grid; gap: 8px; justify-items: end; }
+    .rd-live span { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 99px; background: rgba(8, 12, 24, .92); border: 1px solid rgba(74, 222, 128, .4); color: #4ade80; font: 600 13px var(--sans); opacity: 0; transform: translateY(12px); transition: opacity .4s, transform .5s var(--ease); }
+    .rd-live span + span { font: 500 12px var(--mono); color: var(--sky); border-color: var(--line-2); }
+    .rd-stage.is-live .rd-live span { opacity: 1; transform: none; }
+    .rd-stage.is-live .rd-live span + span { transition-delay: .15s; }
+    /* timeline */
+    .rd-tl { position: relative; }
+    .rd-tl__bar { position: absolute; left: 10%; right: 10%; top: 7px; height: 2px; background: var(--line); }
+    .rd-tl__bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--a), #fbbf24); transform-origin: left; transform: scaleX(0); }
+    .rd-tl ol { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); }
+    .rd-tl button { display: grid; justify-items: center; gap: 10px; width: 100%; padding: 0; border: 0; background: none; font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: color .3s; }
+    .rd-tl button::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--bg-2); border: 2px solid var(--line-2); transition: background .3s, border-color .3s, box-shadow .3s; }
+    .rd-tl .is-on button { color: var(--text); }
+    .rd-tl .is-on button::before { background: var(--a); border-color: var(--a); box-shadow: 0 0 14px var(--a); }
+
+    /* comparison table */
+    .rd-cmp { width: 100%; border-collapse: separate; border-spacing: 0; }
+    .rd-cmp th, .rd-cmp td { padding: 22px 26px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    .rd-cmp thead th { font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .rd-cmp thead th:last-child { color: var(--a); background: rgba(245, 158, 11, .09); border-radius: 18px 18px 0 0; box-shadow: inset 0 3px 0 var(--a); }
+    .rd-cmp tbody th { width: 18%; font-size: 18px; font-weight: 700; }
+    .rd-cmp td { width: 41%; color: var(--muted); }
+    .rd-cmp td .ic { margin-right: 10px; }
+    .rd-cmp td:not(:last-child) .ic { color: #ef4444; }
+    .rd-cmp td:last-child { color: var(--text); background: rgba(245, 158, 11, .05); }
+    .rd-cmp td:last-child .ic { color: #4ade80; }
+    .rd-cmp tbody tr:last-child td:last-child { border-radius: 0 0 18px 18px; }
+
+    /* keep what was earned */
+    .rd-keep { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: clamp(50px, 6vw, 80px); }
+    .rk-viz { position: relative; height: 130px; display: grid; place-items: center; align-content: center; gap: 10px; margin-bottom: 24px; border-radius: 14px; border: 1px solid var(--line); background: rgba(5, 8, 16, .6); overflow: hidden; }
+    .rk-url { padding: 9px 16px; border-radius: 10px; background: rgba(255, 255, 255, .06); font: 13px var(--mono); }
+    .rk-url::before { content: "● "; color: #4ade80; }
+    .rk-viz small { font: 11px var(--mono); color: var(--muted); }
+    .rk-301 { grid-auto-flow: column; gap: 14px; }
+    .rk-301 code { padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line-2); font: 12px var(--mono); }
+    .rk-301 span { padding: 5px 10px; border-radius: 99px; background: var(--a); color: #1c1003; font: 700 12px var(--mono); }
+    .rk-301::after { content: ""; position: absolute; top: calc(50% - 4px); left: 12%; width: 8px; height: 8px; border-radius: 50%; background: #fbbf24; box-shadow: 0 0 10px #fbbf24; animation: rkMove 2.6s var(--ease) infinite; }
+    @keyframes rkMove { 0% { left: 12%; opacity: 0; } 10% { opacity: 1; } 80% { left: 86%; opacity: 1; } 100% { left: 86%; opacity: 0; } }
+    .rk-swap { justify-items: start; gap: 12px; }
+    .rk-swap div { display: grid; grid-template-columns: 110px 110px; font: 13px var(--mono); color: var(--muted); }
+    .rk-swap b { font-weight: 500; }
+    .rk-swap b span { position: absolute; animation: rkA 6s steps(1) infinite; }
+    .rk-swap b span + span { position: static; animation-name: rkB; }
+    @keyframes rkA { 0% { opacity: 1; } 50% { opacity: 0; } }
+    @keyframes rkB { 0% { opacity: 0; } 50% { opacity: 1; } }
+    .on { color: #4ade80; } .off { color: #64748b; } .wip { color: var(--a); }
+
+    /* checklist */
+    .rd-check { border-top: 1px solid var(--line); }
+    .rd-check__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+    .rd-check__grid > div > p:not(.eyebrow) { margin-top: 18px; color: var(--muted); font-size: 18px; max-width: 36ch; }
+    .rd-quiz { display: grid; gap: 10px; padding: clamp(20px, 3vw, 32px); border-radius: 26px; border: 1px solid var(--line-2); background: var(--card); }
+    .rd-quiz label { display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-radius: 14px; border: 1px solid var(--line); cursor: pointer; font-weight: 500; transition: border-color .3s, background .3s; }
+    .rd-quiz label:hover { border-color: var(--line-2); }
+    .rd-quiz label:has(:checked) { border-color: color-mix(in srgb, var(--a) 55%, transparent); background: rgba(245, 158, 11, .07); }
+    .rd-quiz input { flex: none; appearance: none; width: 22px; height: 22px; margin: 0; border-radius: 7px; border: 2px solid var(--line-2); cursor: pointer; transition: background-color .25s, border-color .25s; }
+    .rd-quiz input:checked { border-color: var(--a); background: var(--a) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%231c1003' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat; }
+    .rd-meter { display: grid; gap: 12px; margin-top: 12px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .rd-meter__bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+    .rd-meter__bar i { height: 8px; border-radius: 4px; background: var(--line); transition: background .4s, box-shadow .4s; }
+    .rd-meter__bar i.is-on { background: var(--a); box-shadow: 0 0 10px rgba(245, 158, 11, .5); }
+    .rd-meter__bar.is-hot i.is-on { background: #fb923c; }
+    .rd-meter__msg { font-size: 17px; font-weight: 600; }
+    .rd-meter .btn { justify-self: start; }
+
+    @media (max-width: 900px) {
+      .rd-tx__head { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .rd-cap { text-align: left; min-height: 5.6em; font-size: 14px; }
+      .rd-cap b { font-size: 17px; }
+      .rd-stage { height: 46vh; }
+      .rd-frame.is-mobile { width: 200px; }
+      .rd-gauge { width: 76px; height: 76px; right: 8px; bottom: 8px; }
+      .rd-gauge b { font-size: 22px; }
+      .rd-gauge small { display: none; }
+      .rd-live { right: 92px; bottom: 8px; }
+      .rs-note { font-size: 10px; padding: 5px 9px; }
+      .rd-tl button { font-size: 9px; letter-spacing: 0; }
+      .rd-keep, .rd-check__grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .rd-cmp thead { display: none; }
+      .rd-cmp tbody tr { display: grid; grid-template-columns: 1fr 1fr; }
+      .rd-cmp tbody th { grid-column: 1 / -1; width: auto; padding: 22px 0 8px; border: 0; }
+      .rd-cmp td { width: auto; padding: 14px; font-size: 14px; }
+      .rd-cmp tbody tr:last-child td:last-child, .rd-cmp td:last-child { border-radius: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rd-h1__old, .rd-h1::after { display: none; }
+      .rd-h1__new { clip-path: none; opacity: 1; animation: none; }
+    }
+  </style>
+</head>
+<body style="--a:#f59e0b">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+  </svg>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="../index.html" class="brand" aria-label="PixelNuvo, início">
+      <img src="../assets/logo.png" alt="" width="40" height="40">
+      <span>Pixel<b>Nuvo</b></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Principal">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#especialidades">Especialidades</a>
+      <a href="../servicos.html" class="is-active">Serviços</a>
+      <a href="../index.html#processo">Processo</a>
+      <a href="../index.html#equipe">Equipe</a>
+      <a href="../index.html#duvidas">Dúvidas</a>
+      <a href="#contato" class="btn btn--sm btn--primary nav__cta-mobile">Solicitar orçamento</a>
+    </nav>
+    <a href="#contato" class="btn btn--sm btn--primary nav__cta magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <main id="topo">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 6 6 18M6 6l12 12"/></symbol></svg>
+
+    <section class="page-hero rd-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Você está aqui"><a href="../servicos.html">Serviços</a><span aria-hidden="true">/</span><span aria-current="page">Redesign</span></nav>
+        <h1 class="rd-h1"><span class="rd-h1__old" aria-hidden="true">Redesign</span><span class="rd-h1__new">Redesign</span></h1>
+        <ul class="rd-swaps" aria-label="O que muda">
+          <li><s>Lento</s><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><b>Rápido</b></li>
+          <li><s>Quebra no celular</s><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><b>Perfeito no celular</b></li>
+          <li><s>Genérico</s><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><b>Com a sua cara</b></li>
+        </ul>
+        <p class="page-hero__lead">Pegamos o site que você já tem e entregamos uma versão moderna, rápida e perfeita no celular, sem perder o que ele já conquistou.</p>
+        <div class="hero__ctas">
+          <a href="#contato" class="btn btn--primary btn--lg magnetic">Quero um redesign <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="#avaliacao" class="btn btn--ghost btn--lg">Meu site precisa?</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rd-tx">
+      <div class="rd-tx__sticky container">
+        <div class="rd-tx__head">
+          <div><p class="eyebrow" data-scramble>A transformação</p><h2 class="h2">Role e veja o site <span class="hl">mudar</span>.</h2></div>
+          <p class="rd-cap" aria-live="polite"></p>
+        </div>
+        <div class="rd-stage" aria-hidden="true">
+          <div class="rd-frame">
+            <div class="browser__bar"><span></span><span></span><span></span><div class="browser__url"><b>marcenariacarvalho.com.br</b></div></div>
+            <div class="rd-site">
+              <div class="rs-nav"><b><span class="o">MARCENARIA CARVALHO</span><span class="n">Carvalho</span></b><u>Home</u><u>Produtos</u><u>Contato</u><em class="n">Orçamento</em></div>
+              <div class="rs-marq">*** BEM VINDO AO NOSSO SITE!!! *** MÓVEIS SOB ENCOMENDA *** LIGUE JÁ ***</div>
+              <div class="rs-hero">
+                <div>
+                  <small class="n">MARCENARIA ARTESANAL</small>
+                  <h4><span class="o">Bem vindo ao site da Marcenaria!!!</span><span class="n">Móveis que atravessam gerações.</span></h4>
+                  <p><span class="o">A Marcenaria Carvalho fabrica móveis desde 1998 com qualidade e bom preço, venha nos visitar e conhecer nossos produtos. <u>Clique aqui</u> para ver o catálogo.</span><span class="n">Sob medida, em madeira maciça, feitos à mão em Campinas.</span></p>
+                  <span class="n go">Pedir orçamento</span>
+                </div>
+                <div class="rs-img"></div>
+              </div>
+              <div class="rs-cards"><div><i></i><b>Cozinhas</b></div><div><i></i><b>Salas</b></div><div><i></i><b>Quartos</b></div></div>
+              <p class="rs-count o">Você é o visitante nº 001234 · Melhor visualizado em 800x600</p>
+              <span class="rs-note" style="left:6%;top:6%;--d:0s">Visual datado</span>
+              <span class="rs-note" style="left:34%;top:30%;--d:.15s">Texto difícil de ler</span>
+              <span class="rs-note" style="right:8%;top:50%;--d:.3s">Nenhum botão de contato</span>
+              <span class="rs-note" style="left:10%;bottom:12%;--d:.45s">Quebra no celular</span>
+            </div>
+          </div>
+          <div class="rd-gauge"><b></b><small>Velocidade</small></div>
+          <div class="rd-live"><span><i class="dot"></i>No ar</span><span>301 · redirecionamentos ok</span></div>
+        </div>
+        <nav class="rd-tl" aria-label="Etapas da transformação">
+          <div class="rd-tl__bar"><i></i></div>
+          <ol><li><button type="button">Antes</button></li><li><button type="button">Diagnóstico</button></li><li><button type="button">Identidade</button></li><li><button type="button">Celular</button></li><li><button type="button">No ar</button></li></ol>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Antes e depois</p>
+          <h2 class="h2 reveal">O que <span class="hl">muda</span> no seu site.</h2>
+        </header>
+        <table class="rd-cmp">
+          <thead><tr><th><span class="sr-only">Aspecto</span></th><th>Antes</th><th>Depois</th></tr></thead>
+          <tbody>
+            <tr class="reveal"><th>Visual</th><td><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Datado, com cara de template</td><td><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Moderno, com a identidade da sua marca</td></tr>
+            <tr class="reveal"><th>Celular</th><td><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Quebra ou exige zoom</td><td><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Pensado primeiro para o celular</td></tr>
+            <tr class="reveal"><th>Velocidade</th><td><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Demora para abrir</td><td><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Código novo e imagens otimizadas</td></tr>
+            <tr class="reveal"><th>Google</th><td><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Estrutura desatualizada</td><td><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>SEO técnico e redirecionamentos cuidados</td></tr>
+            <tr class="reveal"><th>Contato</th><td><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Escondido no rodapé</td><td><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>WhatsApp e formulário a um clique</td></tr>
+            <tr class="reveal"><th>Conteúdo</th><td><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Espalhado e difícil de achar</td><td><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Reorganizado e direto ao ponto</td></tr>
+          </tbody>
+        </table>
+
+        <div class="rd-keep">
+          <article class="card reveal"><div class="rk-viz" aria-hidden="true"><span class="rk-url">marcenariacarvalho.com.br</span><small>mesmo endereço, antes e depois</small></div><h3>Domínio mantido</h3><p>O novo site é publicado no mesmo endereço que seus clientes já conhecem.</p></article>
+          <article class="card reveal" style="--rd:.1s"><div class="rk-viz rk-301" aria-hidden="true"><code>/produtos.php</code><span>301</span><code>/moveis</code></div><h3>SEO preservado</h3><p>Endereços antigos redirecionados para não perder posições no Google.</p></article>
+          <article class="card reveal" style="--rd:.2s"><div class="rk-viz rk-swap" aria-hidden="true"><div>site antigo <b><span class="on">● no ar</span><span class="off">○ aposentado</span></b></div><div>site novo <b><span class="wip">◐ em obra</span><span class="on">● no ar</span></b></div></div><h3>Sem sair do ar</h3><p>O site antigo segue funcionando até o novo estar pronto para assumir.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rd-check" id="avaliacao">
+      <div class="container rd-check__grid">
+        <div>
+          <p class="eyebrow" data-scramble>Autoavaliação</p>
+          <h2 class="h2 reveal">Seu site precisa de <span class="hl">redesign</span>?</h2>
+          <p class="reveal">Marque o que acontece com o seu site hoje. Leva dez segundos.</p>
+        </div>
+        <div class="rd-quiz reveal">
+          <label><input type="checkbox"><span>Foi feito há mais de cinco anos</span></label>
+          <label><input type="checkbox"><span>Fica quebrado ou pequeno no celular</span></label>
+          <label><input type="checkbox"><span>Demora para carregar</span></label>
+          <label><input type="checkbox"><span>Não tem mais a cara da sua marca</span></label>
+          <label><input type="checkbox"><span>Quase ninguém entra em contato por ele</span></label>
+          <label><input type="checkbox"><span>Você evita mandar o link para clientes</span></label>
+          <div class="rd-meter">
+            <div class="rd-meter__bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <p class="rd-meter__msg" aria-live="polite"></p>
+            <a href="#contato" class="btn btn--primary btn--sm" hidden>Quero um redesign <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Dúvidas</p>
+        <h2 class="h2 reveal">Perguntas <span class="hl">frequentes</span>.</h2>
+      </header>
+      <div class="faq__list">
+        <details><summary>Vou perder minha posição no Google?</summary><p>Cuidamos da migração com redirecionamentos e estrutura de SEO para preservar o que o site já conquistou.</p></details>
+        <details><summary>Posso manter meu domínio?</summary><p>Sim. O novo site é publicado no mesmo endereço.</p></details>
+        <details><summary>O site antigo sai do ar durante o projeto?</summary><p>Não. Ele continua funcionando até o novo estar pronto para substituí-lo.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="container cta__inner">
+        <h2 class="cta__title reveal">Hora de dar ao seu site a <span class="hl">cara que ele merece</span>.</h2>
+        <p class="cta__lead reveal">Conte a sua ideia e receba um orçamento sem compromisso.</p>
+        <div class="hero__ctas reveal">
+          <a href="https://ig.me/m/pixel_nuvo" target="_blank" rel="noopener" class="btn btn--primary btn--lg magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">@pixel_nuvo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section more-sec" aria-labelledby="outros">
+      <div class="container">
+        <p class="eyebrow" id="outros">Outros serviços</p>
+        <div class="more">
+          <a href="site-institucional.html" class="more__item" style="--a:#4da8ff"><b>Site institucional</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="landing-page.html" class="more__item" style="--a:#8b5cf6"><b>Landing page</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="portfolio-catalogo.html" class="more__item" style="--a:#22d3ee"><b>Portfólio &amp; catálogo</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="manutencao-suporte.html" class="more__item" style="--a:#4ade80"><b>Manutenção &amp; suporte</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="automacoes-integracoes.html" class="more__item" style="--a:#f472b6"><b>Automações &amp; integrações</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__nav" aria-label="Rodapé">
+      <a href="../index.html#sobre">Sobre</a><a href="../servicos.html">Serviços</a><a href="../index.html#processo">Processo</a><a href="../index.html#equipe">Equipe</a><a href="../index.html#duvidas">Dúvidas</a>
+      <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener">Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </nav>
+    <div class="footer__word" aria-hidden="true">PIXELNUVO</div>
+    <p class="footer__copy">© <span class="year"></span> PixelNuvo · Desenvolvimento de Sites</p>
+  </footer>
+
+  <script src="../common.js"></script>
+  <script data-page>
+    /* Transformation: scroll progress picks the stage of the sample site */
+    (() => {
+      const tx = $('.rd-tx'), frame = $('.rd-frame'), stage = $('.rd-stage'), cap = $('.rd-cap');
+      const fill = $('.rd-tl__bar i'), stops = $$('.rd-tl li');
+      const CAPS = [
+        ['O site de hoje', 'Feito há anos e parado no tempo. Ainda funciona, mas afasta quem chega.'],
+        ['Diagnóstico', 'Analisamos o que funciona e o que está afastando clientes.'],
+        ['Nova identidade', 'Layout moderno, desenhado a partir da sua marca, com o conteúdo reorganizado.'],
+        ['Perfeito no celular', 'Pensado primeiro para a tela pequena, de onde vem a maior parte das visitas.'],
+        ['No ar, sem perder nada', 'Mais rápido, no mesmo domínio e com os endereços antigos redirecionados.'],
+      ];
+      const SPEED = [34, 34, 72, 86, 98];
+      let cur = -1;
+      function set(s) {
+        if (s === cur) return;
+        cur = s;
+        frame.classList.toggle('is-diag', s === 1);
+        frame.classList.toggle('is-new', s >= 2);
+        frame.classList.toggle('is-mobile', s === 3);
+        stage.classList.toggle('is-live', s === 4);
+        stage.style.setProperty('--g', SPEED[s]);
+        stage.dataset.level = SPEED[s] < 50 ? 'bad' : SPEED[s] < 90 ? 'mid' : 'good';
+        stops.forEach((li, k) => li.classList.toggle('is-on', k <= s));
+        cap.innerHTML = `<b>${CAPS[s][0]}</b><span>${CAPS[s][1]}</span>`;
+      }
+      const travel = () => tx.offsetHeight - innerHeight;
+      function update() {
+        const p = clamp(-tx.getBoundingClientRect().top / travel());
+        fill.style.transform = `scaleX(${reduced ? cur / 4 : p})`;
+        if (!reduced) set(Math.min(4, Math.floor(p * 5)));
+      }
+      // timeline stops jump to their stage (with reduced motion they switch it in place)
+      stops.forEach((li, k) => $('button', li).addEventListener('click', () => {
+        if (reduced) { set(k); update(); }
+        else scrollTo({ top: tx.offsetTop + (k + .5) / 5 * travel(), behavior: 'smooth' });
+      }));
+      let ticking = false;
+      addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); }
+      }, { passive: true });
+      addEventListener('resize', update);
+      set(reduced ? 4 : 0);
+      update();
+    })();
+
+    /* Checklist */
+    (() => {
+      const boxes = $$('.rd-quiz input'), segs = $$('.rd-meter__bar i'), bar = $('.rd-meter__bar');
+      const msg = $('.rd-meter__msg'), cta = $('.rd-meter .btn');
+      const MSG = ['Marque o que acontece com o seu site.', 'Vale uma revisão. Conte pra gente o que incomoda.', 'Seu site está pedindo um redesign.', 'Hora de um redesign, sem dúvida.'];
+      const update = () => {
+        const n = boxes.filter(b => b.checked).length;
+        segs.forEach((s, k) => s.classList.toggle('is-on', k < n));
+        bar.classList.toggle('is-hot', n >= 5);
+        msg.textContent = MSG[n === 0 ? 0 : n <= 2 ? 1 : n <= 4 ? 2 : 3];
+        cta.hidden = n < 3;
+      };
+      boxes.forEach(b => b.addEventListener('change', update));
+      update();
+    })();
+  </script>
+</body>
+</html>

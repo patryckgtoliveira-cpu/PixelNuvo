@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfólio & catálogo · PixelNuvo</title>
+  <meta name="description" content="Seus trabalhos e produtos organizados de um jeito que dá vontade de ver tudo.">
+  <meta name="theme-color" content="#07090f">
+  <meta property="og:title" content="Portfólio & catálogo · PixelNuvo">
+  <meta property="og:description" content="Seus trabalhos e produtos organizados de um jeito que dá vontade de ver tudo.">
+  <link rel="icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style data-page>
+    /* illustrated "photos", recolored per item with --c1..--c5 */
+    .art { display: block; background-color: #1a2442; }
+    .art--house { background:
+      linear-gradient(var(--c5, #0f172a), var(--c5, #0f172a)) 50% 81.7% / 10% 18% no-repeat,
+      linear-gradient(var(--c3, #a5f3fc), var(--c3, #a5f3fc)) 35% 60% / 9% 10% no-repeat,
+      linear-gradient(to bottom right, transparent 49.5%, var(--c1, #0e7490) 50%) 33.33% 29.5% / 25% 22% no-repeat,
+      linear-gradient(to bottom left, transparent 49.5%, var(--c1, #0e7490) 50%) 66.67% 29.5% / 25% 22% no-repeat,
+      linear-gradient(var(--c2, #f8fafc), var(--c2, #f8fafc)) 50% 75% / 50% 40% no-repeat,
+      linear-gradient(var(--c4, #4ade80), var(--c4, #4ade80)) 0 100% / 100% 15% no-repeat,
+      linear-gradient(180deg, var(--c3, #a5f3fc), #fff); }
+    .art--int { background:
+      radial-gradient(circle at 22% 30%, var(--c1, #fbbf24) 0 5%, transparent 5.5%),
+      linear-gradient(var(--c1, #fbbf24), var(--c1, #fbbf24)) 21.6% 46% / 1.2% 24% no-repeat,
+      linear-gradient(var(--c5, #f472b6), var(--c5, #f472b6)) 72% 25% / 18% 20% no-repeat,
+      linear-gradient(rgba(0, 0, 0, .18), rgba(0, 0, 0, .18)) 50% 55.6% / 64% 10% no-repeat,
+      linear-gradient(var(--c2, #0f766e), var(--c2, #0f766e)) 50% 55.6% / 64% 10% no-repeat,
+      linear-gradient(var(--c2, #0f766e), var(--c2, #0f766e)) 50% 66.7% / 60% 16% no-repeat,
+      linear-gradient(180deg, var(--c3, #f5f5f4) 70%, var(--c4, #d6d3d1) 70%); }
+    .art--tower { background:
+      repeating-linear-gradient(0deg, transparent 0 8px, rgba(255, 255, 255, .45) 8px 11px) 30% 100% / 22% 72% no-repeat,
+      linear-gradient(var(--c1, #0e7490), var(--c1, #0e7490)) 30% 100% / 22% 72% no-repeat,
+      linear-gradient(var(--c2, #164e63), var(--c2, #164e63)) 64% 100% / 20% 50% no-repeat,
+      linear-gradient(var(--c4, #334155), var(--c4, #334155)) 88% 100% / 14% 34% no-repeat,
+      linear-gradient(180deg, var(--c3, #67e8f9), #ecfeff); }
+    .art--land { background:
+      radial-gradient(circle at 72% 30%, var(--c1, #fde68a) 0 8%, transparent 8.5%),
+      linear-gradient(to top right, var(--c2, #334155) 50%, transparent 50.5%) 0 100% / 55% 55% no-repeat,
+      linear-gradient(to top left, var(--c2, #334155) 50%, transparent 50.5%) 45% 100% / 30% 55% no-repeat,
+      linear-gradient(to top right, var(--c4, #475569) 50%, transparent 50.5%) 60% 100% / 40% 72% no-repeat,
+      linear-gradient(to top left, var(--c4, #475569) 50%, transparent 50.5%) 100% 100% / 30% 72% no-repeat,
+      linear-gradient(180deg, var(--c3, #0ea5e9), #e0f2fe); }
+    .art--sun { background: radial-gradient(circle at 50% 66%, #fde68a 0 13%, transparent 13.5%), linear-gradient(180deg, var(--c1, #f472b6), var(--c2, #fb923c) 64%, var(--c3, #1e1b4b) 64.5%); }
+    .art--vase { background: radial-gradient(ellipse 20% 26% at 50% 62%, var(--c1, #0e7490) 0 98%, transparent), linear-gradient(var(--c1, #0e7490), var(--c1, #0e7490)) 50% 36% / 9% 16% no-repeat, linear-gradient(var(--c2, #e7e5e4), var(--c2, #e7e5e4)) 0 100% / 100% 18% no-repeat, linear-gradient(180deg, var(--c3, #fef3c7), var(--c4, #fde68a)); }
+    .art--leaf { background: radial-gradient(ellipse 15% 36% at 36% 56%, var(--c1, #16a34a) 0 98%, transparent), radial-gradient(ellipse 15% 36% at 62% 46%, var(--c2, #22c55e) 0 98%, transparent), linear-gradient(160deg, var(--c3, #fef9c3), var(--c4, #ecfccb)); }
+    .art--abs { background: conic-gradient(from 90deg at 40% 60%, var(--c1, #22d3ee), var(--c2, #8b5cf6), var(--c3, #f472b6), var(--c1, #22d3ee)); }
+
+    /* hero: drifting gallery wall */
+    .pf-hero { position: relative; isolation: isolate; overflow: hidden; display: grid; place-items: center; min-height: min(94vh, 880px); padding: 140px 0 100px; text-align: center; }
+    .pf-wall { position: absolute; inset: -25% -12%; z-index: -2; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; transform: rotate(-9deg); }
+    .pf-col { display: grid; gap: 18px; align-content: start; padding-bottom: 18px; animation: pfUp 70s linear infinite; }
+    .pf-col:nth-child(even) { animation-direction: reverse; animation-duration: 85s; }
+    @keyframes pfUp { to { transform: translateY(-50%); } }
+    .pf-col .art { aspect-ratio: var(--r); border-radius: 16px; opacity: .85; }
+    .pf-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 44% 48% at 50% 52%, rgba(7, 9, 15, .95) 25%, rgba(7, 9, 15, .62) 68%, rgba(7, 9, 15, .3)), linear-gradient(180deg, var(--bg), transparent 24%, transparent 76%, var(--bg)); }
+    .pf-hero .crumbs { justify-content: center; }
+    .pf-h1 { font-size: clamp(44px, 7.4vw, 110px); font-weight: 800; letter-spacing: -.05em; line-height: .96; }
+    .pf-h1 .amp { display: inline-block; margin: 0 .04em; font: italic 400 1.05em Georgia, serif; color: var(--a); text-shadow: 0 0 40px color-mix(in srgb, var(--a) 60%, transparent); }
+    .pf-hero .page-hero__sub, .pf-hero .page-hero__lead { margin-inline: auto; }
+    .pf-hero .hero__ctas { margin-top: 34px; }
+
+    /* demo gallery */
+    .pf-demo { border-top: 1px solid var(--line); }
+    .pf-demo__grid { display: grid; grid-template-columns: .36fr 1fr; gap: clamp(26px, 4vw, 60px); align-items: start; }
+    .pf-how { position: sticky; top: 110px; display: grid; gap: 28px; }
+    .pf-how li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; }
+    .pf-how b { padding-top: 2px; font: 500 13px var(--mono); color: var(--a); }
+    .pf-how h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .pf-how p { font-size: 14px; color: var(--muted); }
+    .pf-how em { display: block; margin-top: 8px; font: 500 12px var(--mono); font-style: normal; color: var(--sky); }
+    .pf-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .pf-filters button { padding: 10px 18px; border-radius: 99px; border: 1px solid var(--line-2); background: #0c1222; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .3s, border-color .3s, color .3s; }
+    .pf-filters button:hover { border-color: var(--a); }
+    .pf-filters button small { margin-left: 6px; font: 500 11px var(--mono); opacity: .6; }
+    .pf-filters [aria-pressed="true"] { background: var(--a); border-color: var(--a); color: #04101f; }
+    .pf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .pf-card { display: grid; gap: 12px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; }
+    .pf-card[hidden] { display: none; }
+    .pf-card .art { position: relative; aspect-ratio: 4 / 3; border-radius: 16px; transition: transform .6s var(--ease), box-shadow .4s; }
+    .pf-card .art::after { content: "Ver projeto"; position: absolute; right: 12px; bottom: 12px; padding: 6px 12px; border-radius: 99px; background: rgba(7, 9, 15, .82); color: #fff; font: 600 12px var(--sans); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .4s var(--ease); }
+    .pf-card:hover .art, .pf-card:focus-visible .art { transform: translateY(-4px); box-shadow: 0 22px 40px -22px var(--a); }
+    .pf-card:hover .art::after, .pf-card:focus-visible .art::after { opacity: 1; transform: none; }
+    .pf-card b { font-size: 16px; }
+    .pf-card small { display: block; margin-top: 2px; font: 12px var(--mono); color: var(--muted); }
+    ::view-transition-group(*) { animation-duration: .5s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+
+    /* project dialog */
+    .pf-dlg { width: min(1020px, calc(100% - 32px)); max-height: calc(100% - 32px); padding: 0; border: 1px solid var(--line-2); border-radius: 24px; background: #0c1222; color: var(--text); overflow: auto; }
+    .pf-dlg::backdrop { background: rgba(4, 6, 12, .82); backdrop-filter: blur(6px); }
+    .pf-dlg[open] { animation: dlgIn .45s var(--ease); }
+    @keyframes dlgIn { from { opacity: 0; transform: translateY(24px) scale(.97); } }
+    .pf-dlg__in { display: grid; grid-template-columns: 1.2fr .8fr; }
+    .pf-dlg .art { min-height: 480px; }
+    .pf-dlg__info { display: flex; flex-direction: column; gap: 14px; padding: 40px 32px 30px; }
+    .pf-dlg__kick { font: 500 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--a); }
+    .pf-dlg h3 { font-size: clamp(28px, 3vw, 40px); font-weight: 800; letter-spacing: -.035em; }
+    .pf-dlg__desc { color: var(--muted); }
+    .pf-dlg dl { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 4px 26px; margin: 6px 0 0; padding: 16px 0; border-block: 1px solid var(--line); }
+    .pf-dlg dt { grid-row: 1; font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .pf-dlg dd { grid-row: 2; margin: 0; font-weight: 600; }
+    .pf-wa small { display: block; margin-bottom: 8px; font: 11px var(--mono); color: var(--muted); }
+    .pf-wa p { max-width: 34ch; padding: 10px 14px; border-radius: 14px 14px 4px 14px; background: #075e54; color: #e7fbe9; font-size: 14px; line-height: 1.4; }
+    .pf-dlg__foot { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 14px; }
+    .pf-dlg__foot span { margin-right: auto; font: 12px var(--mono); color: var(--muted); }
+    .pf-dlg button { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-2); background: none; cursor: pointer; transition: border-color .3s, background .3s; }
+    .pf-dlg button:hover { border-color: var(--a); background: rgba(34, 211, 238, .1); }
+    .pf-prev .ic { transform: scaleX(-1); }
+    .pf-close { position: absolute; top: 14px; right: 14px; background: rgba(7, 9, 15, .7) !important; font-size: 20px; }
+    .pf-dlg__cta { align-self: start; color: var(--sky); font-weight: 600; font-size: 14px; border-bottom: 1px solid currentColor; }
+
+    /* contact sheet */
+    .pf-sheet { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 26px; padding: 52px clamp(20px, 3vw, 40px); border-radius: 20px; border: 1px solid var(--line); background-color: #0d1120;
+      background-image: radial-gradient(ellipse 7px 5px, #07090f 98%, transparent), radial-gradient(ellipse 7px 5px, #07090f 98%, transparent);
+      background-size: 30px 12px; background-repeat: repeat-x; background-position: 0 14px, 0 calc(100% - 14px); }
+    .pf-frame { position: relative; display: grid; gap: 10px; align-content: start; }
+    .pf-frame .art { aspect-ratio: 3 / 2; border-radius: 4px; outline: 1px solid rgba(255, 255, 255, .08); }
+    .pf-frame__n { font: 500 11px var(--mono); color: #f59e0b; letter-spacing: .1em; }
+    .pf-frame h3 { font-size: 18px; font-weight: 700; }
+    .pf-frame p { font-size: 14px; color: var(--muted); }
+    .pf-mark { position: absolute; left: -16px; top: -14px; width: calc(100% + 32px); aspect-ratio: 3 / 2.1; overflow: visible; pointer-events: none; }
+    .pf-mark path { fill: none; stroke: #ef4444; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s var(--ease) .5s; }
+    .is-in .pf-mark path { stroke-dashoffset: 0; }
+
+    /* ideal for */
+    .pf-fit { border-top: 1px solid var(--line); }
+    .pf-fit__row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .pf-tile { position: relative; overflow: hidden; aspect-ratio: 3 / 4.2; border-radius: 20px; border: 1px solid var(--line); }
+    .pf-tile .art { position: absolute; inset: 0; }
+    .pf-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(7, 9, 15, .92)); }
+    .pf-tile b { position: absolute; z-index: 1; left: 18px; right: 18px; bottom: 18px; font-size: 19px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+
+    @media (max-width: 1080px) {
+      .pf-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .pf-wall { grid-template-columns: repeat(4, 1fr); inset: -20% -30%; }
+      .pf-demo__grid, .pf-dlg__in { grid-template-columns: 1fr; }
+      .pf-how { position: static; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .pf-how li { grid-template-columns: 1fr; gap: 4px; }
+      .pf-how p, .pf-how em { display: none; }
+      .pf-how h3 { font-size: 14px; }
+      .pf-dlg .art { min-height: 240px; }
+      .pf-dlg__info { padding: 26px 22px 22px; }
+      .pf-sheet { grid-template-columns: 1fr 1fr; }
+      .pf-fit__row { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 58%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+      .pf-tile { scroll-snap-align: start; }
+    }
+    @media (max-width: 620px) {
+      .pf-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .pf-card b { font-size: 14px; }
+      .pf-sheet { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body style="--a:#22d3ee">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+  </svg>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="../index.html" class="brand" aria-label="PixelNuvo, início">
+      <img src="../assets/logo.png" alt="" width="40" height="40">
+      <span>Pixel<b>Nuvo</b></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Principal">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#especialidades">Especialidades</a>
+      <a href="../servicos.html" class="is-active">Serviços</a>
+      <a href="../index.html#processo">Processo</a>
+      <a href="../index.html#equipe">Equipe</a>
+      <a href="../index.html#duvidas">Dúvidas</a>
+      <a href="#contato" class="btn btn--sm btn--primary nav__cta-mobile">Solicitar orçamento</a>
+    </nav>
+    <a href="#contato" class="btn btn--sm btn--primary nav__cta magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <main id="topo">
+    <section class="pf-hero">
+      <div class="pf-wall" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="crumbs" aria-label="Você está aqui"><a href="../servicos.html">Serviços</a><span aria-hidden="true">/</span><span aria-current="page">Portfólio &amp; catálogo</span></nav>
+        <h1 class="pf-h1">Portfólio <span class="amp">&amp;</span> catálogo</h1>
+        <p class="page-hero__sub">Seus trabalhos e produtos organizados de um jeito que dá vontade de ver tudo.</p>
+        <p class="page-hero__lead">Galerias, filtros e páginas de detalhe que mostram o seu trabalho como ele merece e levam o cliente direto até você.</p>
+        <div class="hero__ctas">
+          <a href="#contato" class="btn btn--primary btn--lg magnetic">Quero meu portfólio <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="#galeria" class="btn btn--ghost btn--lg">Ver exemplo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pf-demo" id="galeria">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Na prática</p>
+          <h2 class="h2 reveal">Experimente um portfólio <span class="hl">de verdade</span>.</h2>
+          <p class="section__sub reveal">Um estúdio de arquitetura de exemplo. Filtre, abra um projeto, navegue entre eles.</p>
+        </header>
+        <div class="pf-demo__grid">
+          <ol class="pf-how reveal">
+            <li><b>01</b><div><h3>Filtros e categorias</h3><p>O visitante encontra rápido o que procura.</p><em>→ toque em um filtro</em></div></li>
+            <li><b>02</b><div><h3>Páginas de detalhe</h3><p>Cada projeto com fotos, descrição e informações.</p><em>→ abra um projeto</em></div></li>
+            <li><b>03</b><div><h3>Pedido pelo WhatsApp</h3><p>O cliente se interessa e já começa a conversa.</p><em>→ veja a mensagem no projeto</em></div></li>
+          </ol>
+          <div>
+            <div class="pf-filters" role="group" aria-label="Filtrar projetos">
+              <button type="button" data-f="all" aria-pressed="true">Todos<small>9</small></button>
+              <button type="button" data-f="res" aria-pressed="false">Residencial<small>3</small></button>
+              <button type="button" data-f="int" aria-pressed="false">Interiores<small>3</small></button>
+              <button type="button" data-f="com" aria-pressed="false">Comercial<small>3</small></button>
+            </div>
+            <div class="pf-grid">
+              <button type="button" class="pf-card" data-cat="res" data-area="240 m²" data-local="Campinas" data-year="2025" data-desc="Uma casa térrea aberta para o jardim, com luz natural em todos os ambientes e varanda integrada à sala." style="view-transition-name:pf-1"><i class="art art--house"></i><span><b>Casa Jardim</b><small>Residencial · 2025</small></span></button>
+              <button type="button" class="pf-card" data-cat="int" data-area="68 m²" data-local="São Paulo" data-year="2025" data-desc="Loft compacto com marcenaria sob medida, cores quentes e iluminação pensada para o fim do dia." style="view-transition-name:pf-2"><i class="art art--int"></i><span><b>Loft Aurora</b><small>Interiores · 2025</small></span></button>
+              <button type="button" class="pf-card" data-cat="com" data-area="1.800 m²" data-local="Jundiaí" data-year="2024" data-desc="Edifício de escritórios com fachada ventilada e térreo aberto para a rua." style="view-transition-name:pf-3"><i class="art art--tower"></i><span><b>Edifício Norte</b><small>Comercial · 2024</small></span></button>
+              <button type="button" class="pf-card" data-cat="res" data-area="310 m²" data-local="Atibaia" data-year="2024" data-desc="Casa de fim de semana voltada para o lago, com telhado aparente e grandes aberturas." style="view-transition-name:pf-4"><i class="art art--house" style="--c1:#1e3a8a;--c2:#e0e7ff;--c3:#bfdbfe;--c4:#15803d"></i><span><b>Casa do Lago</b><small>Residencial · 2024</small></span></button>
+              <button type="button" class="pf-card" data-cat="com" data-area="120 m²" data-local="Campinas" data-year="2024" data-desc="Cafeteria de bairro com balcão em madeira, mesas comunitárias e vitrine para a calçada." style="view-transition-name:pf-5"><i class="art art--int" style="--c1:#fde68a;--c2:#78350f;--c3:#fef3c7;--c4:#a16207;--c5:#0e7490"></i><span><b>Café Bruma</b><small>Comercial · 2024</small></span></button>
+              <button type="button" class="pf-card" data-cat="int" data-area="42 m²" data-local="Valinhos" data-year="2023" data-desc="Sala de estar reorganizada para receber, com tons neutros e peças de família em destaque." style="view-transition-name:pf-6"><i class="art art--int" style="--c1:#f472b6;--c2:#475569;--c3:#e2e8f0;--c4:#94a3b8;--c5:#22d3ee"></i><span><b>Sala Serena</b><small>Interiores · 2023</small></span></button>
+              <button type="button" class="pf-card" data-cat="res" data-area="190 m²" data-local="Itu" data-year="2023" data-desc="Casa em pedra e madeira, integrada ao terreno em declive e à mata ao redor." style="view-transition-name:pf-7"><i class="art art--house" style="--c1:#44403c;--c2:#d6d3d1;--c3:#fef3c7;--c4:#65a30d"></i><span><b>Casa Pedra</b><small>Residencial · 2023</small></span></button>
+              <button type="button" class="pf-card" data-cat="com" data-area="540 m²" data-local="Sorocaba" data-year="2023" data-desc="Clínica com recepção acolhedora, circulação clara e consultórios iluminados." style="view-transition-name:pf-8"><i class="art art--tower" style="--c1:#0f766e;--c2:#5eead4;--c3:#ccfbf1;--c4:#134e4a"></i><span><b>Clínica Vértice</b><small>Comercial · 2023</small></span></button>
+              <button type="button" class="pf-card" data-cat="int" data-area="24 m²" data-local="Campinas" data-year="2023" data-desc="Quarto infantil que cresce junto com a criança, com cores suaves e muito espaço para brincar." style="view-transition-name:pf-9"><i class="art art--int" style="--c1:#fb923c;--c2:#8b5cf6;--c3:#fdf4ff;--c4:#e9d5ff;--c5:#fbbf24"></i><span><b>Quarto Brisa</b><small>Interiores · 2023</small></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dialog class="pf-dlg" aria-labelledby="pf-dlg-t">
+        <div class="pf-dlg__in">
+          <i class="art" aria-hidden="true"></i>
+          <div class="pf-dlg__info">
+            <p class="pf-dlg__kick"></p>
+            <h3 id="pf-dlg-t"></h3>
+            <p class="pf-dlg__desc"></p>
+            <dl><dt>Área</dt><dd></dd><dt>Local</dt><dd></dd><dt>Ano</dt><dd></dd></dl>
+            <div class="pf-wa" aria-hidden="true"><small>Chega no WhatsApp do cliente:</small><p>Olá! Tenho interesse em um projeto como a <b class="pf-wa__name"></b>.</p></div>
+            <a href="#contato" class="pf-dlg__cta">Gostou? Quero um portfólio assim</a>
+            <div class="pf-dlg__foot">
+              <span class="pf-dlg__count"></span>
+              <button type="button" class="pf-prev" aria-label="Projeto anterior"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <button type="button" class="pf-next" aria-label="Próximo projeto"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="pf-close" aria-label="Fechar">×</button>
+      </dialog>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>O que está incluso</p>
+          <h2 class="h2 reveal">Cada detalhe, <span class="hl">em foco</span>.</h2>
+        </header>
+        <div class="pf-sheet reveal">
+          <article class="pf-frame"><i class="art art--sun" aria-hidden="true"></i><svg class="pf-mark" viewBox="0 0 200 140" aria-hidden="true"><path pathLength="1" d="M26 74 C 18 22, 176 8, 186 62 C 196 118, 40 134, 16 82 C 8 58, 40 30, 84 24"/></svg><span class="pf-frame__n">01A ▸</span><h3>Galerias</h3><p>Fotos em destaque, com ampliação e carregamento leve.</p></article>
+          <article class="pf-frame"><i class="art art--abs" aria-hidden="true"></i><span class="pf-frame__n">02A ▸</span><h3>Filtros e categorias</h3><p>O visitante encontra rápido o que procura.</p></article>
+          <article class="pf-frame"><i class="art art--leaf" aria-hidden="true"></i><span class="pf-frame__n">03A ▸</span><h3>Integração com Instagram</h3><p>Seu feed aparece no site e se atualiza sozinho.</p></article>
+          <article class="pf-frame"><i class="art art--house" aria-hidden="true" style="--c1:#be123c;--c2:#fff1f2;--c3:#fecdd3;--c4:#9f1239"></i><span class="pf-frame__n">04A ▸</span><h3>Páginas de detalhe</h3><p>Cada projeto ou produto com fotos, descrição e informações.</p></article>
+          <article class="pf-frame"><i class="art art--vase" aria-hidden="true"></i><span class="pf-frame__n">05A ▸</span><h3>Pedido pelo WhatsApp</h3><p>O cliente escolhe e já começa a conversa com você.</p></article>
+          <article class="pf-frame"><i class="art art--land" aria-hidden="true"></i><span class="pf-frame__n">06A ▸</span><h3>Imagens otimizadas</h3><p>Qualidade alta sem deixar o site pesado.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pf-fit">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Para quem é</p>
+          <h2 class="h2 reveal">Para quem tem <span class="hl">o que mostrar</span>.</h2>
+        </header>
+        <ul class="pf-fit__row reveal">
+          <li class="pf-tile"><i class="art art--sun" aria-hidden="true" style="--c1:#8b5cf6;--c2:#f472b6"></i><b>Fotógrafos</b></li>
+          <li class="pf-tile"><i class="art art--house" aria-hidden="true"></i><b>Arquitetos e designers</b></li>
+          <li class="pf-tile"><i class="art art--vase" aria-hidden="true" style="--c1:#b45309;--c3:#ffedd5;--c4:#fed7aa"></i><b>Artesãos</b></li>
+          <li class="pf-tile"><i class="art art--leaf" aria-hidden="true"></i><b>Lojas com catálogo</b></li>
+          <li class="pf-tile"><i class="art art--tower" aria-hidden="true"></i><b>Prestadores de serviço</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Dúvidas</p>
+        <h2 class="h2 reveal">Perguntas <span class="hl">frequentes</span>.</h2>
+      </header>
+      <div class="faq__list">
+        <details><summary>Qual a diferença para uma loja virtual?</summary><p>O catálogo mostra seus produtos e leva o cliente para conversar com você, sem carrinho de compras. Se precisar vender online, conversamos sobre a melhor solução.</p></details>
+        <details><summary>Consigo adicionar novos itens depois?</summary><p>Sim. Nossa equipe de suporte inclui novos trabalhos e produtos sempre que você precisar.</p></details>
+        <details><summary>O feed do Instagram atualiza sozinho?</summary><p>Sim. As novas publicações aparecem no site automaticamente.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="container cta__inner">
+        <h2 class="cta__title reveal">Seu trabalho merece uma <span class="hl">vitrine à altura</span>.</h2>
+        <p class="cta__lead reveal">Conte a sua ideia e receba um orçamento sem compromisso.</p>
+        <div class="hero__ctas reveal">
+          <a href="https://ig.me/m/pixel_nuvo" target="_blank" rel="noopener" class="btn btn--primary btn--lg magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">@pixel_nuvo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section more-sec" aria-labelledby="outros">
+      <div class="container">
+        <p class="eyebrow" id="outros">Outros serviços</p>
+        <div class="more">
+          <a href="site-institucional.html" class="more__item" style="--a:#4da8ff"><b>Site institucional</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="landing-page.html" class="more__item" style="--a:#8b5cf6"><b>Landing page</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="redesign.html" class="more__item" style="--a:#f59e0b"><b>Redesign</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="manutencao-suporte.html" class="more__item" style="--a:#4ade80"><b>Manutenção &amp; suporte</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="automacoes-integracoes.html" class="more__item" style="--a:#f472b6"><b>Automações &amp; integrações</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__nav" aria-label="Rodapé">
+      <a href="../index.html#sobre">Sobre</a><a href="../servicos.html">Serviços</a><a href="../index.html#processo">Processo</a><a href="../index.html#equipe">Equipe</a><a href="../index.html#duvidas">Dúvidas</a>
+      <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener">Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </nav>
+    <div class="footer__word" aria-hidden="true">PIXELNUVO</div>
+    <p class="footer__copy">© <span class="year"></span> PixelNuvo · Desenvolvimento de Sites</p>
+  </footer>
+
+  <script src="../common.js"></script>
+  <script data-page>
+    /* Hero wall: columns of illustrated tiles, duplicated so the drift loops seamlessly */
+    (() => {
+      const kinds = ['house', 'sun', 'tower', 'int', 'land', 'vase', 'abs', 'leaf'];
+      const ratios = ['3/4', '1/1', '4/3'];
+      const wall = $('.pf-wall');
+      for (let c = 0; c < 6; c++) {
+        const tiles = Array.from({ length: 5 }, (_, k) => `<i class="art art--${kinds[(c * 3 + k) % 8]}" style="--r:${ratios[(c + k) % 3]}"></i>`).join('');
+        wall.insertAdjacentHTML('beforeend', `<div class="pf-col">${tiles}${tiles}</div>`);
+      }
+    })();
+
+    /* Gallery: filters (view transitions when available) + project dialog */
+    (() => {
+      const cards = $$('.pf-card'), fbtns = $$('.pf-filters button'), dlg = $('.pf-dlg');
+      const dArt = $('.art', dlg), dd = $$('dd', dlg);
+      let shown = cards, cur = 0;
+
+      function filter(f) {
+        const apply = () => {
+          cards.forEach(c => { c.hidden = f !== 'all' && c.dataset.cat !== f; });
+          fbtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.f === f));
+          shown = cards.filter(c => !c.hidden);
+        };
+        if (document.startViewTransition && !reduced) document.startViewTransition(apply);
+        else apply();
+      }
+      fbtns.forEach(b => b.addEventListener('click', () => filter(b.dataset.f)));
+
+      function show(i) {
+        cur = (i + shown.length) % shown.length;
+        const c = shown[cur], a = $('.art', c), d = c.dataset;
+        dArt.className = a.className;
+        dArt.style.cssText = a.style.cssText;
+        $('.pf-dlg__kick', dlg).textContent = $('small', c).textContent;
+        $('h3', dlg).textContent = $('.pf-wa__name', dlg).textContent = $('b', c).textContent;
+        $('.pf-dlg__desc', dlg).textContent = d.desc;
+        [d.area, d.local, d.year].forEach((v, k) => { dd[k].textContent = v; });
+        $('.pf-dlg__count', dlg).textContent = `${cur + 1} / ${shown.length}`;
+      }
+      cards.forEach(c => c.addEventListener('click', () => { show(shown.indexOf(c)); dlg.showModal(); }));
+      $('.pf-prev', dlg).addEventListener('click', () => show(cur - 1));
+      $('.pf-next', dlg).addEventListener('click', () => show(cur + 1));
+      $('.pf-close', dlg).addEventListener('click', () => dlg.close());
+      $('.pf-dlg__cta', dlg).addEventListener('click', () => dlg.close());
+      dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+      dlg.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') show(cur + 1);
+        if (e.key === 'ArrowLeft') show(cur - 1);
+      });
+    })();
+  </script>
+</body>
+</html>

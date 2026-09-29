@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landing page · PixelNuvo</title>
+  <meta name="description" content="Uma página, um objetivo: vender, captar contatos ou lançar uma campanha.">
+  <meta name="theme-color" content="#07090f">
+  <meta property="og:title" content="Landing page · PixelNuvo">
+  <meta property="og:description" content="Uma página, um objetivo: vender, captar contatos ou lançar uma campanha.">
+  <link rel="icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style data-page>
+    /* hero: built like a landing page itself, one message and one button */
+    .lp-hero { text-align: center; padding-bottom: clamp(90px, 11vw, 140px); }
+    .lp-hero .crumbs { justify-content: center; margin-bottom: 30px; }
+    .lp-h1 { font-size: clamp(44px, 7.6vw, 116px); font-weight: 800; letter-spacing: -.05em; line-height: .98; text-wrap: balance; }
+    .lp-h1 em { font-style: normal; color: transparent; background: linear-gradient(95deg, #c4b5fd, var(--a) 55%, #6d7cff); -webkit-background-clip: text; background-clip: text; }
+    .lp-hero .page-hero__lead { margin: 28px auto 0; text-align: center; }
+    .lp-one { position: relative; display: inline-block; margin-top: 44px; }
+    .lp-one .btn { --pad: 22px 40px; font-size: 18px; }
+    .lp-one::before, .lp-one::after { content: ""; position: absolute; inset: -10px; border-radius: 999px; border: 1.5px solid var(--a); opacity: 0; pointer-events: none; animation: lpRing 2.6s var(--ease) infinite; }
+    .lp-one::after { animation-delay: 1.3s; }
+    @keyframes lpRing { 0% { opacity: .8; transform: scale(.9); } 100% { opacity: 0; transform: scale(1.3, 1.6); } }
+    .lp-note { position: absolute; left: calc(100% + 26px); top: 50%; transform: translateY(-50%) rotate(-3deg); display: flex; align-items: center; gap: 10px; white-space: nowrap; font: 500 13px var(--mono); color: var(--muted); }
+    .lp-note svg { width: 34px; height: 20px; color: var(--a); }
+
+    /* story: sticky phone */
+    .lp-story { border-top: 1px solid var(--line); }
+    .lp-story__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(30px, 6vw, 90px); }
+    .lp-stage { position: sticky; top: calc(50vh - 290px); height: 580px; display: grid; place-items: center; }
+    .lp-phone { position: relative; width: 290px; height: 580px; padding: 10px; border-radius: 46px; background: #1c2440; box-shadow: 0 50px 120px -40px rgba(139, 92, 246, .75), inset 0 0 0 1px rgba(255, 255, 255, .07); }
+    .lp-phone::before { content: ""; position: absolute; z-index: 3; top: 20px; left: 50%; width: 86px; height: 22px; margin-left: -43px; border-radius: 99px; background: #1c2440; }
+    .lp-screen { position: relative; height: 100%; overflow: hidden; border-radius: 37px; background: #fbf7f2; }
+    .lp-reel { height: 100%; transform: translateY(calc(var(--s, 0) * -100%)); transition: transform .8s var(--ease); }
+    .lp-sec { height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 56px 22px 26px; color: #2b2238; }
+    .lp-sec small { font: 700 10px var(--sans); letter-spacing: .16em; color: #7c3aed; }
+    .lp-sec h4 { font-size: 25px; font-weight: 800; line-height: 1.02; letter-spacing: -.035em; }
+    .lp-sec p { font-size: 13px; line-height: 1.5; color: #6b5e7b; }
+    .lp-sec .go { align-self: stretch; padding: 13px; border-radius: 14px; background: #7c3aed; color: #fff; text-align: center; font-size: 13px; font-weight: 700; box-shadow: 0 12px 24px -10px #7c3aed; }
+    .lp-sec .go--wa { background: #25d366; box-shadow: 0 12px 24px -10px #25d366; }
+    .lp-art { flex: 1; min-height: 120px; border-radius: 18px; background: radial-gradient(circle at 50% 36%, #fcd9c4 0 11%, transparent 12%), radial-gradient(ellipse 22% 34% at 50% 72%, #7c3aed 0 98%, transparent), radial-gradient(ellipse 60% 12% at 50% 96%, #d6c8f5 0 98%, transparent), linear-gradient(160deg, #efe6ff, #fde7da); }
+    .lp-ben { display: grid; gap: 10px; margin-top: 6px; }
+    .lp-ben div { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 14px; background: #fff; font-size: 13px; font-weight: 600; box-shadow: 0 8px 20px -14px rgba(43, 34, 56, .5); }
+    .lp-ben i { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #efe6ff; color: #7c3aed; font-style: normal; font-weight: 800; }
+    .lp-stars { color: #f59e0b; font-size: 18px; letter-spacing: 3px; }
+    .lp-quote { padding: 16px; border-radius: 16px; background: #fff; box-shadow: 0 8px 20px -14px rgba(43, 34, 56, .5); }
+    .lp-quote q { display: block; font: italic 600 16px/1.35 Georgia, serif; }
+    .lp-quote span { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 11px; color: #6b5e7b; }
+    .lp-quote span i { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #fbbf24, #f472b6); }
+    .lp-plan { position: relative; display: grid; gap: 8px; padding: 20px 18px; border-radius: 18px; background: #2b2238; color: #fff; }
+    .lp-plan em { position: absolute; top: -10px; right: 14px; padding: 5px 10px; border-radius: 99px; background: #f59e0b; color: #2b2238; font: 700 10px var(--sans); font-style: normal; }
+    .lp-plan b { font-size: 13px; color: #c4b5fd; }
+    .lp-plan strong { font-size: 36px; letter-spacing: -.04em; line-height: 1; }
+    .lp-plan strong small { font-size: 13px; color: #b7aac8; letter-spacing: 0; }
+    .lp-plan span { font-size: 12px; color: #d9d0e6; }
+    .lp-spots { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #b45309; }
+    .lp-spots::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, .2); }
+    .lp-toast { position: absolute; z-index: 4; top: 50px; left: 12px; right: 12px; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 16px; background: rgba(255, 255, 255, .96); color: #2b2238; font-size: 11px; box-shadow: 0 16px 30px -12px rgba(0, 0, 0, .45); opacity: 0; transform: translateY(-20px); transition: opacity .4s, transform .5s var(--ease); }
+    .lp-toast i { flex: none; width: 28px; height: 28px; border-radius: 8px; background: #25d366; }
+    .lp-toast b { display: block; font-size: 12px; }
+    .lp-phone[data-s="4"] .lp-toast { opacity: 1; transform: none; transition-delay: .7s; }
+    .lp-dots { position: absolute; left: calc(50% + 172px); top: 50%; display: grid; gap: 8px; transform: translateY(-50%); }
+    .lp-dots i { width: 4px; height: 22px; border-radius: 4px; background: var(--line-2); transition: background .4s, height .4s var(--ease); }
+    .lp-dots i.is-on { height: 40px; background: var(--a); box-shadow: 0 0 12px var(--a); }
+    .lp-step { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; opacity: .2; transition: opacity .5s; }
+    .lp-step.is-on { opacity: 1; }
+    .lp-step > b { font: 500 13px var(--mono); letter-spacing: .14em; color: var(--a); }
+    .lp-step h3 { font-size: clamp(30px, 3.6vw, 54px); font-weight: 800; letter-spacing: -.04em; margin: 14px 0 16px; }
+    .lp-step p { max-width: 42ch; color: var(--muted); font-size: 18px; }
+    .lp-tip { align-self: start; margin-top: 24px; padding: 10px 16px; border-radius: 12px; border: 1px dashed color-mix(in srgb, var(--a) 50%, transparent); font: 13px var(--mono); color: #c4b5fd; }
+
+    /* focus mode */
+    .lp-focus { border-top: 1px solid var(--line); }
+    .lp-focus__grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+    .lp-focus__grid .h2 { font-size: clamp(32px, 4vw, 56px); }
+    .lp-focus__grid > div > p:not(.eyebrow) { margin-top: 20px; color: var(--muted); font-size: 18px; max-width: 40ch; }
+    .lp-switch { display: inline-flex; align-items: center; gap: 14px; margin-top: 32px; padding: 10px 20px 10px 10px; border-radius: 99px; border: 1px solid var(--line-2); background: #0c1222; font-weight: 600; cursor: pointer; transition: border-color .3s; }
+    .lp-switch:hover { border-color: var(--a); }
+    .lp-switch i { position: relative; width: 52px; height: 30px; border-radius: 99px; background: #1f2a48; transition: background .3s; }
+    .lp-switch i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; transition: transform .45s var(--ease); }
+    .lp-switch[aria-checked="true"] i { background: var(--a); }
+    .lp-switch[aria-checked="true"] i::after { transform: translateX(22px); }
+    .lp-count { display: flex; align-items: baseline; gap: 12px; margin-top: 28px; font: 500 13px var(--mono); color: var(--muted); }
+    .lp-count b { min-width: 1.4em; font: 800 44px var(--sans); color: var(--text); letter-spacing: -.04em; }
+    .lp-mock { border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); background: #0c1222; box-shadow: 0 50px 120px -50px rgba(139, 92, 246, .6); }
+    .lp-mock__body { position: relative; height: 440px; overflow: hidden; background: #fff; color: #333; font-size: 12px; }
+    .lp-noise { transition: opacity .6s var(--ease), filter .6s, transform .6s var(--ease); }
+    .lp-mock.is-focus .lp-noise { opacity: .05; filter: blur(2px); transform: scale(.97); }
+    .lp-m-banner { padding: 7px; background: #dc2626; color: #fff; text-align: center; font-weight: 800; letter-spacing: .08em; }
+    .lp-m-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding: 12px 18px; border-bottom: 1px solid #eee; }
+    .lp-m-nav b { margin-right: auto; font-size: 15px; color: #2b2238; }
+    .lp-m-nav u { color: #2563eb; }
+    .lp-m-grid { display: grid; grid-template-columns: 130px 1fr; }
+    .lp-m-side { display: grid; gap: 8px; align-content: start; padding: 16px 18px; border-right: 1px solid #eee; }
+    .lp-m-side b { font-size: 11px; color: #999; letter-spacing: .1em; }
+    .lp-m-side u { color: #2563eb; }
+    .lp-m-main { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 28px 22px; text-align: center; }
+    .lp-m-main h5 { font-size: 22px; font-weight: 800; letter-spacing: -.03em; color: #2b2238; }
+    .lp-m-main p { max-width: 38ch; color: #777; }
+    .lp-m-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .lp-m-btns span { padding: 8px 12px; border-radius: 6px; border: 1px solid #ccc; color: #555; font-weight: 600; }
+    .lp-goal { position: relative; z-index: 1; padding: 13px 26px; border-radius: 99px; background: #7c3aed; color: #fff; font-size: 13px; font-weight: 800; transition: transform .7s var(--ease), box-shadow .7s; }
+    .lp-mock.is-focus .lp-goal { transform: scale(1.35) translateY(-6px); box-shadow: 0 0 0 8px rgba(139, 92, 246, .2), 0 24px 44px -12px #7c3aed; }
+    .lp-m-social { display: flex; gap: 8px; }
+    .lp-m-social i { width: 22px; height: 22px; border-radius: 6px; background: #e5e7eb; }
+    .lp-m-pop { position: absolute; right: 14px; bottom: 50px; width: 170px; padding: 12px; border-radius: 10px; background: #fef3c7; border: 1px solid #f59e0b; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .4); font-weight: 700; color: #92400e; }
+    .lp-m-pop span { display: block; margin-top: 8px; padding: 6px; border-radius: 6px; background: #f59e0b; color: #fff; text-align: center; }
+    .lp-m-cookie { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 16px; background: #222; color: #ddd; font-size: 11px; }
+    .lp-m-cookie span { padding: 5px 10px; border-radius: 4px; background: #555; color: #fff; }
+
+    /* kit */
+    .lp-kit { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--line); }
+    .lp-kit > div { padding: 32px 28px 34px; }
+    .lp-kit > div + div { border-left: 1px solid var(--line); }
+    .lp-kit h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .lp-kit p { font-size: 14px; color: var(--muted); }
+    .kv { height: 96px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; margin-bottom: 24px; }
+    .kv-speed { height: 6px; border-radius: 6px; background: var(--line); overflow: hidden; }
+    .kv-speed i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--a), #4ade80); transform-origin: left; animation: kvLoad 2.8s var(--ease) infinite; }
+    @keyframes kvLoad { 0% { transform: scaleX(0); } 22%, 100% { transform: scaleX(1); } }
+    .kv small { font: 500 11px var(--mono); color: #4ade80; }
+    .kv-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+    .kv-bars i { flex: 1; height: var(--h); border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--a), rgba(139, 92, 246, .25)); transform: scaleY(0); transform-origin: bottom; transition: transform .9s var(--ease) var(--d); }
+    .is-in .kv-bars i { transform: none; }
+    .kv-wa { align-self: flex-start; max-width: 92%; padding: 10px 12px; border-radius: 14px 14px 14px 4px; background: #075e54; color: #e7fbe9; font-size: 13px; line-height: 1.35; }
+    .kv-wa small { display: block; text-align: right; color: #7ee2b8; font-size: 10px; margin-top: 2px; }
+    .kv-utm { align-self: flex-start; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line-2); font: 12px var(--mono); color: var(--sky); background: rgba(77, 168, 255, .06); }
+    .kv-utm b { color: var(--a); font-weight: 500; }
+
+    /* ideal for: editorial list */
+    .lp-fit { border-top: 1px solid var(--line); }
+    .lp-fit__list { border-top: 1px solid var(--line); }
+    .lp-fit__list li { display: grid; grid-template-columns: 70px 1.1fr 1fr; align-items: center; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .lp-fit__list span { font: 500 13px var(--mono); color: var(--muted); }
+    .lp-fit__list h3 { font-size: clamp(24px, 3vw, 42px); font-weight: 800; letter-spacing: -.035em; }
+    .lp-fit__list p { color: var(--muted); }
+
+    @media (max-width: 1080px) {
+      .lp-note { display: none; }
+      .lp-kit { grid-template-columns: 1fr 1fr; }
+      .lp-kit > div:nth-child(3) { border-left: 0; }
+      .lp-kit > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+    }
+    @media (max-width: 900px) {
+      .lp-story__grid, .lp-focus__grid { grid-template-columns: 1fr; }
+      .lp-stage { top: 72px; z-index: 2; height: 330px; background: linear-gradient(var(--bg) 88%, transparent); }
+      .lp-phone { transform: scale(.54); transform-origin: 50% 0; margin-top: 16px; margin-bottom: -250px; align-self: start; }
+      .lp-dots { display: none; }
+      .lp-step { min-height: 64vh; justify-content: flex-start; padding-top: 10px; }
+      .lp-m-grid { grid-template-columns: 1fr; }
+      .lp-m-side { display: none; }
+      .lp-fit__list li { grid-template-columns: 44px 1fr; gap: 6px 14px; }
+      .lp-fit__list p { grid-column: 2; }
+    }
+    @media (max-width: 620px) {
+      .lp-kit { grid-template-columns: 1fr; }
+      .lp-kit > div + div { border-left: 0; border-top: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body style="--a:#8b5cf6">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+  </svg>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="../index.html" class="brand" aria-label="PixelNuvo, início">
+      <img src="../assets/logo.png" alt="" width="40" height="40">
+      <span>Pixel<b>Nuvo</b></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Principal">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#especialidades">Especialidades</a>
+      <a href="../servicos.html" class="is-active">Serviços</a>
+      <a href="../index.html#processo">Processo</a>
+      <a href="../index.html#equipe">Equipe</a>
+      <a href="../index.html#duvidas">Dúvidas</a>
+      <a href="#contato" class="btn btn--sm btn--primary nav__cta-mobile">Solicitar orçamento</a>
+    </nav>
+    <a href="#contato" class="btn btn--sm btn--primary nav__cta magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <main id="topo">
+    <section class="page-hero lp-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Você está aqui"><a href="../servicos.html">Serviços</a><span aria-hidden="true">/</span><span aria-current="page">Landing page</span></nav>
+        <h1 class="lp-h1"><span class="sr-only">Landing page: </span>Uma página. <em>Um objetivo.</em></h1>
+        <p class="page-hero__lead">Vender, captar contatos ou lançar uma campanha. Cada seção existe para levar o visitante a um único botão, como este aqui.</p>
+        <div class="lp-one">
+          <a href="#contato" class="btn btn--primary btn--lg magnetic">Quero uma landing page <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <span class="lp-note" aria-hidden="true"><svg viewBox="0 0 34 20"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M32 14 C22 18 12 16 4 8 M4 8 l1 7 M4 8 l7 0"/></svg>o único botão desta seção</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lp-story">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Anatomia</p>
+          <h2 class="h2 reveal">Cinco seções, <span class="hl">um caminho</span>.</h2>
+          <p class="section__sub reveal">Role a página e acompanhe uma landing page de exemplo, do primeiro olhar até o contato.</p>
+        </header>
+        <div class="lp-story__grid">
+          <div class="lp-stage" aria-hidden="true">
+            <div class="lp-phone">
+              <div class="lp-toast"><i></i><div><b>Nova mensagem no WhatsApp</b>Oi! Quero agendar minha aula grátis.</div></div>
+              <div class="lp-screen"><div class="lp-reel">
+                <div class="lp-sec"><small>STUDIO EQUILÍBRIO</small><h4>Sua primeira aula de pilates é por nossa conta.</h4><p>Turmas pequenas, horários flexíveis e atenção de verdade.</p><span class="go">Agendar aula grátis</span><div class="lp-art"></div></div>
+                <div class="lp-sec"><small>POR QUE O EQUILÍBRIO</small><h4>Feito para quem nunca teve tempo.</h4><div class="lp-ben"><div><i>4</i>Turmas de até 4 alunos</div><div><i>6h</i>Horários das 6h às 21h</div><div><i>✓</i>Fisioterapeutas formados</div></div></div>
+                <div class="lp-sec"><small>QUEM JÁ FAZ</small><span class="lp-stars">★★★★★</span><div class="lp-quote"><q>Minha dor nas costas sumiu em dois meses.</q><span><i></i>Carla, aluna há 1 ano</span></div><div class="lp-quote"><q>Melhor horário da minha semana.</q><span><i></i>Rafael, aluno</span></div></div>
+                <div class="lp-sec"><small>PLANO MENSAL</small><div class="lp-plan"><em>1ª aula grátis</em><b>2x por semana</b><strong>R$ 189 <small>/mês</small></strong><span>Sem taxa de matrícula · cancele quando quiser</span></div><span class="go">Quero começar</span></div>
+                <div class="lp-sec"><small>ÚLTIMO PASSO</small><h4>Garanta sua aula grátis.</h4><span class="lp-spots">Restam 3 vagas nesta semana</span><span class="go go--wa">Agendar pelo WhatsApp</span><p>Resposta em poucos minutos.</p></div>
+              </div></div>
+            </div>
+            <div class="lp-dots"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="lp-steps">
+            <article class="lp-step"><b>01 · PROMESSA</b><h3>Diz o que a pessoa ganha.</h3><p>Uma frase clara no topo e o botão principal logo abaixo. Quem chega de um anúncio entende em segundos se está no lugar certo.</p><span class="lp-tip">o botão já aparece na primeira tela</span></article>
+            <article class="lp-step"><b>02 · BENEFÍCIOS</b><h3>Responde o “por que eu?”.</h3><p>Poucos benefícios, diretos e fáceis de escanear. Nada de parágrafos longos que ninguém lê no celular.</p><span class="lp-tip">3 benefícios &gt; 10 características</span></article>
+            <article class="lp-step"><b>03 · PROVA</b><h3>Deixa os clientes falarem.</h3><p>Depoimentos e avaliações tiram a dúvida que ainda sobrou. É a hora em que o visitante passa a confiar.</p><span class="lp-tip">rosto + nome + resultado</span></article>
+            <article class="lp-step"><b>04 · OFERTA</b><h3>Mostra a proposta sem rodeio.</h3><p>Preço, condições e um incentivo para agir agora. Transparência convence mais do que mistério.</p><span class="lp-tip">um plano em destaque, não cinco</span></article>
+            <article class="lp-step"><b>05 · AÇÃO</b><h3>E o contato chega até você.</h3><p>Um clique abre o WhatsApp com a mensagem pronta. O visitante vira contato, e o contato vira cliente.</p><span class="lp-tip">mensagem já preenchida</span></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lp-focus">
+      <div class="container lp-focus__grid">
+        <div>
+          <p class="eyebrow" data-scramble>Por que uma página só?</p>
+          <h2 class="h2 reveal">Menos opções, <span class="hl">mais ação</span>.</h2>
+          <p class="reveal">Uma página comum oferece dezenas de caminhos. A landing page oferece um. Ative o modo foco e veja a diferença.</p>
+          <button type="button" class="lp-switch" role="switch" aria-checked="false"><i aria-hidden="true"></i>Modo landing page</button>
+          <p class="lp-count" aria-live="polite"><b>0</b><span>caminhos na tela</span></p>
+        </div>
+        <div class="lp-mock reveal" aria-hidden="true">
+          <div class="browser__bar"><span></span><span></span><span></span><div class="browser__url"><b>studioequilibrio.com.br</b></div></div>
+          <div class="lp-mock__body">
+            <div class="lp-m-banner lp-noise" data-path>PROMOÇÃO DE INVERNO · CONFIRA!</div>
+            <div class="lp-m-nav"><b>Studio Equilíbrio</b><u class="lp-noise" data-path>Home</u><u class="lp-noise" data-path>Sobre</u><u class="lp-noise" data-path>Modalidades</u><u class="lp-noise" data-path>Planos</u><u class="lp-noise" data-path>Blog</u><u class="lp-noise" data-path>Galeria</u><u class="lp-noise" data-path>Contato</u></div>
+            <div class="lp-m-grid">
+              <div class="lp-m-side lp-noise"><b>CATEGORIAS</b><u data-path>Pilates solo</u><u data-path>Aparelhos</u><u data-path>Funcional</u><u data-path>Eventos</u></div>
+              <div class="lp-m-main">
+                <h5>Sua primeira aula de pilates é por nossa conta.</h5>
+                <p class="lp-noise">Conheça nossa história, nossos professores, nossos planos e muito mais em nosso site completo.</p>
+                <div class="lp-m-btns lp-noise"><span data-path>Saiba mais</span><span data-path>Ver planos</span><span data-path>Ler o blog</span></div>
+                <span class="lp-goal">Agendar aula grátis</span>
+                <div class="lp-m-social lp-noise"><i data-path></i><i data-path></i><i data-path></i></div>
+              </div>
+            </div>
+            <div class="lp-m-pop lp-noise">Assine nossa newsletter!<span data-path>Assinar</span></div>
+            <div class="lp-m-cookie lp-noise">Usamos cookies para melhorar sua experiência.<span data-path>Aceitar</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Por trás da página</p>
+          <h2 class="h2 reveal">O que vem <span class="hl">junto</span>.</h2>
+        </header>
+        <div class="lp-kit">
+          <div class="reveal"><div class="kv" aria-hidden="true"><div class="kv-speed"><i></i></div><small>página carregada</small></div><h3>Carregamento rápido</h3><p>Leve de verdade, para quem chega de anúncios e não espera.</p></div>
+          <div class="reveal" style="--rd:.1s"><div class="kv" aria-hidden="true"><div class="kv-bars"><i style="--h:30%;--d:.1s"></i><i style="--h:45%;--d:.15s"></i><i style="--h:38%;--d:.2s"></i><i style="--h:60%;--d:.25s"></i><i style="--h:55%;--d:.3s"></i><i style="--h:78%;--d:.35s"></i><i style="--h:92%;--d:.4s"></i></div></div><h3>Analytics</h3><p>Visitas e conversões medidas para saber o que funciona.</p></div>
+          <div class="reveal" style="--rd:.2s"><div class="kv" aria-hidden="true"><div class="kv-wa">Olá! Quero agendar minha aula grátis.<small>✓✓</small></div></div><h3>WhatsApp com mensagem pronta</h3><p>O contato já chega dizendo o que quer.</p></div>
+          <div class="reveal" style="--rd:.3s"><div class="kv" aria-hidden="true"><span class="kv-utm">?utm_source=<b>instagram</b></span><span class="kv-utm">?utm_source=<b>google</b></span></div><h3>Pronta para campanhas</h3><p>Preparada para tráfego do Google e das redes sociais.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lp-fit">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Para quem é</p>
+          <h2 class="h2 reveal">Quando uma landing page <span class="hl">faz sentido</span>.</h2>
+        </header>
+        <ol class="lp-fit__list">
+          <li class="reveal"><span>01</span><h3>Lançamentos</h3><p>Um produto ou serviço novo, com data para acontecer.</p></li>
+          <li class="reveal"><span>02</span><h3>Campanhas de anúncios</h3><p>Tráfego pago que precisa virar contato, não só visita.</p></li>
+          <li class="reveal"><span>03</span><h3>Captação de contatos</h3><p>Orçamentos, agendamentos e listas de interessados.</p></li>
+          <li class="reveal"><span>04</span><h3>Eventos e cursos</h3><p>Inscrições com prazo e vagas limitadas.</p></li>
+          <li class="reveal"><span>05</span><h3>Um produto específico</h3><p>Quando um item merece um palco só para ele.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Dúvidas</p>
+        <h2 class="h2 reveal">Perguntas <span class="hl">frequentes</span>.</h2>
+      </header>
+      <div class="faq__list">
+        <details><summary>Qual a diferença para um site institucional?</summary><p>O institucional apresenta a empresa inteira. A landing page foca em uma única ação, como vender ou captar contatos.</p></details>
+        <details><summary>Posso usar a landing page em anúncios?</summary><p>Sim. Ela é pensada para receber tráfego de campanhas e transformar visitas em contatos.</p></details>
+        <details><summary>Dá para medir os resultados?</summary><p>Sim. Configuramos o Analytics para você acompanhar visitas e conversões.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="container cta__inner">
+        <h2 class="cta__title reveal">Tem uma campanha em mente? Vamos <span class="hl">fazer ela converter</span>.</h2>
+        <p class="cta__lead reveal">Conte a sua ideia e receba um orçamento sem compromisso.</p>
+        <div class="hero__ctas reveal">
+          <a href="https://ig.me/m/pixel_nuvo" target="_blank" rel="noopener" class="btn btn--primary btn--lg magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">@pixel_nuvo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section more-sec" aria-labelledby="outros">
+      <div class="container">
+        <p class="eyebrow" id="outros">Outros serviços</p>
+        <div class="more">
+          <a href="site-institucional.html" class="more__item" style="--a:#4da8ff"><b>Site institucional</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="portfolio-catalogo.html" class="more__item" style="--a:#22d3ee"><b>Portfólio &amp; catálogo</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="redesign.html" class="more__item" style="--a:#f59e0b"><b>Redesign</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="manutencao-suporte.html" class="more__item" style="--a:#4ade80"><b>Manutenção &amp; suporte</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="automacoes-integracoes.html" class="more__item" style="--a:#f472b6"><b>Automações &amp; integrações</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__nav" aria-label="Rodapé">
+      <a href="../index.html#sobre">Sobre</a><a href="../servicos.html">Serviços</a><a href="../index.html#processo">Processo</a><a href="../index.html#equipe">Equipe</a><a href="../index.html#duvidas">Dúvidas</a>
+      <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener">Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </nav>
+    <div class="footer__word" aria-hidden="true">PIXELNUVO</div>
+    <p class="footer__copy">© <span class="year"></span> PixelNuvo · Desenvolvimento de Sites</p>
+  </footer>
+
+  <script src="../common.js"></script>
+  <script data-page>
+    /* Story: the sticky phone shows the section of the step in the middle of the screen */
+    (() => {
+      const phone = $('.lp-phone'), steps = $$('.lp-step'), dots = $$('.lp-dots i');
+      const set = i => {
+        phone.style.setProperty('--s', i);
+        phone.dataset.s = i;
+        steps.forEach((s, k) => s.classList.toggle('is-on', k === i));
+        dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+      };
+      const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) set(steps.indexOf(e.target)); }), { rootMargin: '-50% 0px -50% 0px' });
+      steps.forEach(s => obs.observe(s));
+      set(0);
+    })();
+
+    /* Focus mode: fade every distraction, leave only the goal */
+    (() => {
+      const mock = $('.lp-mock'), sw = $('.lp-switch'), count = $('.lp-count b');
+      const paths = $$('[data-path]', mock).length + 1;
+      let touched = false;
+      const set = on => {
+        mock.classList.toggle('is-focus', on);
+        sw.setAttribute('aria-checked', on);
+        count.textContent = on ? 1 : paths;
+        count.nextElementSibling.textContent = on ? 'caminho na tela' : 'caminhos na tela';
+      };
+      sw.addEventListener('click', () => { touched = true; set(sw.getAttribute('aria-checked') !== 'true'); });
+      set(false);
+      // flip it once on its own so the idea lands even if nobody clicks
+      if (!reduced) new IntersectionObserver(([e], o) => {
+        if (!e.isIntersecting) return;
+        o.disconnect();
+        setTimeout(() => { if (!touched) set(true); }, 1600);
+      }, { threshold: .6 }).observe(mock);
+    })();
+  </script>
+</body>
+</html>

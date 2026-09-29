@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site institucional · PixelNuvo</title>
+  <meta name="description" content="A vitrine completa da sua empresa: quem vocês são, o que fazem e como falar com vocês.">
+  <meta name="theme-color" content="#07090f">
+  <meta property="og:title" content="Site institucional · PixelNuvo">
+  <meta property="og:description" content="A vitrine completa da sua empresa: quem vocês são, o que fazem e como falar com vocês.">
+  <link rel="icon" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style data-page>
+    /* hero: sitemap */
+    .sm-wrap { position: relative; padding: clamp(20px, 3vw, 36px); border: 1px solid var(--line-2); border-radius: 30px; background: rgba(5, 8, 16, .5) radial-gradient(var(--line) 1px, transparent 1px) 0 0 / 22px 22px; box-shadow: 0 40px 120px -50px var(--a); }
+    .sm-wrap__tag { position: absolute; top: 18px; left: 22px; font: 500 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .sm { display: block; width: 100%; height: auto; overflow: visible; margin-top: 14px; }
+    .sm__wires path { fill: none; stroke: rgba(77, 168, 255, .45); stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: smDraw .7s var(--ease) var(--d) forwards; }
+    @keyframes smDraw { to { stroke-dashoffset: 0; } }
+    .sm__node { opacity: 0; transform: translateY(10px) scale(.96); transform-box: fill-box; transform-origin: center; animation: smPop .6s var(--ease) var(--d) forwards; }
+    @keyframes smPop { to { opacity: 1; transform: none; } }
+    .sm__node rect { fill: #0f1830; stroke: var(--line-2); }
+    .sm__node text { fill: var(--text); font: 700 14px var(--sans); }
+    .sm__node .ln { fill: #24304f; stroke: none; }
+    .sm__node .dot { fill: var(--a); stroke: none; }
+    .sm__node--root > rect:first-child { fill: rgba(77, 168, 255, .12); stroke: var(--a); }
+    .sm__pill rect { fill: rgba(77, 168, 255, .07); }
+    .sm__pill text { fill: var(--sky); font: 600 12px var(--sans); text-anchor: middle; }
+    .sm__pill--wa rect { fill: rgba(37, 211, 102, .1); stroke: rgba(74, 222, 128, .5); }
+    .sm__pill--wa text { fill: #4ade80; }
+    .sm__pulse { fill: var(--sky); filter: drop-shadow(0 0 6px var(--a)); opacity: 0; animation: smPop .3s 1.8s forwards; }
+
+    /* anatomy */
+    .an__grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+    .an__browser { border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); background: #0c1222; box-shadow: 0 50px 120px -50px rgba(77, 168, 255, .55); }
+    .an__view { height: min(560px, 66vh); min-height: 420px; overflow: hidden; background: #f5f7fb; }
+    .an__page { --m-fg: #0f1d33; --m-mu: #5b6b85; --m-ac: #1d4ed8; position: relative; display: grid; gap: 22px; padding: 18px 26px 0; color: var(--m-fg); transition: transform .9s var(--ease); }
+    .an__part { position: relative; border-radius: 14px; cursor: pointer; transition: opacity .45s, filter .45s, box-shadow .45s; }
+    .an__part::before { content: attr(data-n); position: absolute; top: -10px; left: -10px; z-index: 2; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--a); color: #04101f; font: 700 12px var(--mono); box-shadow: 0 0 0 4px rgba(77, 168, 255, .25); opacity: 0; transform: scale(.5); transition: opacity .3s, transform .45s var(--ease); }
+    .an__page.is-focus .an__part:not(.is-on) { opacity: .28; filter: saturate(.2); }
+    .an__part.is-on { box-shadow: 0 0 0 2px var(--a), 0 0 0 9px rgba(77, 168, 255, .18); }
+    .an__part.is-on::before { opacity: 1; transform: none; }
+
+    .an-nav { display: flex; align-items: center; gap: 18px; padding: 10px 12px; font-size: 12px; color: var(--m-mu); }
+    .an-nav b { margin-right: auto; font-size: 17px; font-weight: 800; letter-spacing: -.03em; color: var(--m-fg); }
+    .an-nav b i { font-style: normal; color: var(--m-ac); }
+    .an-nav em { font-style: normal; padding: 7px 14px; border-radius: 99px; background: var(--m-fg); color: #fff; font-weight: 600; }
+    .an-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: center; padding: 8px 12px; }
+    .an-hero small { font: 700 10px var(--sans); letter-spacing: .14em; color: var(--m-ac); }
+    .an-hero h4 { font-size: clamp(22px, 2.6vw, 34px); font-weight: 800; line-height: 1.02; letter-spacing: -.04em; margin: 8px 0 10px; }
+    .an-hero p { font-size: 13px; line-height: 1.5; color: var(--m-mu); }
+    .an-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .an-btns span { padding: 9px 16px; border-radius: 99px; background: var(--m-ac); color: #fff; font-size: 12px; font-weight: 700; }
+    .an-btns span + span { background: none; color: var(--m-fg); box-shadow: inset 0 0 0 1.5px var(--m-fg); }
+    .an-hero__art { aspect-ratio: 4 / 3.3; border-radius: 14px; background:
+      repeating-linear-gradient(0deg, transparent 0 10px, rgba(255, 255, 255, .35) 10px 13px) 52% 100% / 20% 78% no-repeat,
+      linear-gradient(#0f1d33, #0f1d33) 24% 100% / 22% 58% no-repeat,
+      linear-gradient(#1d4ed8, #1d4ed8) 52% 100% / 20% 78% no-repeat,
+      linear-gradient(#334155, #334155) 80% 100% / 18% 44% no-repeat,
+      radial-gradient(circle at 80% 22%, #fde68a 0 7%, transparent 8%),
+      linear-gradient(180deg, #bfdbfe, #eff6ff); }
+    .an-svc { padding: 12px; }
+    .an-svc > b { display: block; font-size: 16px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 12px; }
+    .an-svc__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .an-svc__cards div { display: grid; gap: 4px; padding: 14px; border-radius: 12px; background: #fff; box-shadow: 0 10px 24px -16px rgba(15, 29, 51, .35); }
+    .an-svc__cards i { width: 28px; height: 28px; border-radius: 8px; margin-bottom: 6px; background: rgba(29, 78, 216, .12); box-shadow: inset 0 0 0 6px rgba(29, 78, 216, .08); }
+    .an-svc__cards b { font-size: 13px; }
+    .an-svc__cards small { font-size: 11px; color: var(--m-mu); }
+    .an-quote { padding: 22px 24px; background: var(--m-fg); color: #fff; }
+    .an-quote p { font: italic 600 clamp(15px, 1.6vw, 19px)/1.35 Georgia, serif; max-width: 42ch; }
+    .an-quote span { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 12px; color: #9fb0cc; }
+    .an-quote span i { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #fbbf24, #f472b6); }
+    .an-quote span b { color: #fff; }
+    .an-contact { display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px; }
+    .an-form { display: grid; gap: 8px; align-content: start; padding: 16px; background: #fff; box-shadow: 0 10px 24px -16px rgba(15, 29, 51, .35); }
+    .an-form b { font-size: 15px; margin-bottom: 4px; }
+    .an-form i { font-style: normal; padding: 9px 12px; border-radius: 8px; border: 1px solid #d8e0ec; font-size: 11px; color: #94a3b8; }
+    .an-form i.ta { height: 54px; }
+    .an-form .an-btns { margin-top: 4px; }
+    .an-form .an-btns span + span { background: #25d366; color: #fff; box-shadow: none; }
+    .an-map { min-height: 220px; overflow: hidden; background:
+      linear-gradient(90deg, transparent 46%, #fff 46% 52%, transparent 52%),
+      linear-gradient(0deg, transparent 58%, #fff 58% 64%, transparent 64%),
+      linear-gradient(32deg, transparent 44%, #fde68a 44% 48%, transparent 48%),
+      linear-gradient(135deg, #c7d9ec 0 30%, #d7e6f2 30% 70%, #cfe3d4 70%); }
+    .an-map b { position: absolute; left: 49%; top: 38%; width: 20px; height: 20px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #ef4444; box-shadow: 0 6px 16px rgba(239, 68, 68, .5); }
+    .an-map small { position: absolute; left: 10px; bottom: 10px; padding: 6px 10px; border-radius: 8px; background: #fff; font-size: 10px; font-weight: 600; box-shadow: 0 6px 16px -8px rgba(15, 29, 51, .4); }
+    .an-foot { padding: 16px 12px 22px; border-top: 1px solid #e2e8f0; font-size: 11px; color: var(--m-mu); }
+
+    .an__list { display: grid; gap: 6px; }
+    .an__list button { position: relative; overflow: hidden; display: grid; grid-template-columns: 38px 1fr; gap: 12px; width: 100%; padding: 14px 16px; border: 1px solid transparent; border-radius: 16px; background: none; text-align: left; cursor: pointer; transition: background .3s, border-color .3s; }
+    .an__list b { padding-top: 3px; font: 500 13px var(--mono); color: var(--muted); transition: color .3s; }
+    .an__list strong { display: block; font-size: 17px; color: var(--muted); transition: color .3s; }
+    .an__list small { display: block; max-height: 0; overflow: hidden; opacity: 0; font-size: 14px; color: var(--muted); transition: max-height .5s var(--ease), opacity .4s, margin .4s; }
+    .an__list button:hover strong { color: var(--text); }
+    .an__list [aria-pressed="true"] { background: rgba(77, 168, 255, .07); border-color: var(--line-2); }
+    .an__list [aria-pressed="true"] b { color: var(--a); }
+    .an__list [aria-pressed="true"] strong { color: var(--text); }
+    .an__list [aria-pressed="true"] small { max-height: 90px; opacity: 1; margin-top: 6px; }
+    .an.is-auto .an__list [aria-pressed="true"]::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--a); transform-origin: left; animation: anBar 3.4s linear; }
+    @keyframes anBar { from { transform: scaleX(0); } }
+
+    /* under the hood */
+    .under { border-top: 1px solid var(--line); }
+    .under__grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 18px; }
+    .under__card { padding: 28px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+    .under__card h3 { font-size: 22px; font-weight: 700; margin: 26px 0 8px; }
+    .under__card p { color: var(--muted); font-size: 15px; max-width: 52ch; }
+    .under__viz { height: 330px; display: grid; place-items: center; border-radius: 14px; border: 1px solid var(--line); background: rgba(5, 8, 16, .6); overflow: hidden; }
+    .serp { width: min(520px, 92%); padding: 18px 20px; border-radius: 16px; background: #fff; color: #202124; font-family: Arial, sans-serif; box-shadow: 0 30px 60px -30px #000; }
+    .serp__bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-radius: 99px; border: 1px solid #dfe1e5; font-size: 13px; margin-bottom: 16px; }
+    .serp__bar i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #4285f4; }
+    .serp__res { display: grid; gap: 6px; padding: 10px 0; }
+    .serp__res + .serp__res { border-top: 1px solid #f1f3f4; }
+    .serp__res.is-top { padding: 12px; margin: 0 -12px; border-radius: 12px; box-shadow: 0 0 0 2px var(--a), 0 0 30px -6px var(--a); }
+    .serp__site { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+    .serp__site > i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #0f1d33; color: #fff; font: 800 12px var(--sans); font-style: normal; }
+    .serp__site small { display: block; color: #4d5156; font-size: 11px; }
+    .serp strong { color: #1a0dab; font-size: 17px; font-weight: 400; line-height: 1.3; }
+    .serp p { color: #4d5156; font-size: 12.5px; line-height: 1.5; }
+    .serp i.l { display: block; height: 9px; border-radius: 5px; background: #e8eaed; }
+    .serp i.l.s { width: 60%; }
+    .uphone { width: 170px; height: 300px; padding: 8px; border-radius: 30px; background: #1c2440; box-shadow: 0 30px 60px -20px rgba(77, 168, 255, .45); }
+    .uphone__screen { height: 100%; border-radius: 23px; overflow: hidden; background: #f5f7fb; }
+    .uphone__scroll { display: grid; gap: 10px; padding: 14px 12px; color: #0f1d33; animation: uScroll 9s ease-in-out infinite alternate; }
+    @keyframes uScroll { 0%, 12% { transform: none; } 88%, 100% { transform: translateY(-52%); } }
+    .uphone__scroll b { font-size: 11px; font-weight: 800; }
+    .uphone__scroll h4 { font-size: 17px; font-weight: 800; line-height: 1.05; letter-spacing: -.03em; }
+    .uphone__scroll span { justify-self: start; padding: 6px 12px; border-radius: 99px; background: #1d4ed8; color: #fff; font-size: 10px; font-weight: 700; }
+    .uphone__scroll i { display: block; height: 7px; border-radius: 4px; background: #d8e0ec; }
+    .uphone__scroll i.s { width: 60%; }
+    .uphone__scroll i.img { height: 90px; border-radius: 10px; background: linear-gradient(#1d4ed8, #1d4ed8) 55% 100% / 26% 76% no-repeat, linear-gradient(#0f1d33, #0f1d33) 25% 100% / 24% 56% no-repeat, linear-gradient(180deg, #bfdbfe, #eff6ff); }
+    .uphone__scroll i.card { height: 46px; border-radius: 10px; background: #fff; box-shadow: 0 6px 14px -10px rgba(15, 29, 51, .5); }
+    .uphone__scroll i.dark { height: 60px; border-radius: 10px; background: #0f1d33; }
+
+    /* ideal for */
+    .fit { border-top: 1px solid var(--line); }
+    .fit__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .fit__grid li { display: grid; align-content: start; gap: 10px; padding: 24px 22px 26px; border-radius: 18px; border: 1px solid var(--line); background: var(--card); box-shadow: inset 0 3px 0 var(--a); }
+    .fit__grid span { font: 500 12px var(--mono); color: var(--a); }
+    .fit__grid h3 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+    .fit__grid p { font-size: 14px; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .an__grid, .under__grid { grid-template-columns: 1fr; }
+      .fit__grid { grid-template-columns: 1fr 1fr; }
+      .an__view { height: 440px; min-height: 0; }
+      .an__page { padding: 16px 16px 0; gap: 18px; }
+      .an-nav span { display: none; }
+      .an-hero { grid-template-columns: 1fr; }
+      .an-hero__art { display: none; }
+      .an-svc__cards, .an-contact { grid-template-columns: 1fr; }
+      .an-svc__cards div:nth-child(n+2) { display: none; }
+      .an__list button { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body style="--a:#4da8ff">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+  </svg>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="../index.html" class="brand" aria-label="PixelNuvo, início">
+      <img src="../assets/logo.png" alt="" width="40" height="40">
+      <span>Pixel<b>Nuvo</b></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Principal">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#especialidades">Especialidades</a>
+      <a href="../servicos.html" class="is-active">Serviços</a>
+      <a href="../index.html#processo">Processo</a>
+      <a href="../index.html#equipe">Equipe</a>
+      <a href="../index.html#duvidas">Dúvidas</a>
+      <a href="#contato" class="btn btn--sm btn--primary nav__cta-mobile">Solicitar orçamento</a>
+    </nav>
+    <a href="#contato" class="btn btn--sm btn--primary nav__cta magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <main id="topo">
+    <section class="page-hero">
+      <div class="container page-hero__grid">
+        <div>
+          <nav class="crumbs" aria-label="Você está aqui"><a href="../servicos.html">Serviços</a><span aria-hidden="true">/</span><span aria-current="page">Site institucional</span></nav>
+          <h1 class="page-hero__title">Site institucional</h1>
+          <p class="page-hero__sub">A vitrine completa da sua empresa: quem vocês são, o que fazem e como falar com vocês.</p>
+          <p class="page-hero__lead">Cada página no lugar certo, cada caminho levando a um contato. Feito do zero, a partir da sua marca.</p>
+          <div class="hero__ctas">
+            <a href="#contato" class="btn btn--primary btn--lg magnetic">Quero meu site <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+            <a href="#anatomia" class="btn btn--ghost btn--lg">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="sm-wrap">
+          <span class="sm-wrap__tag">mapa do site</span>
+          <svg class="sm" viewBox="0 0 560 390" role="img" aria-label="Mapa de um site institucional: o Início leva a Sobre, Serviços e Contato, e cada um deles a páginas e ações">
+            <g class="sm__wires">
+              <path id="sm1" pathLength="1" d="M280 104 V142 H110 V180" style="--d:.35s"/>
+              <path id="sm2" pathLength="1" d="M280 104 V180" style="--d:.45s"/>
+              <path id="sm3" pathLength="1" d="M280 104 V142 H450 V180" style="--d:.55s"/>
+              <path pathLength="1" d="M110 264 V330" style="--d:1.05s"/>
+              <path id="sm5" pathLength="1" d="M280 264 V297 H222 V330" style="--d:1.15s"/>
+              <path pathLength="1" d="M280 264 V297 H338 V330" style="--d:1.2s"/>
+              <path id="sm7" pathLength="1" d="M450 264 V330" style="--d:1.3s"/>
+            </g>
+            <circle class="sm__pulse" r="4"><animateMotion dur="1.6s" begin="1.8s" repeatCount="indefinite"><mpath href="#sm1"/></animateMotion></circle>
+            <circle class="sm__pulse" r="4"><animateMotion dur="1.6s" begin="2.2s" repeatCount="indefinite"><mpath href="#sm3"/></animateMotion></circle>
+            <circle class="sm__pulse" r="4"><animateMotion dur="1.2s" begin="2.6s" repeatCount="indefinite"><mpath href="#sm7"/></animateMotion></circle>
+            <g class="sm__node sm__node--root" style="--d:0s"><rect x="200" y="20" width="160" height="84" rx="14"/><text x="218" y="48">Início</text><rect class="ln" x="218" y="62" width="110" height="7" rx="3.5"/><rect class="ln" x="218" y="76" width="70" height="7" rx="3.5"/><rect class="dot" x="322" y="37" width="20" height="10" rx="5"/></g>
+            <g class="sm__node" style="--d:.7s"><rect x="30" y="180" width="160" height="84" rx="14"/><text x="48" y="208">Sobre</text><rect class="ln" x="48" y="222" width="110" height="7" rx="3.5"/><rect class="ln" x="48" y="236" width="70" height="7" rx="3.5"/></g>
+            <g class="sm__node" style="--d:.8s"><rect x="200" y="180" width="160" height="84" rx="14"/><text x="218" y="208">Serviços</text><rect class="ln" x="218" y="222" width="110" height="7" rx="3.5"/><rect class="ln" x="218" y="236" width="70" height="7" rx="3.5"/></g>
+            <g class="sm__node" style="--d:.9s"><rect x="370" y="180" width="160" height="84" rx="14"/><text x="388" y="208">Contato</text><rect class="ln" x="388" y="222" width="110" height="7" rx="3.5"/><rect class="ln" x="388" y="236" width="70" height="7" rx="3.5"/></g>
+            <g class="sm__node sm__pill" style="--d:1.4s"><rect x="60" y="330" width="100" height="40" rx="20"/><text x="110" y="355">Equipe</text></g>
+            <g class="sm__node sm__pill" style="--d:1.5s"><rect x="172" y="330" width="100" height="40" rx="20"/><text x="222" y="355">Consultoria</text></g>
+            <g class="sm__node sm__pill" style="--d:1.55s"><rect x="288" y="330" width="100" height="40" rx="20"/><text x="338" y="355">Projetos</text></g>
+            <g class="sm__node sm__pill sm__pill--wa" style="--d:1.65s"><rect x="400" y="330" width="100" height="40" rx="20"/><text x="450" y="355">WhatsApp</text></g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section an" id="anatomia">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Anatomia</p>
+          <h2 class="h2 reveal">Cada parte do site tem uma <span class="hl">função</span>.</h2>
+          <p class="section__sub reveal">Escolha uma parte e veja onde ela fica em um site de exemplo.</p>
+        </header>
+        <div class="an__grid">
+          <div class="an__browser reveal" aria-hidden="true">
+            <div class="browser__bar"><span></span><span></span><span></span><div class="browser__url"><b>horizonteengenharia.com.br</b></div></div>
+            <div class="an__view">
+              <div class="an__page">
+                <div class="an__part an-nav" data-n="1"><b>Horizonte<i>.</i></b><span>Início</span><span>Sobre</span><span>Serviços</span><span>Contato</span><em>Orçamento</em></div>
+                <div class="an__part an-hero" data-n="2">
+                  <div>
+                    <small>ENGENHARIA CIVIL</small>
+                    <h4>Construímos o que você imagina.</h4>
+                    <p>Projetos residenciais e comerciais com acompanhamento do início ao fim.</p>
+                    <div class="an-btns"><span>Fale conosco</span><span>Ver projetos</span></div>
+                  </div>
+                  <div class="an-hero__art"></div>
+                </div>
+                <div class="an__part an-svc" data-n="3">
+                  <b>Nossos serviços</b>
+                  <div class="an-svc__cards">
+                    <div><i></i><b>Projetos</b><small>Do rascunho à aprovação.</small></div>
+                    <div><i></i><b>Reformas</b><small>Obra limpa e no prazo.</small></div>
+                    <div><i></i><b>Consultoria</b><small>Laudos e vistorias.</small></div>
+                  </div>
+                </div>
+                <div class="an__part an-quote" data-n="4"><p>“Entregaram antes do prazo e com um cuidado que a gente não esperava.”</p><span><i></i><b>Mariana Costa</b> · cliente</span></div>
+                <div class="an-contact">
+                  <div class="an__part an-form" data-n="5"><b>Fale com a gente</b><i>Nome</i><i>WhatsApp</i><i class="ta">Mensagem</i><div class="an-btns"><span>Enviar mensagem</span><span>WhatsApp</span></div></div>
+                  <div class="an__part an-map" data-n="6"><b></b><small>Rua das Palmeiras, 120</small></div>
+                </div>
+                <div class="an-foot">© Horizonte Engenharia · Todos os direitos reservados</div>
+              </div>
+            </div>
+          </div>
+          <ol class="an__list">
+            <li><button type="button" data-n="1"><b>01</b><span><strong>Menu claro</strong><small>Início, Sobre, Serviços e Contato a um clique, em todas as páginas.</small></span></button></li>
+            <li><button type="button" data-n="2"><b>02</b><span><strong>Primeira impressão</strong><small>Design exclusivo que mostra quem vocês são nos primeiros segundos.</small></span></button></li>
+            <li><button type="button" data-n="3"><b>03</b><span><strong>Serviços</strong><small>O que vocês fazem, organizado para o visitante achar rápido.</small></span></button></li>
+            <li><button type="button" data-n="4"><b>04</b><span><strong>Depoimentos</strong><small>Clientes satisfeitos falando por vocês. Nada convence mais.</small></span></button></li>
+            <li><button type="button" data-n="5"><b>05</b><span><strong>Formulário e WhatsApp</strong><small>Contato em um clique, com as mensagens chegando direto para você.</small></span></button></li>
+            <li><button type="button" data-n="6"><b>06</b><span><strong>Mapa e endereço</strong><small>Google Maps integrado para quem quer visitar o seu espaço.</small></span></button></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section under">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Por baixo do capô</p>
+          <h2 class="h2 reveal">Bonito por fora, <span class="hl">certo por dentro</span>.</h2>
+        </header>
+        <div class="under__grid">
+          <article class="under__card reveal">
+            <div class="under__viz" aria-hidden="true">
+              <div class="serp">
+                <div class="serp__bar"><span>engenharia civil perto de mim</span><i></i></div>
+                <div class="serp__res is-top">
+                  <div class="serp__site"><i>H</i><div><b>Horizonte Engenharia</b><small>horizonteengenharia.com.br</small></div></div>
+                  <strong>Horizonte Engenharia · Projetos, reformas e consultoria</strong>
+                  <p>Construímos o que você imagina. Projetos residenciais e comerciais com acompanhamento do início ao fim.</p>
+                </div>
+                <div class="serp__res"><i class="l"></i><i class="l s"></i></div>
+                <div class="serp__res"><i class="l"></i><i class="l s"></i></div>
+              </div>
+            </div>
+            <h3>Pronto para o Google</h3>
+            <p>Títulos, descrições, velocidade e marcação certos desde o primeiro dia, para o seu site se apresentar bem na busca.</p>
+          </article>
+          <article class="under__card reveal" style="--rd:.1s">
+            <div class="under__viz" aria-hidden="true">
+              <div class="uphone"><div class="uphone__screen"><div class="uphone__scroll">
+                <b>Horizonte.</b><h4>Construímos o que você imagina.</h4><i></i><i class="s"></i><span>Fale conosco</span><i class="img"></i><i class="card"></i><i class="card"></i><i class="dark"></i><i></i><i class="s"></i><span>Enviar mensagem</span>
+              </div></div></div>
+            </div>
+            <h3>Perfeito no celular</h3>
+            <p>Pensado primeiro para a tela pequena, de onde vem a maior parte das visitas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fit">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Para quem é</p>
+          <h2 class="h2 reveal">Para quem precisa ser <span class="hl">encontrado</span>.</h2>
+        </header>
+        <ul class="fit__grid">
+          <li class="reveal"><span>01</span><h3>Empresas de serviços</h3><p>Mostre o que vocês fazem e receba pedidos de orçamento.</p></li>
+          <li class="reveal" style="--rd:.05s"><span>02</span><h3>Clínicas e consultórios</h3><p>Especialidades, convênios e agendamento em um só lugar.</p></li>
+          <li class="reveal" style="--rd:.1s"><span>03</span><h3>Escritórios</h3><p>Credibilidade para advocacia, contabilidade e consultoria.</p></li>
+          <li class="reveal" style="--rd:.15s"><span>04</span><h3>Comércio local</h3><p>Endereço, horários e contato para quem está por perto.</p></li>
+          <li class="reveal" style="--rd:.2s"><span>05</span><h3>Profissionais liberais</h3><p>Sua trajetória e seus serviços, com a sua cara.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Dúvidas</p>
+        <h2 class="h2 reveal">Perguntas <span class="hl">frequentes</span>.</h2>
+      </header>
+      <div class="faq__list">
+        <details><summary>Quantas páginas o site pode ter?</summary><p>Quantas o seu negócio precisar. Definimos a estrutura juntos na conversa inicial.</p></details>
+        <details><summary>Vocês ajudam com textos e imagens?</summary><p>Sim. Orientamos o que é preciso e ajudamos a organizar o conteúdo antes do desenvolvimento.</p></details>
+        <details><summary>Consigo atualizar o site depois?</summary><p>Sim. Nossa equipe de suporte faz as alterações sempre que você precisar.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="container cta__inner">
+        <h2 class="cta__title reveal">Sua empresa merece ser <span class="hl">bem apresentada</span>.</h2>
+        <p class="cta__lead reveal">Conte a sua ideia e receba um orçamento sem compromisso.</p>
+        <div class="hero__ctas reveal">
+          <a href="https://ig.me/m/pixel_nuvo" target="_blank" rel="noopener" class="btn btn--primary btn--lg magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">@pixel_nuvo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section more-sec" aria-labelledby="outros">
+      <div class="container">
+        <p class="eyebrow" id="outros">Outros serviços</p>
+        <div class="more">
+          <a href="landing-page.html" class="more__item" style="--a:#8b5cf6"><b>Landing page</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="portfolio-catalogo.html" class="more__item" style="--a:#22d3ee"><b>Portfólio &amp; catálogo</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="redesign.html" class="more__item" style="--a:#f59e0b"><b>Redesign</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="manutencao-suporte.html" class="more__item" style="--a:#4ade80"><b>Manutenção &amp; suporte</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="automacoes-integracoes.html" class="more__item" style="--a:#f472b6"><b>Automações &amp; integrações</b><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__nav" aria-label="Rodapé">
+      <a href="../index.html#sobre">Sobre</a><a href="../servicos.html">Serviços</a><a href="../index.html#processo">Processo</a><a href="../index.html#equipe">Equipe</a><a href="../index.html#duvidas">Dúvidas</a>
+      <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener">Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </nav>
+    <div class="footer__word" aria-hidden="true">PIXELNUVO</div>
+    <p class="footer__copy">© <span class="year"></span> PixelNuvo · Desenvolvimento de Sites</p>
+  </footer>
+
+  <script src="../common.js"></script>
+  <script data-page>
+    /* Anatomy: highlight a part of the sample site and scroll the mock browser to it */
+    (() => {
+      const an = $('.an'), view = $('.an__view'), page = $('.an__page');
+      const parts = $$('.an__part', page), btns = $$('.an__list button');
+      let cur = 1, auto = !reduced, inView = false;
+      function show(n) {
+        cur = n;
+        const part = parts[n - 1];
+        parts.forEach(p => p.classList.toggle('is-on', p === part));
+        btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.n == n));
+        page.classList.add('is-focus');
+        const y = clamp(part.offsetTop - 30, 0, Math.max(0, page.offsetHeight - view.clientHeight));
+        page.style.transform = `translateY(${-y}px)`;
+      }
+      const stopAuto = () => { auto = false; an.classList.remove('is-auto'); };
+      btns.forEach(b => {
+        b.addEventListener('click', () => { stopAuto(); show(+b.dataset.n); });
+        if (finePointer) b.addEventListener('mouseenter', () => { stopAuto(); show(+b.dataset.n); });
+      });
+      parts.forEach(p => p.addEventListener('click', () => { stopAuto(); show(+p.dataset.n); }));
+      an.classList.toggle('is-auto', auto);
+      new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: .4 }).observe(view);
+      show(1);
+      setInterval(() => { if (auto && inView) show(cur % parts.length + 1); }, 3400);
+    })();
+  </script>
+</body>
+</html>
