@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PixelNuvo · Desenvolvimento de Sites Profissionais</title>
+  <meta name="description" content="A PixelNuvo cria sites profissionais sob medida: design exclusivo, performance e suporte próximo. Bem-vindo(a) ao futuro do seu site.">
+  <meta name="theme-color" content="#07090f">
+  <meta property="og:title" content="PixelNuvo · Desenvolvimento de Sites">
+  <meta property="og:description" content="Design, performance e inovação para o site da sua empresa.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-in" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.650 21 11.2 21 14.5V21h-4v-5.8c0-1.4 0-3.2-1.95-3.2S12.8 13.5 12.8 15.1V21H9z"/></symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-chevrons" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 7-5 5 5 5M15 7l5 5-5 5"/></symbol>
+    <symbol id="i-pointer" viewBox="0 0 24 24"><path fill="currentColor" stroke="#fff" stroke-width="1.2" stroke-linejoin="round" d="M4 3l7.5 18 2.6-7.4L21.5 11z"/></symbol>
+  </svg>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#topo" class="brand" aria-label="PixelNuvo, início">
+      <img src="assets/logo.png" alt="" width="40" height="40">
+      <span>Pixel<b>Nuvo</b></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#especialidades">Especialidades</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#processo">Processo</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#contato" class="btn btn--sm btn--primary nav__cta-mobile">Solicitar orçamento</a>
+    </nav>
+    <a href="#contato" class="btn btn--sm btn--primary nav__cta magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+    <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <main id="topo">
+    <!-- HERO -->
+    <section class="hero">
+      <canvas class="hero__pixels" aria-hidden="true"></canvas>
+      <div class="blob blob--tr" aria-hidden="true"></div>
+      <div class="blob blob--bl" aria-hidden="true"></div>
+      <svg class="circuit circuit--r" viewBox="0 0 600 900" aria-hidden="true" preserveAspectRatio="xMaxYMin slice">
+        <g class="circuit__traces" fill="none">
+          <path d="M600 60 H460 L400 120 V300 L330 370 H250"/>
+          <path d="M600 140 H520 L470 190 V420 L400 490"/>
+          <path d="M600 230 H560 L530 260 V560 L460 630 V720"/>
+          <path d="M600 360 H580 V640 L520 700 V860"/>
+          <path d="M340 0 V80 L290 130 H160"/>
+          <path d="M420 0 V60 L380 100 V220"/>
+        </g>
+      </svg>
+      <svg class="circuit circuit--l" viewBox="0 0 600 900" aria-hidden="true" preserveAspectRatio="xMaxYMin slice">
+        <g class="circuit__traces" fill="none">
+          <path d="M600 60 H460 L400 120 V300 L330 370 H250"/>
+          <path d="M600 140 H520 L470 190 V420 L400 490"/>
+          <path d="M600 230 H560 L530 260 V560 L460 630 V720"/>
+          <path d="M600 360 H580 V640 L520 700 V860"/>
+          <path d="M340 0 V80 L290 130 H160"/>
+          <path d="M420 0 V60 L380 100 V220"/>
+        </g>
+      </svg>
+
+      <div class="hero__head container">
+        <h1 class="hero__title" aria-label="Bem-vindo(a) ao futuro do seu site">
+          <span class="line" aria-hidden="true"><span>Bem-vindo(a) ao futuro</span></span>
+          <span class="line" aria-hidden="true"><span><span class="type">do seu <span class="hl">site</span></span><span class="caret"></span></span></span>
+        </h1>
+        <p class="hero__lead">Sites profissionais, rápidos e feitos do zero para o seu negócio, por uma equipe que conversa direto com você.</p>
+        <div class="hero__ctas">
+          <a href="#contato" class="btn btn--primary btn--lg magnetic">Quero meu site <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="#servicos" class="btn btn--ghost btn--lg">Ver serviços</a>
+        </div>
+      </div>
+
+      <div class="hero__stage">
+        <div class="picker" role="group" aria-label="Veja um exemplo de site para o seu negócio">
+          <span>Imagine o site do seu negócio:</span>
+          <button type="button" data-biz="restaurante">Restaurante</button>
+          <button type="button" data-biz="clinica">Clínica</button>
+          <button type="button" data-biz="advocacia">Escritório</button>
+          <button type="button" data-biz="loja">Loja</button>
+        </div>
+        <div class="showcase">
+          <div class="browser" aria-hidden="true">
+            <div class="browser__bar">
+              <span></span><span></span><span></span>
+              <div class="browser__url"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg><b data-k="url">seunegocio.com.br</b></div>
+            </div>
+            <div class="demo" data-biz="site">
+              <div class="demo__nav"><b class="demo__logo" data-k="name">Seu Negócio</b><i>Início</i><i>Sobre</i><i>Contato</i><span class="demo__btn" data-k="cta">Fale conosco</span></div>
+              <div class="demo__hero">
+                <div>
+                  <small data-k="kicker">Bem-vindo</small>
+                  <h3 data-k="title">Seu negócio merece ser encontrado.</h3>
+                  <p data-k="sub">Um site feito sob medida, rápido e bonito em qualquer tela.</p>
+                  <span class="demo__btn demo__btn--lg" data-k="cta">Fale conosco</span>
+                </div>
+                <div class="demo__art"></div>
+              </div>
+              <div class="demo__cards">
+                <div><span></span><b data-k="c0">Sobre</b></div>
+                <div><span></span><b data-k="c1">Serviços</b></div>
+                <div><span></span><b data-k="c2">Contato</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="toast" aria-hidden="true"><span class="toast__icon"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><div><b data-k="t0"></b><small data-k="t1"></small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE: statement -->
+    <section class="statement" id="sobre">
+      <div class="container">
+        <p class="eyebrow" data-scramble>Sobre a PixelNuvo</p>
+        <p class="statement__text" data-words>Seu site é a primeira conversa entre você e seus clientes. A gente garante que ela comece bem.</p>
+      </div>
+    </section>
+
+    <!-- COMPROMISSOS -->
+    <section class="values" aria-label="Como trabalhamos">
+      <div class="value reveal">
+        <div class="container value__in"><span class="value__label">Design</span><span class="value__word">sob medida</span><p>Cada layout nasce do zero, a partir da sua marca.</p></div>
+      </div>
+      <div class="value reveal">
+        <div class="container value__in"><span class="value__label">Contato</span><span class="value__word">direto</span><p>Você fala com quem desenha e programa o seu site.</p></div>
+      </div>
+      <div class="value reveal">
+        <div class="container value__in"><span class="value__label">Suporte</span><span class="value__word">contínuo</span><p>Seguimos por perto com melhorias depois da entrega.</p></div>
+      </div>
+    </section>
+
+    <!-- ESPECIALIDADES -->
+    <section class="section" id="especialidades">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow" data-scramble>Especialidades</p>
+          <h2 class="h2 reveal">O que a gente domina, <span class="hl">pixel por pixel</span>.</h2>
+        </header>
+        <div class="bento">
+          <article class="card spot reveal card--wide">
+            <div class="card__viz viz-design" aria-hidden="true">
+              <span style="--c:#4da8ff"></span><span style="--c:#8fd3ff"></span><span style="--c:#8b5cf6"></span><span style="--c:#e8eefc"></span>
+              <div class="viz-design__frame"><i></i><i></i><i></i></div>
+              <div class="viz-design__cursor"><svg class="ic" aria-hidden="true"><use href="#i-pointer"/></svg><small>você</small></div>
+            </div>
+            <h3>Design UX/UI</h3>
+            <p>Jornadas fluidas prototipadas no Figma. Você vê e aprova antes de a gente construir.</p>
+          </article>
+          <article class="card spot reveal" style="--rd:.1s">
+            <div class="card__viz viz-code" aria-hidden="true"><code><span class="k">&lt;section</span> <span class="a">class</span>=<span class="s">"hero"</span><span class="k">&gt;</span><br>&nbsp;&nbsp;<span class="k">&lt;h1&gt;</span>Seu negócio<span class="k">&lt;/h1&gt;</span><br><span class="k">&lt;/section&gt;</span><span class="blink"></span></code></div>
+            <h3>Front-end moderno</h3>
+            <p>Código limpo, acessível e leve em HTML, CSS e JavaScript.</p>
+          </article>
+          <article class="card spot reveal">
+            <div class="card__viz viz-gauge" aria-hidden="true">
+              <svg viewBox="0 0 120 70"><path d="M10 60 A50 50 0 0 1 110 60"/><path class="g" d="M10 60 A50 50 0 0 1 110 60"/></svg>
+              <b class="count" data-to="98">0</b>
+              <small>Performance</small>
+            </div>
+            <h3>Performance &amp; SEO</h3>
+            <p>Sites que carregam rápido e estão prontos para o Google.</p>
+          </article>
+          <article class="card spot reveal" style="--rd:.1s">
+            <div class="card__viz viz-flow" aria-hidden="true"><span>Form</span><i></i><span>N8N</span><i></i><span>WhatsApp</span></div>
+            <h3>Automações</h3>
+            <p>Python e N8N ligando seu site ao WhatsApp, e-mail e planilhas.</p>
+          </article>
+          <article class="card spot reveal" style="--rd:.2s">
+            <div class="card__viz viz-ai" aria-hidden="true"><span class="bubble">Olá! Como posso ajudar? <span class="typing"><i></i><i></i><i></i></span></span></div>
+            <h3>IA aplicada</h3>
+            <p>Assistentes inteligentes para atender e otimizar processos.</p>
+          </article>
+          <article class="card spot reveal">
+            <div class="card__viz viz-resp" aria-hidden="true"><div class="frame"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <h3>Mobile first</h3>
+            <p>Pensado primeiro para o celular, perfeito em qualquer tela.</p>
+          </article>
+          <article class="card spot reveal card--wide" style="--rd:.1s">
+            <div class="card__viz viz-db" aria-hidden="true">
+              <div class="tbl"><b>clientes</b><i>id</i><i>nome</i><i>email</i></div>
+              <div class="rel"></div>
+              <div class="tbl"><b>pedidos</b><i>id</i><i>cliente_id</i><i>total</i></div>
+            </div>
+            <h3>Back-end &amp; banco de dados</h3>
+            <p>PHP, Python e SQL para quando o site precisa de mais que uma vitrine: cadastros, painéis e integrações.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS (horizontal) -->
+    <section class="hs" id="servicos">
+      <div class="hs__sticky">
+        <header class="section__head hs__head container">
+          <p class="eyebrow" data-scramble>Serviços</p>
+          <h2 class="h2">Um site para cada <span class="hl">momento</span> do seu negócio.</h2>
+        </header>
+        <div class="hs__track">
+
+          <article class="svc" style="--a:#4da8ff">
+            <div class="svc__text">
+              <h3>Site institucional</h3>
+              <p>A vitrine completa da sua empresa: quem vocês são, o que fazem e como falar com vocês.</p>
+              <ul class="tags"><li>Design exclusivo</li><li>SEO</li><li>Formulário</li></ul>
+            </div>
+            <div class="svc__viz">
+              <div class="v-inst" data-p="0">
+                <div class="v-inst__tabs"><button type="button">Início</button><button type="button">Sobre</button><button type="button">Serviços</button><button type="button">Contato</button></div>
+                <div class="v-inst__pg pg0"><i class="big"></i><i></i><i class="s"></i><i class="btn"></i></div>
+                <div class="v-inst__pg pg1"><i class="img"></i><div><i></i><i></i><i class="s"></i><i></i></div></div>
+                <div class="v-inst__pg pg2"><i class="c"></i><i class="c"></i><i class="c"></i></div>
+                <div class="v-inst__pg pg3"><div><i class="in"></i><i class="in"></i><i class="in ta"></i><i class="btn"></i></div><i class="map"><b></b></i></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc" style="--a:#8b5cf6">
+            <div class="svc__text">
+              <h3>Landing page</h3>
+              <p>Uma página, um objetivo: vender, captar contatos ou lançar uma campanha.</p>
+              <ul class="tags"><li>Foco em conversão</li><li>WhatsApp</li><li>Analytics</li></ul>
+            </div>
+            <div class="svc__viz">
+              <div class="v-land">
+                <div class="phone"><i class="big"></i><i></i><i class="s"></i><span class="cta">Quero agora</span><i class="img"></i></div>
+                <div class="leads" aria-hidden="true"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc" style="--a:#22d3ee">
+            <div class="svc__text">
+              <h3>Portfólio &amp; catálogo</h3>
+              <p>Seus trabalhos e produtos organizados de um jeito que dá vontade de ver tudo.</p>
+              <ul class="tags"><li>Galerias</li><li>Filtros</li><li>Instagram</li></ul>
+            </div>
+            <div class="svc__viz">
+              <div class="v-port" data-f="all">
+                <div class="v-port__filters"><button type="button" data-f="all">Todos</button><button type="button" data-f="prod">Produtos</button><button type="button" data-f="proj">Projetos</button></div>
+                <div class="v-port__grid">
+                  <i data-c="prod" style="--g:linear-gradient(135deg,#4da8ff,#8b5cf6)"></i>
+                  <i data-c="proj" style="--g:linear-gradient(135deg,#22d3ee,#0ea5e9)"></i>
+                  <i data-c="prod" style="--g:linear-gradient(135deg,#f472b6,#8b5cf6)"></i>
+                  <i data-c="proj" style="--g:linear-gradient(135deg,#34d399,#22d3ee)"></i>
+                  <i data-c="proj" style="--g:linear-gradient(135deg,#8fd3ff,#4da8ff)"></i>
+                  <i data-c="prod" style="--g:linear-gradient(135deg,#fbbf24,#f472b6)"></i>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc" style="--a:#f59e0b">
+            <div class="svc__text">
+              <h3>Redesign</h3>
+              <p>Seu site atual com cara nova, mais rápido e perfeito no celular.</p>
+              <ul class="tags"><li>Nova identidade</li><li>Mobile first</li><li>Mais velocidade</li></ul>
+            </div>
+            <div class="svc__viz">
+              <div class="v-rd">
+                <div class="v-rd__old"><b>MINHA EMPRESA</b><u>Home | Produtos | Contato</u><em>Bem vindo ao nosso site!!!</em><i></i><i></i><i></i><span>Clique aqui</span></div>
+                <div class="v-rd__new"><b>Minha Empresa</b><strong>Qualidade que<br>se vê.</strong><i></i><i class="s"></i><span>Fale conosco <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span><div class="v-rd__cards"><i></i><i></i><i></i></div></div>
+                <div class="v-rd__line"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc" style="--a:#4ade80">
+            <div class="svc__text">
+              <h3>Manutenção &amp; suporte</h3>
+              <p>Você pede, a gente ajusta e publica. Sem burocracia.</p>
+              <ul class="tags"><li>Alterações sob demanda</li><li>Atendimento direto</li></ul>
+            </div>
+            <div class="svc__viz">
+              <div class="v-chat">
+                <div class="m m--in" style="--d:0s">Oi! Consegue trocar o telefone do rodapé?</div>
+                <div class="m m--typing" style="--d:1.2s"><span class="typing"><i></i><i></i><i></i></span></div>
+                <div class="m m--out" style="--d:2.4s">Claro! Já estou ajustando por aqui.</div>
+                <div class="m m--sys" style="--d:4s"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Alteração publicada no site</div>
+                <div class="m m--in" style="--d:5.4s">Perfeito, obrigado!</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc" style="--a:#f472b6">
+            <div class="svc__text">
+              <h3>Automações &amp; integrações</h3>
+              <p>Formulários que viram mensagem no WhatsApp e planilhas que se preenchem sozinhas.</p>
+              <ul class="tags"><li>N8N</li><li>Python</li><li>IA</li></ul>
+            </div>
+            <div class="svc__viz">
+              <svg class="v-auto" viewBox="0 0 440 300" aria-hidden="true">
+                <path id="w1" d="M110 150 C160 150 160 150 200 150"/>
+                <path id="w2" d="M260 150 C300 150 300 60 330 60"/>
+                <path id="w3" d="M260 150 H330"/>
+                <path id="w4" d="M260 150 C300 150 300 240 330 240"/>
+                <circle r="4"><animateMotion dur="1.2s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
+                <circle r="4"><animateMotion dur="1.2s" begin=".6s" repeatCount="indefinite"><mpath href="#w2"/></animateMotion></circle>
+                <circle r="4"><animateMotion dur="1.2s" begin=".6s" repeatCount="indefinite"><mpath href="#w3"/></animateMotion></circle>
+                <circle r="4"><animateMotion dur="1.2s" begin=".6s" repeatCount="indefinite"><mpath href="#w4"/></animateMotion></circle>
+                <g class="node"><rect x="10" y="126" width="100" height="48" rx="12"/><text x="60" y="155">Formulário</text></g>
+                <g class="node node--hub"><rect x="200" y="120" width="60" height="60" rx="16"/><text x="230" y="155">N8N</text></g>
+                <g class="node"><rect x="330" y="38" width="100" height="44" rx="12"/><text x="380" y="65">WhatsApp</text></g>
+                <g class="node"><rect x="330" y="128" width="100" height="44" rx="12"/><text x="380" y="155">Planilha</text></g>
+                <g class="node"><rect x="330" y="218" width="100" height="44" rx="12"/><text x="380" y="245">E-mail</text></g>
+              </svg>
+            </div>
+          </article>
+
+        </div>
+        <div class="hs__bar container" aria-hidden="true"><span></span></div>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section class="proc" id="processo">
+      <div class="proc__sticky container">
+        <div class="proc__left">
+          <p class="eyebrow" data-scramble>Processo</p>
+          <h2 class="h2 proc__title">Do briefing ao ar em <span class="hl">quatro passos</span>.</h2>
+          <ol class="psteps">
+            <li class="pstep"><span class="pstep__dot">1</span><div><h3>Conversa</h3><p>Entendemos seu negócio, seu público e o que o site precisa resolver.</p></div></li>
+            <li class="pstep"><span class="pstep__dot">2</span><div><h3>Protótipo</h3><p>Desenhamos o layout no Figma e ajustamos com você.</p></div></li>
+            <li class="pstep"><span class="pstep__dot">3</span><div><h3>Desenvolvimento</h3><p>Transformamos o protótipo em um site rápido e responsivo.</p></div></li>
+            <li class="pstep"><span class="pstep__dot">4</span><div><h3>No ar</h3><p>Publicamos, configuramos o domínio e seguimos por perto.</p></div></li>
+          </ol>
+        </div>
+        <div class="art" data-stage="0" aria-hidden="true">
+          <div class="browser__bar"><span></span><span></span><span></span><div class="browser__url"><svg class="ic art__lock" aria-hidden="true"><use href="#i-lock"/></svg><b class="art__url">briefing · doce encanto</b></div></div>
+          <div class="art__body">
+            <div class="art__chat">
+              <div class="m m--in">Quero um site para minha confeitaria.</div>
+              <div class="m m--out">Que legal! Quem são seus clientes?</div>
+              <div class="m m--in">Famílias do bairro, encomendas para festas.</div>
+              <div class="art__notes"><b>Briefing</b><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Cardápio online</span><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Encomendas pelo WhatsApp</span><span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Tons pastel e acolhedores</span></div>
+            </div>
+            <div class="art__site">
+              <div class="as-nav"><b class="t">Doce Encanto</b><i class="t">Cardápio</i><i class="t">Sobre</i><span class="t as-btn">Encomendar</span></div>
+              <div class="as-hero">
+                <div><h4 class="t">Doces que viram festa.</h4><p class="t">Bolos e doces artesanais feitos com carinho, sob encomenda.</p><span class="t as-btn">Pedir pelo WhatsApp</span></div>
+                <div class="as-img"></div>
+              </div>
+              <div class="as-cards"><div><i class="as-img"></i><b class="t">Bolos</b></div><div><i class="as-img"></i><b class="t">Brigadeiros</b></div><div><i class="as-img"></i><b class="t">Tortas</b></div></div>
+            </div>
+            <pre class="art__code"><span class="k">&lt;header</span> <span class="a">class</span>=<span class="s">"hero"</span><span class="k">&gt;</span>
+  <span class="k">&lt;h1&gt;</span>Doces que viram festa.<span class="k">&lt;/h1&gt;</span>
+  <span class="k">&lt;a</span> <span class="a">href</span>=<span class="s">"wa.me/..."</span><span class="k">&gt;</span>Pedir<span class="k">&lt;/a&gt;</span>
+<span class="k">&lt;/header&gt;</span></pre>
+            <div class="art__live"><span class="dot"></span> No ar <small>Performance 98</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFERENCIAIS: antes x depois -->
+    <section class="section ba-sec" id="diferenciais">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Diferenciais</p>
+        <h2 class="h2 reveal">Arraste e veja a <span class="hl">diferença</span>.</h2>
+        <p class="section__sub reveal">O mesmo negócio, dois sites. Um afasta clientes, o outro traz.</p>
+      </header>
+      <div class="ba reveal" style="--pos:50%">
+        <div class="ba__side ba__before" aria-hidden="true">
+          <div class="old">
+            <div class="old__head">PADARIA PÃO DOURADO</div>
+            <div class="old__ticker">*** BEM VINDO AO NOSSO SITE!!! *** CONFIRA NOSSAS PROMOÇÕES *** </div>
+            <div class="old__body">
+              <div class="old__nav"><u>Home</u><u>Produtos</u><u>Fale Conosco</u><u>Links</u></div>
+              <div class="old__main">
+                <h5>Bem vindo!!!</h5>
+                <p>A Padaria Pão Dourado oferece pães, bolos e salgados. Venha nos visitar!!! Aceitamos encomendas.</p>
+                <table><tr><td>Pão francês</td><td>Bolo</td><td>Salgados</td></tr></table>
+                <p><u>Clique aqui</u> para ver o cardápio (PDF 12MB)</p>
+                <div class="old__wip">SITE EM CONSTRUÇÃO</div>
+                <small>Você é o visitante nº 000847 · Melhor visualizado em 800x600</small>
+              </div>
+            </div>
+            <span class="note note--bad" style="left:6%;top:18%"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Template genérico</span>
+            <span class="note note--bad" style="left:30%;top:58%"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Cardápio em PDF de 12MB</span>
+            <span class="note note--bad" style="left:8%;top:78%"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Quebra no celular</span>
+            <span class="note note--bad" style="left:36%;top:30%"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Nenhum botão de contato</span>
+          </div>
+        </div>
+        <div class="ba__side ba__after" aria-hidden="true">
+          <div class="new">
+            <div class="new__nav"><b>Pão Dourado</b><i>Cardápio</i><i>Sobre</i><i>Contato</i><span>Encomendar</span></div>
+            <div class="new__hero">
+              <div>
+                <small>Padaria artesanal</small>
+                <h5>Fornada fresca, todo dia.</h5>
+                <p>Pães de fermentação natural, bolos e salgados feitos na hora.</p>
+                <div class="new__btns"><span>Encomendar pelo WhatsApp</span><span class="o">Ver cardápio</span></div>
+              </div>
+              <div class="new__art"></div>
+            </div>
+            <div class="new__cards"><div><i></i><b>Croissant</b><small>R$ 9</small></div><div><i></i><b>Pão de fermentação natural</b><small>R$ 22</small></div><div><i></i><b>Bolo de cenoura</b><small>R$ 38</small></div></div>
+            <span class="note note--good" style="right:4%;top:30%"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Design exclusivo</span>
+            <span class="note note--good" style="right:30%;top:52%"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>WhatsApp em 1 clique</span>
+            <span class="note note--good" style="right:8%;top:62%"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Perfeito no celular</span>
+            <span class="note note--good" style="right:38%;top:86%"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Cardápio online</span>
+            <span class="note note--good" style="right:4%;top:88%"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Pronto para o Google</span>
+          </div>
+        </div>
+        <span class="ba__label ba__label--l">Site genérico</span>
+        <span class="ba__label ba__label--r">Site PixelNuvo</span>
+        <div class="ba__handle" aria-hidden="true"><span><svg class="ic" aria-hidden="true"><use href="#i-chevrons"/></svg></span></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Arraste para comparar o site genérico com o site PixelNuvo">
+      </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section class="section team" id="equipe">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Equipe</p>
+        <h2 class="h2 reveal">As pessoas por trás de cada <span class="hl">pixel</span>.</h2>
+        <p class="section__sub reveal">Quem conversa com você é quem desenha e programa o seu site.</p>
+      </header>
+      <div class="crew reveal">
+        <article class="mate is-open">
+          <button type="button" class="mate__tab" aria-expanded="true" aria-controls="mate-1"><b>Patryck Geovany</b><small>Front-end &amp; UX/UI</small></button>
+          <div class="mate__photo"><img src="assets/patryck.webp" alt="Foto de Patryck Geovany" loading="lazy" width="380" height="452"></div>
+          <div class="mate__body" id="mate-1">
+            <p class="mate__role">Front-end Developer &amp; UX/UI Designer</p>
+            <h3>Patryck Geovany <span>Tavares e Oliveira</span></h3>
+            <p class="mate__bio">Focado em criar interfaces funcionais, intuitivas e com a melhor experiência para o usuário.</p>
+            <div class="mate__grid">
+              <div><h4>Formação &amp; foco</h4><ul><li>Análise e Desenvolvimento de Sistemas</li><li>Design Front-end, UX/UI</li><li>Engenharia de Prompt em IA</li></ul></div>
+              <div><h4>Tecnologias</h4><ul class="tags"><li>HTML5/CSS3</li><li>PHP</li><li>Python</li><li>Prototipagem</li><li>Banco de dados</li></ul></div>
+            </div>
+            <div class="mate__diff"><h4>Diferencial</h4><p>Jornadas de usuário fluidas, otimização de sistemas e aplicação de IA.</p></div>
+            <div class="mate__links">
+              <a href="https://www.linkedin.com/in/patryck-geovany-tavares-de-oliveira-0b32902b2/" target="_blank" rel="noopener" aria-label="LinkedIn de Patryck"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+              <a href="https://github.com/patryckgtoliveira-cpu" target="_blank" rel="noopener" aria-label="GitHub de Patryck"><svg viewBox="0 0 24 24"><use href="#i-gh"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="mate">
+          <button type="button" class="mate__tab" aria-expanded="false" aria-controls="mate-2"><b>Marcelo Saraiva</b><small>Suporte &amp; Sites</small></button>
+          <div class="mate__photo"><img src="assets/marcelo.webp" alt="Foto de Marcelo Saraiva" loading="lazy" width="382" height="450"></div>
+          <div class="mate__body" id="mate-2">
+            <p class="mate__role">Suporte &amp; Desenvolvedor de Sites</p>
+            <h3>Marcelo <span>Saraiva</span></h3>
+            <p class="mate__bio">Presta suporte aos clientes e realiza atualizações e melhorias contínuas nos sites, com agilidade e precisão.</p>
+            <div class="mate__grid">
+              <div><h4>Formação &amp; foco</h4><ul><li>Análise e Desenvolvimento de Sistemas</li><li>Suporte e atendimento ao cliente</li><li>Manutenção e alteração de sites</li></ul></div>
+              <div><h4>Tecnologias</h4><ul class="tags"><li>HTML5</li><li>CSS3</li><li>Bootstrap</li><li>JavaScript</li><li>Python</li><li>C++</li><li>SQL</li></ul></div>
+            </div>
+            <div class="mate__diff"><h4>Diferencial</h4><p>Comunicação direta com o cliente para entender e aplicar as alterações, garantindo a evolução contínua dos sites.</p></div>
+            <div class="mate__links">
+              <a href="https://www.linkedin.com/in/marcelo-saraiva-uti" target="_blank" rel="noopener" aria-label="LinkedIn de Marcelo"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+              <a href="https://github.com/marceloUTI" target="_blank" rel="noopener" aria-label="GitHub de Marcelo"><svg viewBox="0 0 24 24"><use href="#i-gh"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="mate">
+          <button type="button" class="mate__tab" aria-expanded="false" aria-controls="mate-3"><b>Hemanuel Antunes</b><small>Front-end &amp; UX/UI</small></button>
+          <div class="mate__photo"><img src="assets/hemanuel.webp" alt="Foto de Hemanuel Antunes" loading="lazy" width="382" height="450"></div>
+          <div class="mate__body" id="mate-3">
+            <p class="mate__role">Front-end Developer &amp; UX/UI Designer</p>
+            <h3>Hemanuel <span>Antunes</span></h3>
+            <p class="mate__bio">Une experiência em atendimento, organização e paixão por design para criar as melhores soluções.</p>
+            <div class="mate__grid">
+              <div><h4>Formação &amp; foco</h4><ul><li>Análise e Desenvolvimento de Sistemas</li><li>Design Front-end, UX/UI</li><li>Automações com Python e N8N</li></ul></div>
+              <div><h4>Tecnologias</h4><ul class="tags"><li>HTML5/CSS3</li><li>Bootstrap</li><li>JavaScript</li><li>Python</li><li>N8N</li><li>Figma</li></ul></div>
+            </div>
+            <div class="mate__diff"><h4>Diferencial</h4><p>Empatia, comunicação clara e atenção a prazos, com foco em design visual e melhoria contínua.</p></div>
+            <div class="mate__links">
+              <a href="https://www.linkedin.com/in/hemanuel-antunes" target="_blank" rel="noopener" aria-label="LinkedIn de Hemanuel"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+              <a href="https://github.com/Hemanuel10" target="_blank" rel="noopener" aria-label="GitHub de Hemanuel"><svg viewBox="0 0 24 24"><use href="#i-gh"/></svg></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="duvidas">
+      <header class="section__head container">
+        <p class="eyebrow" data-scramble>Dúvidas</p>
+        <h2 class="h2 reveal">Perguntas <span class="hl">frequentes</span>.</h2>
+        <p class="section__sub reveal">Não achou a sua? <a href="https://ig.me/m/pixel_nuvo" target="_blank" rel="noopener" class="link">Manda pra gente no Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a></p>
+      </header>
+      <div class="faq__list">
+        <details><summary>Quanto custa um site?</summary><p>Depende do tamanho e do que o site precisa fazer. Depois de uma conversa rápida, enviamos um orçamento claro e sem compromisso.</p></details>
+        <details><summary>Quanto tempo leva para ficar pronto?</summary><p>Varia conforme o projeto. Antes de começar, combinamos um cronograma com cada etapa para você saber exatamente o que esperar.</p></details>
+        <details><summary>O site vai funcionar bem no celular?</summary><p>Sim. Todos os nossos sites são pensados primeiro para o celular, de onde vem a maior parte das visitas.</p></details>
+        <details><summary>Meu site vai aparecer no Google?</summary><p>Entregamos a estrutura técnica pronta para SEO: títulos, descrições, velocidade e marcação corretas.</p></details>
+        <details><summary>Preciso ter domínio e hospedagem?</summary><p>Não precisa se preocupar. Ajudamos a registrar o domínio e configurar a hospedagem.</p></details>
+        <details><summary>Posso pedir alterações durante o projeto?</summary><p>Pode e deve. Você aprova o protótipo antes do desenvolvimento, então os ajustes acontecem cedo.</p></details>
+        <details><summary>E depois que o site estiver no ar?</summary><p>Seguimos por perto com manutenção e suporte para atualizar conteúdos e evoluir o site.</p></details>
+        <details><summary>Vocês integram com WhatsApp e automações?</summary><p>Sim. Botões de WhatsApp, feed do Instagram, formulários com mensagens automáticas e fluxos com N8N.</p></details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="container cta__inner">
+        <h2 class="cta__title reveal">Seu próximo cliente pode estar <span class="hl">procurando você</span> agora.</h2>
+        <p class="cta__lead reveal">Conte a sua ideia e receba um orçamento sem compromisso.</p>
+        <div class="hero__ctas reveal">
+          <a href="https://ig.me/m/pixel_nuvo" target="_blank" rel="noopener" class="btn btn--primary btn--lg magnetic">Solicitar orçamento <i aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+          <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">@pixel_nuvo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__nav" aria-label="Rodapé">
+      <a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#processo">Processo</a><a href="#equipe">Equipe</a><a href="#duvidas">Dúvidas</a>
+      <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener">Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a>
+    </nav>
+    <div class="footer__word" aria-hidden="true">PIXELNUVO</div>
+    <p class="footer__copy">© <span class="year"></span> PixelNuvo · Desenvolvimento de Sites</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
