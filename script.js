@@ -461,7 +461,7 @@ const pixelNuvoHome = (() => {
     const mates = $$('.mate');
     if (!mates.length) return;
 
-    const open = (mate) => {
+    const setOpen = (mate) => {
       mates.forEach((item) => {
         const isOpen = item === mate;
         item.classList.toggle('is-open', isOpen);
@@ -470,9 +470,9 @@ const pixelNuvoHome = (() => {
     };
 
     mates.forEach((mate) => {
-      $('.mate__tab', mate).addEventListener('click', () => open(mate));
-      if (!finePointer) return;
-      mate.addEventListener('mouseenter', () => open(mate));
+      $('.mate__tab', mate).addEventListener('click', () => {
+        setOpen(mate.classList.contains('is-open') ? null : mate);
+      });
     });
   }
 
