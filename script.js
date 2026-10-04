@@ -378,6 +378,85 @@ const pixelNuvoHome = (() => {
     observer.observe(compare);
   }
 
+  function initCoverageMap() {
+    const section = $('#cobertura');
+    if (!section) return;
+
+    const map = $('.coverage__map', section);
+    const picker = $('#coverage-state-select', section);
+    const stateName = $('#coverage-state-name', section);
+    const stateUf = $('#coverage-state-uf', section);
+    const stateRegion = $('#coverage-state-region', section);
+    const mapError = $('.coverage__map-error', section);
+    const options = new Map(
+      [...picker.options]
+        .filter((option) => option.value)
+        .map((option) => [option.value, option]),
+    );
+
+    const updateMap = (uf) => {
+      const mapDocument = map.contentDocument;
+      if (!mapDocument) return;
+
+      mapDocument.querySelectorAll('[data-uf]').forEach((path) => {
+        const isSelected = path.dataset.uf === uf;
+        path.classList.toggle('is-selected', isSelected);
+        path.setAttribute('aria-pressed', String(isSelected));
+      });
+    };
+
+    const selectState = (uf) => {
+      const option = options.get(uf);
+      if (!option) {
+        picker.value = '';
+        stateName.textContent = 'Escolha um estado';
+        stateUf.textContent = '27 unidades federativas';
+        stateRegion.textContent = 'Clique em qualquer estado do mapa ou escolha pela lista para ver a região.';
+        updateMap('');
+        return;
+      }
+
+      picker.value = uf;
+      stateName.textContent = option.dataset.name;
+      stateUf.textContent = uf;
+      stateRegion.textContent = `Região ${option.dataset.region} · atendimento online em todo o Brasil.`;
+      updateMap(uf);
+    };
+
+    picker.addEventListener('change', () => selectState(picker.value));
+
+    const bindMap = () => {
+      const mapDocument = map.contentDocument;
+      if (!mapDocument) {
+        mapError.hidden = false;
+        return;
+      }
+
+      const statePaths = mapDocument.querySelectorAll('[data-uf]');
+      if (statePaths.length !== options.size) {
+        mapError.hidden = false;
+        return;
+      }
+
+      statePaths.forEach((path) => {
+        path.addEventListener('click', () => selectState(path.dataset.uf));
+        path.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+          event.preventDefault();
+          selectState(path.dataset.uf);
+        });
+      });
+      mapError.hidden = true;
+      updateMap(picker.value);
+    };
+
+    map.addEventListener('load', bindMap);
+    map.addEventListener('error', () => {
+      mapError.hidden = false;
+    });
+    if (map.contentDocument && map.contentDocument.querySelectorAll('[data-uf]').length) bindMap();
+  }
+
   function initTeamPanels() {
     const mates = $$('.mate');
     if (!mates.length) return;
@@ -405,6 +484,7 @@ const pixelNuvoHome = (() => {
     initStatementWords();
     initServiceScroll();
     initCompareSlider();
+    initCoverageMap();
     initTeamPanels();
   }
 

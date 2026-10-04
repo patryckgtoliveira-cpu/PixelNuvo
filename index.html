@@ -39,6 +39,7 @@
       <a href="#sobre">Sobre</a>
       <a href="#especialidades">Especialidades</a>
       <a href="servicos.html">Serviços</a>
+      <a href="#cobertura">Cobertura</a>
       <a href="#processo">Processo</a>
       <a href="#equipe">Equipe</a>
       <a href="#duvidas">Dúvidas</a>
@@ -333,6 +334,66 @@
       </div>
     </section>
 
+    <!-- COBERTURA NACIONAL -->
+    <section class="section coverage" id="cobertura">
+      <header class="section__head container">
+        <h2 class="h2 reveal">Atendimento em todo o <span class="hl">Brasil</span>.</h2>
+        <p class="section__sub reveal">Atendemos empresas de todas as regiões, com conversa e acompanhamento online. Escolha um estado no mapa para ver sua região.</p>
+      </header>
+      <div class="coverage__layout container">
+        <div class="coverage__map-frame">
+          <div class="coverage__map-head">
+            <p><span class="dot" aria-hidden="true"></span>Atendimento nacional</p>
+            <span>26 ESTADOS + DF</span>
+          </div>
+          <object class="coverage__map" data="assets/brasil-estados.svg" type="image/svg+xml" title="Mapa interativo dos estados do Brasil">
+            Mapa interativo dos estados do Brasil. Use o seletor de estados ao lado.
+          </object>
+          <p class="coverage__map-error" role="status" hidden>Não foi possível carregar o mapa. Você ainda pode escolher seu estado pela lista.</p>
+        </div>
+        <div class="coverage__details">
+          <p class="coverage__status"><span class="dot" aria-hidden="true"></span>Atendimento online disponível</p>
+          <div class="coverage__selection" aria-live="polite">
+            <h3 id="coverage-state-name">Escolha um estado</h3>
+            <span id="coverage-state-uf">27 unidades federativas</span>
+          </div>
+          <p class="coverage__region" id="coverage-state-region">Clique em qualquer estado do mapa ou escolha pela lista para ver a região.</p>
+          <label class="coverage__label" for="coverage-state-select">Selecione também pela lista</label>
+          <select class="coverage__select" id="coverage-state-select">
+            <option value="">Escolha seu estado</option>
+            <option value="AC" data-name="Acre" data-region="Norte">Acre (AC)</option>
+            <option value="AL" data-name="Alagoas" data-region="Nordeste">Alagoas (AL)</option>
+            <option value="AP" data-name="Amapá" data-region="Norte">Amapá (AP)</option>
+            <option value="AM" data-name="Amazonas" data-region="Norte">Amazonas (AM)</option>
+            <option value="BA" data-name="Bahia" data-region="Nordeste">Bahia (BA)</option>
+            <option value="CE" data-name="Ceará" data-region="Nordeste">Ceará (CE)</option>
+            <option value="DF" data-name="Distrito Federal" data-region="Centro-Oeste">Distrito Federal (DF)</option>
+            <option value="ES" data-name="Espírito Santo" data-region="Sudeste">Espírito Santo (ES)</option>
+            <option value="GO" data-name="Goiás" data-region="Centro-Oeste">Goiás (GO)</option>
+            <option value="MA" data-name="Maranhão" data-region="Nordeste">Maranhão (MA)</option>
+            <option value="MT" data-name="Mato Grosso" data-region="Centro-Oeste">Mato Grosso (MT)</option>
+            <option value="MS" data-name="Mato Grosso do Sul" data-region="Centro-Oeste">Mato Grosso do Sul (MS)</option>
+            <option value="MG" data-name="Minas Gerais" data-region="Sudeste">Minas Gerais (MG)</option>
+            <option value="PA" data-name="Pará" data-region="Norte">Pará (PA)</option>
+            <option value="PB" data-name="Paraíba" data-region="Nordeste">Paraíba (PB)</option>
+            <option value="PR" data-name="Paraná" data-region="Sul">Paraná (PR)</option>
+            <option value="PE" data-name="Pernambuco" data-region="Nordeste">Pernambuco (PE)</option>
+            <option value="PI" data-name="Piauí" data-region="Nordeste">Piauí (PI)</option>
+            <option value="RJ" data-name="Rio de Janeiro" data-region="Sudeste">Rio de Janeiro (RJ)</option>
+            <option value="RN" data-name="Rio Grande do Norte" data-region="Nordeste">Rio Grande do Norte (RN)</option>
+            <option value="RS" data-name="Rio Grande do Sul" data-region="Sul">Rio Grande do Sul (RS)</option>
+            <option value="RO" data-name="Rondônia" data-region="Norte">Rondônia (RO)</option>
+            <option value="RR" data-name="Roraima" data-region="Norte">Roraima (RR)</option>
+            <option value="SC" data-name="Santa Catarina" data-region="Sul">Santa Catarina (SC)</option>
+            <option value="SP" data-name="São Paulo" data-region="Sudeste">São Paulo (SP)</option>
+            <option value="SE" data-name="Sergipe" data-region="Nordeste">Sergipe (SE)</option>
+            <option value="TO" data-name="Tocantins" data-region="Norte">Tocantins (TO)</option>
+          </select>
+          <a href="#contato" class="btn btn--primary coverage__cta">Vamos conversar <i aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></i></a>
+        </div>
+      </div>
+    </section>
+
     <!-- PROCESSO -->
     <section class="proc" id="processo">
       <div class="proc__sticky container">
@@ -529,7 +590,7 @@
 
   <footer class="footer">
     <nav class="footer__nav" aria-label="Rodapé">
-      <a href="#sobre">Sobre</a><a href="servicos.html">Serviços</a><a href="#processo">Processo</a><a href="#equipe">Equipe</a><a href="#duvidas">Dúvidas</a>
+      <a href="#sobre">Sobre</a><a href="servicos.html">Serviços</a><a href="#cobertura">Cobertura</a><a href="#processo">Processo</a><a href="#equipe">Equipe</a><a href="#duvidas">Dúvidas</a>
       <a href="https://www.instagram.com/pixel_nuvo/" target="_blank" rel="noopener">Instagram <svg class="ic" aria-hidden="true"><use href="#i-external"/></svg></a>
     </nav>
     <div class="footer__word" aria-hidden="true">PIXELNUVO</div>
