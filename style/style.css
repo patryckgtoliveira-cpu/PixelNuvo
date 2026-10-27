@@ -577,14 +577,56 @@ button { font: inherit; color: inherit; }
 .client-project--pamdoca .client-project__canvas {
   background: radial-gradient(ellipse at 85% 20%, rgba(251, 191, 36, .12), transparent 45%), linear-gradient(135deg, #211a1b, #12121b);
 }
-.client-project--estofficar .client-project__canvas {
-  background: radial-gradient(ellipse at 84% 20%, rgba(77, 168, 255, .16), transparent 45%), linear-gradient(135deg, #111b28, #10121e);
+.client-project--animal .client-project__canvas {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 79% 44%, rgba(210, 158, 146, .34), transparent 37%),
+    radial-gradient(ellipse at 94% 95%, rgba(177, 190, 160, .42), transparent 38%),
+    linear-gradient(125deg, #f8f2eb, #eee4da);
+  color: #493a35;
+}
+.client-project--animal .client-project__canvas::after {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: clamp(20px, 5vw, 58px);
+  width: clamp(112px, 17vw, 194px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(135, 101, 86, .28);
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 65%, rgba(183, 132, 118, .48) 0 18%, transparent 19%),
+    radial-gradient(ellipse at 27% 39%, rgba(183, 132, 118, .48) 0 9%, transparent 10%),
+    radial-gradient(ellipse at 43% 27%, rgba(183, 132, 118, .48) 0 9%, transparent 10%),
+    radial-gradient(ellipse at 61% 27%, rgba(183, 132, 118, .48) 0 9%, transparent 10%),
+    radial-gradient(ellipse at 77% 40%, rgba(183, 132, 118, .48) 0 9%, transparent 10%),
+    radial-gradient(ellipse at 50% 50%, transparent 0 38%, rgba(255, 249, 242, .55) 39% 40%, transparent 41%);
+  box-shadow: 0 20px 60px rgba(109, 77, 66, .12), inset 0 0 35px rgba(255, 255, 255, .46);
+  content: "";
+  transform: translateY(-42%);
+}
+.client-project--animal .client-project__domain { color: #8d6b5d; }
+.client-project--animal .client-project__identity {
+  position: relative;
+  z-index: 1;
+}
+.client-project--animal .client-project__identity > span:first-child,
+.client-project--animal .client-project__type { color: #80675b; }
+.client-project--animal .client-project__identity strong {
+  color: #513f39;
+  font: 500 clamp(54px, 7vw, 78px)/.9 Georgia, serif;
+  letter-spacing: -.075em;
+}
+.client-project__tagline {
+  color: #735c51 !important;
+  font: italic 17px/1.4 Georgia, serif !important;
 }
 .client-project__domain { color: var(--sky); font: 500 11px/1.5 var(--mono); letter-spacing: .04em; overflow-wrap: anywhere; }
 .client-project__identity { display: grid; gap: 12px; }
 .client-project__identity > span, .client-project__type { color: #c3cee4; font-size: 13px; font-weight: 500; }
 .client-project--pamdoca .client-project__identity strong { color: #fff0e3; font: 700 clamp(38px, 5vw, 60px)/.98 Georgia, serif; letter-spacing: -.035em; }
-.client-project--estofficar .client-project__identity strong { color: #e8eefc; font-size: clamp(38px, 5vw, 60px); font-weight: 800; letter-spacing: -.04em; }
 .client-project__info { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px clamp(20px, 3vw, 30px); }
 .client-project__info h3 { margin-bottom: 8px; font-size: 20px; }
 .client-project__info p { max-width: 36ch; color: var(--muted); font-size: 14px; }
